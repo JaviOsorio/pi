@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>PI</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="./../assets/images/favicon.ico">
+        <!-- Plugins css -->
+        <link href="./../assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+        <!-- App css -->
+        <link href="./../assets/css/config/default/bootstrap.min.css" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
+        <link href="./../assets/css/config/default/app.min.css" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
+        <link href="./../assets/css/config/default/bootstrap-dark.min.css" rel="stylesheet" type="text/css" id="bs-dark-stylesheet" />
+        <link href="./../assets/css/config/default/app-dark.min.css" rel="stylesheet" type="text/css" id="app-dark-stylesheet" />
+
+        <!-- Sweet Alert-->
+        <link href="./../assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- third party css -->
+        <link href="./../assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <link href="./../assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <link href="./../assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <link href="./../assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <!-- third party css end -->
+         
+        <!-- icons -->
+        <link href="./../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body class="loading" data-layout-mode="detached" >
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- Topbar Start -->
+            <div class="navbar-custom bg-white text-dark">
+                <div class="container-fluid">
+                    <ul class="list-unstyled topnav-menu float-end mb-0">
+                        <li class="dropdown notification-list topbar-dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="fe-bell noti-icon"></i>
+                                <!-- <span class="badge bg-danger rounded-circle noti-icon-badge"></span> -->
+                            </a>
+                        </li>
+                        <li class="dropdown notification-list topbar-dropdown text-dark">
+                            <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <!-- <img src="./../assets/images/users/user-1.jpg" alt="user-image" class="rounded-circle"> -->
+                                <span class="pro-user-name ms-1 text-dark">
+                                    <span class="pro-username"></span>
+                                    <i class="fas fa-cog"></i> 
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="fe-user"></i>
+                                    <span>Mi cuenta</span>
+                                </a>
+                
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="fe-settings"></i>
+                                    <span>Configuración</span>
+                                </a>
+
+                                <div class="dropdown-divider"></div>
+                
+                                <!-- item-->
+                                <a href="/pi/" class="dropdown-item notify-item logout">
+                                    <i class="fe-log-out logout"></i>
+                                    <span class="logout">Salir</span>
+                                </a>
+                
+                            </div>
+                        </li>
+                    </ul>
+                
+                    <!-- LOGO -->
+                    <div class="logo-box text-center">
+                        <h2>PESAJE</h2>
+                    </div>
+                
+                    <ul class="list-unstyled topnav-menu topnav-menu-left m-0 text-dark">
+                        <li>
+                            <button class="button-menu-mobile waves-effect waves-light text-dark">
+                                <i class="fe-menu"></i>
+                            </button>
+                        </li>
+
+                        <li>
+                            <!-- Mobile menu toggle (Horizontal Layout)-->
+                            <a class="navbar-toggle nav-link" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
+                                <div class="lines">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </a>
+                            <!-- End mobile menu toggle-->
+                        </li>   
+                    </ul>
+                </div>
+            </div>
+            <!-- end Topbar -->
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="left-side-menu">
+
+                <div class="h-100" data-simplebar>
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu" class="slide-menu-admin">
+                        <ul id="side-menu">
+                          <li>
+                              <a href="home.html">
+                                  <i class="fas fa-home"></i>
+                                  <span> Home </span>
+                              </a>
+                          </li>
+                            <li>
+                                <a href="users.html">
+                                    <i class="fas fa-users"></i>
+                                    <span> Usuarios </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="recipes.html">
+                                    <i class="fas fa-cookie"></i>
+                                    <span> Recetas </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="ingredients.html">
+                                    <i class="fas fa-list-alt"></i>
+                                    <span> Ingredientes </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tasks.html">
+                                    <i class="fas fa-list-ol"></i>
+                                    <span>Gestión Tareas</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="task-oper.html">
+                                    <i class="fas fa-balance-scale-left"></i>
+                                    <span>Tareas Operario</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="charts.html">
+                                    <i class="fas fa-chart-bar"></i>
+                                    <span> Informes </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="sidebar-menu" class="slide-menu-user">
+
+                        <ul id="side-menu">
+                            <li>
+                                <a href="home.html">
+                                    <i class="fas fa-home"></i>
+                                    <span>Home</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="task-oper.html">
+                                    <i class="fas fa-balance-scale-left"></i>
+                                    <span>Tareas Operario</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- End Sidebar -->
+
+                    <div class="clearfix"></div>
+
+                </div>
+                <!-- Sidebar -left -->
+
+            </div>
+            <!-- Left Sidebar End -->
+
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+                        
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title">Home</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="widget-rounded-circle card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                          <h2>Bienvenid@</h2>
+                                        </div>
+                                    </div>
+                                </div> <!-- end widget-rounded-circle-->
+                            </div> <!-- end col-->
+
+                        </div>
+                        <!-- end row-->
+                        
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+                <!-- Footer Start -->
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <script>document.write(new Date().getFullYear())</script> &copy; <a href=""></a> 
+                            </div>
+                            <div class="col-md-6" hidden>
+                                <div class="text-md-end footer-links d-none d-sm-block">
+                                    <a href="javascript:void(0);">About Us</a>
+                                    <a href="javascript:void(0);">Help</a>
+                                    <a href="javascript:void(0);">Contact Us</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- end Footer -->
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+        </div>
+        <!-- END wrapper -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- Vendor js -->
+        <script src="./../assets/js/vendor.min.js"></script>
+
+        <!-- third party js -->
+        <script src="./../assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="./../assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+        <script src="./../assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="./../assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+        <script src="./../assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="./../assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+        <script src="./../assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="./../assets/libs/datatables.net-buttons/js/buttons.flash.min.js"></script>
+        <script src="./../assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="./../assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+        <script src="./../assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
+        <script src="./../assets/libs/pdfmake/build/pdfmake.min.js"></script>
+        <script src="./../assets/libs/pdfmake/build/vfs_fonts.js"></script>
+        
+        <!-- Sweet Alerts js -->
+        <script src="./../assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
+
+        <!-- Datatables init -->
+        <script src="./../assets/js/pages/datatables.init.js"></script>
+        
+        <!-- App js -->
+        <script src="./../assets/js/app.min.js"></script>
+        <script>
+          document.addEventListener("DOMContentLoaded", async () => {
+            const { decodeToken, logout } = await import("./../assets/custom/js/auth/auth.js");
+            const dataToken = decodeToken();
+            if (dataToken.token) {
+              // Mostrar/ocultar funcionalidades basadas en los roles
+              if (dataToken.role == "admin" || dataToken.role == "superadmin") {
+                document.querySelector(".slide-menu-admin").style.display = "block";
+                document.querySelector(".slide-menu-user").style.display = "none";
+              } else {
+                document.querySelector(".slide-menu-admin").style.display = "none";
+                document.querySelector(".slide-menu-user").style.display = "block";
+              }
+              
+                const $proUserName = document.querySelector(".pro-username");
+                const user = localStorage.getItem("user");
+                $proUserName.textContent = user;
+            } else {
+              window.location.href = "../";
+            }
+          })
+        </script>
+    </body>
+</html>

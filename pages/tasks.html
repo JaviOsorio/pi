@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>PI</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="./../assets/images/favicon.ico">
+        <!-- Plugins css -->
+        <link href="./../assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+        <!-- App css -->
+        <link href="./../assets/css/config/default/bootstrap.min.css" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
+        <link href="./../assets/css/config/default/app.min.css" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
+        <link href="./../assets/css/config/default/bootstrap-dark.min.css" rel="stylesheet" type="text/css" id="bs-dark-stylesheet" />
+        <link href="./../assets/css/config/default/app-dark.min.css" rel="stylesheet" type="text/css" id="app-dark-stylesheet" />
+
+        <!-- Sweet Alert-->
+        <link href="./../assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- third party css -->
+        <link href="./../assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <link href="./../assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <link href="./../assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <link href="./../assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <!-- third party css end -->
+         
+        <!-- icons -->
+        <link href="./../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body class="loading" data-layout-mode="detached" >
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- Topbar Start -->
+            <div class="navbar-custom bg-white text-dark">
+                <div class="container-fluid">
+                    <ul class="list-unstyled topnav-menu float-end mb-0">
+                        <li class="dropdown notification-list topbar-dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="fe-bell noti-icon"></i>
+                                <!-- <span class="badge bg-danger rounded-circle noti-icon-badge"></span> -->
+                            </a>
+                        </li>
+                        <li class="dropdown notification-list topbar-dropdown text-dark">
+                            <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <!-- <img src="./../assets/images/users/user-1.jpg" alt="user-image" class="rounded-circle"> -->
+                                <span class="pro-user-name ms-1 text-dark">
+                                    <span class="pro-username"></span>
+                                    <i class="fas fa-cog"></i> 
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="fe-user"></i>
+                                    <span>Mi cuenta</span>
+                                </a>
+                
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="fe-settings"></i>
+                                    <span>Configuración</span>
+                                </a>
+
+                                <div class="dropdown-divider"></div>
+                
+                                <!-- item-->
+                                <a href="/pi/" class="dropdown-item notify-item logout">
+                                    <i class="fe-log-out logout"></i>
+                                    <span class="logout">Salir</span>
+                                </a>
+                
+                            </div>
+                        </li>
+                    </ul>
+                
+                    <!-- LOGO -->
+                    <div class="logo-box text-center">
+                        <h2>PESAJE</h2>
+                    </div>
+                
+                    <ul class="list-unstyled topnav-menu topnav-menu-left m-0 text-dark">
+                        <li>
+                            <button class="button-menu-mobile waves-effect waves-light text-dark">
+                                <i class="fe-menu"></i>
+                            </button>
+                        </li>
+
+                        <li>
+                            <!-- Mobile menu toggle (Horizontal Layout)-->
+                            <a class="navbar-toggle nav-link" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
+                                <div class="lines">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </a>
+                            <!-- End mobile menu toggle-->
+                        </li>   
+                    </ul>
+                </div>
+            </div>
+            <!-- end Topbar -->
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="left-side-menu">
+
+                <div class="h-100" data-simplebar>
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu" class="slide-menu-admin">
+                        <ul id="side-menu">
+                            <li>
+                                <a href="home.html">
+                                    <i class="fas fa-home"></i>
+                                    <span> Home </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="users.html">
+                                    <i class="fas fa-users"></i>
+                                    <span> Usuarios </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="recipes.html">
+                                    <i class="fas fa-cookie"></i>
+                                    <span> Recetas </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="ingredients.html">
+                                    <i class="fas fa-list-alt"></i>
+                                    <span> Ingredientes </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tasks.html">
+                                    <i class="fas fa-list-ol"></i>
+                                    <span>Gestión Tareas</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="task-oper.html">
+                                    <i class="fas fa-balance-scale-left"></i>
+                                    <span>Tareas Operario</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="charts.html">
+                                    <i class="fas fa-chart-bar"></i>
+                                    <span> Informes </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="sidebar-menu" class="slide-menu-user">
+
+                        <ul id="side-menu">
+                            <li>
+                                <a href="home.html">
+                                    <i class="fas fa-home"></i>
+                                    <span> Home </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="task-oper.html">
+                                    <i class="fas fa-balance-scale-left"></i>
+                                    <span>Tareas Operario</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- End Sidebar -->
+
+                    <div class="clearfix"></div>
+
+                </div>
+                <!-- Sidebar -left -->
+
+            </div>
+            <!-- Left Sidebar End -->
+
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+                        
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title">Tareas</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="widget-rounded-circle card">
+                                    <div class="card-body">
+                                        <div class="row mb-1">
+                                            <div class="col-sm-6"></div>
+                                            <div class="col-sm-6">
+                                                <button class="btn btn-primary btn-sm float-end btn-modal-recipe"><i class="fas fa-plus pe-2 btn-modal-recipe"></i>Nuevo</button>
+                                            </div>
+                                        </div>
+                                        <div class="row table-responsive">
+                                            <table class="table table-hover table-striped table-tasks">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Lote</th>
+                                                        <th>Nombre</th>
+                                                        <th>Estado</th>
+                                                        <th>Repetición</th>
+                                                        <th>Fecha ini</th>
+                                                        <th>Fecha final</th>
+                                                        <th>Ver</th>
+                                                        <th class="text-center">Opciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div> <!-- end row-->
+                                    </div>
+                                </div> <!-- end widget-rounded-circle-->
+                            </div> <!-- end col-->
+
+                        </div>
+                        <!-- end row-->
+                        
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+                <!-- Footer Start -->
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <script>document.write(new Date().getFullYear())</script> &copy; <a href=""></a> 
+                            </div>
+                            <div class="col-md-6" hidden>
+                                <div class="text-md-end footer-links d-none d-sm-block">
+                                    <a href="javascript:void(0);">About Us</a>
+                                    <a href="javascript:void(0);">Help</a>
+                                    <a href="javascript:void(0);">Contact Us</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- end Footer -->
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+            <!-- ============================================================== -->
+            <!-- Start modal task -->
+            <!-- ============================================================== -->
+                <!-- Modal task -->
+                <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Tarea</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <form class="needs-validation was-validated recipe-form" novalidate="" autocomplete="off">
+                                                <input type="hidden" name="id" class="form-control">
+                                                <input type="hidden" name="unit" value="Moje" class="form-control">
+                                                <div class="row">
+                                                    <div class="mb-1 col-sm-6">
+                                                        <label for="validationCustom01" class="form-label">Lote de producción</label>
+                                                        <input type="text" class="form-control" id="validationCustom01" name="productionBatch" readonly placeholder="" required="">
+                                                        <div class="valid-feedback">
+                                                            Ok
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-1 col-sm-6">
+                                                        <label for="status" class="form-label">Estado</label>
+                                                        <select class="form-control mb-2 status-select" name="status" required="">
+                                                            <option value="Pendiente">Pendiente</option>
+                                                            <option value="En curso">En curso</option>
+                                                            <option value="Finalizada">Finalizada</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1">
+                                                    <label for="validationCustom02" class="form-label">Receta</label>
+                                                    <select class="form-control mb-2 recipe-select" name="productId" required="">
+                                                        <!-- Aquí se cargarán las recetas -->
+                                                    </select>
+                                                    <div class="valid-feedback">
+                                                        Ok
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="mb-1 col-sm-6">
+                                                        <label for="validationCustom03" class="form-label">Fecha inicio</label>
+                                                        <input type="date" class="form-control" id="validationCustom03" name="startDate" placeholder="" required="">
+                                                        <div class="valid-feedback">
+                                                            Ok
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-1 col-sm-6">
+                                                        <label for="validationCustom04" class="form-label">Fecha Finalización</label>
+                                                        <input type="date" class="form-control" id="validationCustom04" name="endDate" placeholder="" required="">
+                                                        <div class="valid-feedback">
+                                                            Ok
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="mb-1 col-sm-12">
+                                                        <label for="validationCustom05" class="form-label">Repetición</label>
+                                                        <input type="number" class="form-control" id="validationCustom05" name="repetition" placeholder="" required="">
+                                                        <div class="valid-feedback">
+                                                            Ok
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="d-grid gap-2">
+                                                    <button class="btn btn-primary" type="submit">Guardar</button>
+                                                </div>
+                                            </form>
+                                        </div> <!-- end card-body-->
+                                    </div> <!-- end card-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- ============================================================== -->
+            <!-- Start modal task -->
+            <!-- ============================================================== -->
+
+            <!-- ============================================================== -->
+            <!-- Start modal detailtask -->
+            <!-- ============================================================== -->
+                <!-- Modal detailtask -->
+                <div class="modal fade" id="detailTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Detalle de tarea</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h3 class="text-center title-recipe"></h3>                                         
+                                            <table class="table-items-task table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Ingrediente</th>
+                                                        <th>Cantidad</th>
+                                                        <th class="text-center">Unidad de control</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div> <!-- end card-body-->
+                                    </div> <!-- end card-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- ============================================================== -->
+            <!-- Start modal detailtask -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- END wrapper -->
+
+        <!-- /Right-bar -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- Vendor js -->
+        <script src="./../assets/js/vendor.min.js"></script>
+
+        <!-- third party js -->
+        <script src="./../assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="./../assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+        <script src="./../assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="./../assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+        <script src="./../assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="./../assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+        <script src="./../assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="./../assets/libs/datatables.net-buttons/js/buttons.flash.min.js"></script>
+        <script src="./../assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="./../assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+        <script src="./../assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
+        <script src="./../assets/libs/pdfmake/build/pdfmake.min.js"></script>
+        <script src="./../assets/libs/pdfmake/build/vfs_fonts.js"></script>
+        
+        <!-- Sweet Alerts js -->
+        <script src="./../assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
+
+        <!-- third party js ends -->
+        
+        <!-- Datatables init -->
+        <script src="./../assets/js/pages/datatables.init.js"></script>
+        
+        <!-- App js -->
+        <script src="./../assets/js/app.min.js"></script>
+        <script src="./../assets/custom/js/task/index.js"></script>
+    </body>
+</html>
