@@ -97,7 +97,6 @@ export async function loadOneTask(id) {
       const data = await response.json();
       $titleRecipe.textContent = `${data.product.name.toUpperCase()}`;
       recipe = data;
-      console.log(data);
 
       // Detail
       let itemsHtml = "";
@@ -138,7 +137,6 @@ export async function loadOneTask(id) {
           return element.ingredient.id === ing?.ingredient?.id;
         });
 
-        console.log(element);
         if (!result) {
           $progresBar.setAttribute("aria-valuemin", 0);
           $progresBar.setAttribute("aria-valuemax", element.cuantity);

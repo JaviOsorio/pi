@@ -123,7 +123,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       const createdOrUpdatedRecipe = await recipeResponse.json();
-      console.log(createdOrUpdatedRecipe);
 
       const recipeId = createdOrUpdatedRecipe.id; // Obtenemos el ID de la receta creada o actualizada
 
@@ -384,8 +383,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       const recipeData = await response.json();
-
-      console.log(recipeData);
 
       // Cargar datos de la receta en el formulario
       document.querySelector('input[name="id"]').value = recipeData.id;

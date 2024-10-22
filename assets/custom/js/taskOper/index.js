@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       ).textContent = `${data.quantity} ${data.controlunit}`;
       document.querySelector(".title-scale").textContent =
         data.quantity > 2000 ? `Bascula de Piso` : `Bascula de Mesa`;
-      // console.log(data);
     } else if (event.target.matches(".btn-close-ingredient")) {
       $("#detailTaskModal").modal("show");
       $("#igredientModal").modal("hide");
