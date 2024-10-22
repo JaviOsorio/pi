@@ -386,6 +386,7 @@
             });
     
             socket.on('serialData', (data) => {
+                data = data.slice(0, -2)
                 console.log('Datos del puerto serie:', data);
                 document.querySelector('.current-weight').textContent = `${data} G`
                 const $progresBar = document.querySelector('.progress-bar');
