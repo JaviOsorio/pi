@@ -1,7 +1,12 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  const token = localStorage.getItem("token");
+  const user = localStorage.getItem("user");
   const { loadDatatable, loadOneTask } = await import("./module.js");
   const { decodeToken } = await import("./../auth/auth.js");
   const $progresBar = document.querySelector(".progress-bar");
+  const $btnConfirmIngredient = document.querySelector(
+    ".btn-confirm-ingredient"
+  );
   const $btnTaskSave = document.querySelector(".btn-task-save");
   const dataToken = decodeToken();
   if (!dataToken.token) {
@@ -71,6 +76,42 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
           }
         });
+    } else if (event.target.matches(".btn-confirm-ingredient")) {
+      console.log(event.target);
+
+      try {
+        let pData = $progresBar.dataset;
+        let response = await fetch(
+          `https://gestor.andar.com.co/pesi/tasks-detail`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              taskId: parseInt(pData.taskid),
+              ingredientId: parseInt(pData.ingredientid),
+              weight: parseInt(pData.currentvalue),
+            }),
+          }
+        );
+        console.log(response);
+
+        if (response.ok) {
+          let result = await response.json();
+          document.querySelector(".btn-close-ingredient").click();
+          setTimeout(() => {
+            document.querySelector(`.btn-detail-${pData.taskid}`).click();
+          }, 200);
+        } else {
+          console.error("Error en la respuesta:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error en la solicitud:", error);
+      }
+      // $("#detailTaskModal").modal("show");
+      // $("#igredientModal").modal("hide");
     }
   });
   await loadDatatable();

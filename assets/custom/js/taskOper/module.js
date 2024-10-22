@@ -126,6 +126,8 @@ export async function loadOneTask(id) {
                   </tr>`;
       });
 
+      console.log(data);
+      
       if (data?.details.length == data?.product?.items.length) {
         const $btnTaskSave = document.querySelector(".btn-task-save");
         $btnTaskSave.removeAttribute("hidden");
