@@ -376,72 +376,72 @@
             const token = localStorage.getItem('token');
             const user = localStorage.getItem('user');
             $proUserName.textContent = user
-            // const socket = io('http://localhost:3004', {
-            //     reconnection: false, // deshabilita la reconexión automática
-            //     timeout: 20000,  // 20 segundos de timeout
-            // });
+            const socket = io('http://localhost:3004', {
+                reconnection: false, // deshabilita la reconexión automática
+                timeout: 20000,  // 20 segundos de timeout
+            });
     
-            // socket.on('connect', () => {
-            //     console.log('Conectado al servidor Socket.IO');
-            // });
+            socket.on('connect', () => {
+                console.log('Conectado al servidor Socket.IO');
+            });
     
-            // socket.on('serialData', (data) => {
-            //     console.log('Datos del puerto serie:', data);
-            //     document.querySelector('.current-weight').textContent = `${data} G`
-            //     const $progresBar = document.querySelector('.progress-bar');
-            //     let valueMax = $progresBar.getAttribute('aria-valuemax');
-            //     let result = ((data * 100) / parseInt(valueMax));
+            socket.on('serialData', (data) => {
+                console.log('Datos del puerto serie:', data);
+                document.querySelector('.current-weight').textContent = `${data} G`
+                const $progresBar = document.querySelector('.progress-bar');
+                let valueMax = $progresBar.getAttribute('aria-valuemax');
+                let result = ((data * 100) / parseInt(valueMax));
                 
-            //     $progresBar.style.width = `${result}%`;
-            //     $progresBar.textContent = `${Math.round(result)}%`;
+                $progresBar.style.width = `${result}%`;
+                $progresBar.textContent = `${Math.round(result)}%`;
                 
-            //     if (data > (parseInt(valueMax) + 10)) {
-            //         $progresBar.classList.remove('bg-warning', 'bg-success', 'bg-danger');
-            //         $progresBar.classList.add('bg-danger');
-            //     }
-            //     if (result < 99) {
-            //         $progresBar.classList.remove('bg-warning', 'bg-success', 'bg-danger');
-            //         $progresBar.classList.add('bg-warning');
-            //     }
-            //     if (data <= (parseInt(valueMax) + 10) && data >= parseInt(valueMax)) {
-            //         $progresBar.classList.remove('bg-warning', 'bg-success', 'bg-danger');
-            //         $progresBar.classList.add('bg-success');
-            //         setTimeout(async () => {
-            //             try {
-            //                 let pData = $progresBar.dataset;
-            //                 let response = await fetch(`http://localhost:3003/tasks-detail`, {
-            //                     method: 'POST',
-            //                     headers: {
-            //                         'Content-Type': 'application/json',
-            //                         'Authorization': `Bearer ${token}`,
-            //                     },
-            //                     body: JSON.stringify({
-            //                         "taskId": parseInt(pData.taskid),
-            //                         "ingredientId": parseInt(pData.ingredientid),
-            //                         "weight": parseInt(data)
-            //                     }),
-            //                 });
+                if (data > (parseInt(valueMax) + 10)) {
+                    $progresBar.classList.remove('bg-warning', 'bg-success', 'bg-danger');
+                    $progresBar.classList.add('bg-danger');
+                }
+                if (result < 99) {
+                    $progresBar.classList.remove('bg-warning', 'bg-success', 'bg-danger');
+                    $progresBar.classList.add('bg-warning');
+                }
+                if (data <= (parseInt(valueMax) + 10) && data >= parseInt(valueMax)) {
+                    $progresBar.classList.remove('bg-warning', 'bg-success', 'bg-danger');
+                    $progresBar.classList.add('bg-success');
+                    setTimeout(async () => {
+                        try {
+                            let pData = $progresBar.dataset;
+                            let response = await fetch(`http://localhost:3003/tasks-detail`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': `Bearer ${token}`,
+                                },
+                                body: JSON.stringify({
+                                    "taskId": parseInt(pData.taskid),
+                                    "ingredientId": parseInt(pData.ingredientid),
+                                    "weight": parseInt(data)
+                                }),
+                            });
     
-            //                 if (response.ok) {
-            //                     let result = await response.json();
-            //                     document.querySelector('.btn-close-ingredient').click()
-            //                     setTimeout(() => {
-            //                         document.querySelector(`.btn-detail-${pData.taskid}`).click()
-            //                     }, 200) 
-            //                 } else {
-            //                     console.error('Error en la respuesta:', response.statusText);
-            //                 }
-            //             } catch (error) {
-            //                 console.error('Error en la solicitud:', error);
-            //             }
-            //         }, 3000);
+                            if (response.ok) {
+                                let result = await response.json();
+                                document.querySelector('.btn-close-ingredient').click()
+                                setTimeout(() => {
+                                    document.querySelector(`.btn-detail-${pData.taskid}`).click()
+                                }, 200) 
+                            } else {
+                                console.error('Error en la respuesta:', response.statusText);
+                            }
+                        } catch (error) {
+                            console.error('Error en la solicitud:', error);
+                        }
+                    }, 3000);
     
-            //     }
-            // });
+                }
+            });
     
-            // socket.on('disconnect', () => {
-            //     console.log('Desconectado del servidor Socket.IO');
-            // });
+            socket.on('disconnect', () => {
+                console.log('Desconectado del servidor Socket.IO');
+            });
           })
         </script>
     </body>
