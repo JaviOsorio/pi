@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       delete jsonData["id"];
 
       await fetch(
-        `http://localhost:3003/ingredients${
+        `https://gestor.andar.com.co/pesi/ingredients${
           $recipeForm.id.value != "" ? `/${$recipeForm.id.value}` : ""
         }`,
         {
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   async function loadDatatable() {
     $(".table-products").DataTable({
       ajax: {
-        url: "http://localhost:3003/ingredients",
+        url: "https://gestor.andar.com.co/pesi/ingredients",
         type: "GET",
         headers: {
           Authorization: `Bearer ${dataToken.token}`, // Enviar el token en el encabezado de autorización
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   async function remove(id) {
-    await fetch(`http://localhost:3003/ingredients/${id}`, {
+    await fetch(`https://gestor.andar.com.co/pesi/ingredients/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${dataToken.token}`,

@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       delete jsonData["id"];
 
       await fetch(
-        `http://localhost:3003/users${
+        `https://gestor.andar.com.co/pesi/users${
           $userForm.id.value != "" ? `/${$userForm.id.value}` : ""
         }`,
         {
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   async function loadDatatable() {
     $(".table-users").DataTable({
       ajax: {
-        url: "http://localhost:3003/users",
+        url: "https://gestor.andar.com.co/pesi/users",
         type: "GET",
         headers: {
           Authorization: `Bearer ${dataToken.token}`, // Enviar el token en el encabezado de autorización
@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   async function remove(id) {
-    await fetch(`http://localhost:3003/users/${id}`, {
+    await fetch(`https://gestor.andar.com.co/pesi/users/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${dataToken.token}`,

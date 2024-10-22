@@ -21,10 +21,12 @@
         <link href="./../assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
         <!-- third party css -->
-        <link href="./../assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-        <link href="./../assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-        <link href="./../assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-        <link href="./../assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <!-- third party css end -->
+
         <!-- third party css end -->
          
         <!-- icons -->
@@ -185,7 +187,6 @@
 
             </div>
             <!-- Left Sidebar End -->
-
             <!-- ============================================================== -->
             <!-- Start Page Content here -->
             <!-- ============================================================== -->
@@ -200,7 +201,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Informes</h4>
+                                    <h4 class="page-title">Tareas</h4>
                                 </div>
                             </div>
                         </div>
@@ -210,12 +211,28 @@
                                 <div class="widget-rounded-circle card">
                                     <div class="card-body">
                                         <div class="row mb-1">
-                                            <div class="col-sm-6"></div>
+                                            <div class="col-sm-6 mb-2">
+                                                <label for="">Desde</label>
+                                                <input type="date" class="form-control">
+                                            </div>
                                             <div class="col-sm-6">
-                                                <!-- <button class="btn btn-primary btn-sm float-end btn-modal-recipe"><i class="fas fa-plus pe-2 btn-modal-recipe"></i>Nueva</button> -->
+                                                <label for="">Hasta</label>
+                                                <input type="date" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row table-responsive">
+                                            <table class="table table-hover table-striped table-chart">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Nombre</th>
+                                                        <th>Cantidad Programada</th>
+                                                        <th>Cantidad Pesada</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
                                         </div> <!-- end row-->
                                     </div>
                                 </div> <!-- end widget-rounded-circle-->
@@ -278,6 +295,7 @@
         <script src="./../assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
         <script src="./../assets/libs/pdfmake/build/pdfmake.min.js"></script>
         <script src="./../assets/libs/pdfmake/build/vfs_fonts.js"></script>
+        <script src="./../assets/libs/datatables.net-buttons/js/jszip-2.5.0.min.js"></script>
         
         <!-- Sweet Alerts js -->
         <script src="./../assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
@@ -289,6 +307,6 @@
         
         <!-- App js -->
         <script src="./../assets/js/app.min.js"></script>
-        <script src="./../assets/custom/js/recipes/index.js"></script>
+        <script src="./../assets/custom/js/charts/index.js"></script>
     </body>
 </html>

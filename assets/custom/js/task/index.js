@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       delete jsonData["id"];
 
       await fetch(
-        `http://localhost:3003/tasks${
+        `https://gestor.andar.com.co/pesi/tasks${
           $taskForm.id.value != "" ? `/${$taskForm.id.value}` : ""
         }`,
         {
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   async function loadDatatable() {
     $(".table-tasks").DataTable({
       ajax: {
-        url: "http://localhost:3003/tasks",
+        url: "https://gestor.andar.com.co/pesi/tasks",
         type: "GET",
         headers: {
           Authorization: `Bearer ${dataToken.token}`, // Enviar el token en el encabezado de autorización
@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   async function remove(id) {
-    await fetch(`http://localhost:3003/tasks/${id}`, {
+    await fetch(`https://gestor.andar.com.co/pesi/tasks/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${dataToken.token}`,
@@ -258,13 +258,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Función para cargar las recetas desde el backend
   async function loadRecipes() {
     try {
-      const response = await fetch("http://localhost:3003/products", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${dataToken.token}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://gestor.andar.com.co/pesi/products",
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${dataToken.token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const data = await response.json();
       availableIngredients = data; // Guardar las recetas cargados
 
@@ -280,13 +283,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   async function loadOneTask(id) {
     try {
       let htmlDetailTask = "";
-      const response = await fetch(`http://localhost:3003/tasks/${id}`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${dataToken.token}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `https://gestor.andar.com.co/pesi/tasks/${id}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${dataToken.token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
       if (response.ok) {
         const data = await response.json();
         $titleRecipe.textContent = data.product.name;

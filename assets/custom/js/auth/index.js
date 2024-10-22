@@ -6,13 +6,16 @@ document.addEventListener("submit", async (e) => {
   const password = document.getElementById("password").value;
 
   try {
-    const response = await fetch("http://localhost:3003/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }), // Enviar credenciales
-    });
+    const response = await fetch(
+      "https://gestor.andar.com.co/pesi/auth/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }), // Enviar credenciales
+      }
+    );
 
     const data = await response.json();
     if (response.status === 201 && data.access_token) {
@@ -43,7 +46,7 @@ async function fetchProtectedData(route) {
     return;
   }
 
-  const response = await fetch(`http://localhost:3003${route}`, {
+  const response = await fetch(`https://gestor.andar.com.co/pesi${route}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 
