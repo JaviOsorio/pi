@@ -21,6 +21,48 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector(".slide-menu-user").style.display = "block";
   }
 
+  const $proUserName = document.querySelector(".pro-username");
+  $proUserName.textContent = user;
+  const socket = io("http://localhost:3004", {
+    reconnection: false, // deshabilita la reconexión automática
+    timeout: 20000, // 20 segundos de timeout
+  });
+
+  socket.on("connect", (io) => {
+    console.log("Conectado al servidor Socket.IO");
+  });
+
+  socket.on("serialData", (data) => {
+    data = data.match(/\d+/g)?.join("");
+    console.log("Datos del puerto serie:", data);
+    $btnConfirmIngredient.setAttribute("disabled", "true");
+    document.querySelector(".current-weight").textContent = `${data} G`;
+    const $progresBar = document.querySelector(".progress-bar");
+    let valueMax = $progresBar.getAttribute("aria-valuemax");
+    let result = (data * 100) / parseInt(valueMax);
+    $progresBar.style.width = `${result}%`;
+    $progresBar.textContent = `${Math.round(result)}%`;
+
+    if (data > parseInt(valueMax) + 10) {
+      $progresBar.classList.remove("bg-warning", "bg-success", "bg-danger");
+      $progresBar.classList.add("bg-danger");
+    }
+    if (result < 99) {
+      $progresBar.classList.remove("bg-warning", "bg-success", "bg-danger");
+      $progresBar.classList.add("bg-warning");
+    }
+    if (data <= parseInt(valueMax) + 10 && data >= parseInt(valueMax)) {
+      $progresBar.classList.remove("bg-warning", "bg-success", "bg-danger");
+      $progresBar.classList.add("bg-success");
+      $progresBar.setAttribute("data-currentValue", data);
+      $btnConfirmIngredient.removeAttribute("disabled");
+    }
+  });
+
+  socket.on("disconnect", () => {
+    console.log("Desconectado del servidor Socket.IO");
+  });
+
   // Click Event
   document.addEventListener("click", async (event) => {
     let data = event.target.dataset;
@@ -30,6 +72,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       await loadOneTask(data.id);
       $("#detailTaskModal").modal("show");
     } else if (event.target.matches(".btn-scale")) {
+      if (parseInt(data.quantity) > 18000) {
+        socket.emit("port", "COM1");
+      } else {
+        socket.emit("port", "COM2");
+      }
       $progresBar.setAttribute("aria-valuemin", 0);
       $progresBar.setAttribute("aria-valuemax", data.quantity);
       $progresBar.setAttribute("data-taskId", data.taskid);
@@ -44,7 +91,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         ".objective-weight"
       ).textContent = `${data.quantity} ${data.controlunit}`;
       document.querySelector(".title-scale").textContent =
-        data.quantity > 2000 ? `Bascula de Piso` : `Bascula de Mesa`;
+        data.quantity > 18000 ? `Bascula de Piso` : `Bascula de Mesa`;
     } else if (event.target.matches(".btn-close-ingredient")) {
       $("#detailTaskModal").modal("show");
       $("#igredientModal").modal("hide");

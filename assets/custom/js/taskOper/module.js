@@ -127,7 +127,7 @@ export async function loadOneTask(id) {
       });
 
       console.log(data);
-      
+
       if (data?.details.length == data?.product?.items.length) {
         const $btnTaskSave = document.querySelector(".btn-task-save");
         $btnTaskSave.removeAttribute("hidden");
@@ -146,7 +146,7 @@ export async function loadOneTask(id) {
           $progresBar.setAttribute("data-ingredientId", element.ingredient.id);
           $progresBar.style.width = `0%`;
           $("#detailTaskModal").modal("hide");
-          $("#igredientModal").modal("show");
+          // $("#igredientModal").modal("show");
           document.querySelector(".title-modal-ingredient").textContent =
             element.ingredient.name;
           document.querySelector(".current-weight").textContent = 0;
