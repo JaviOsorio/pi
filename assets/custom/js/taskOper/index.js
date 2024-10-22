@@ -73,9 +73,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       $("#detailTaskModal").modal("show");
     } else if (event.target.matches(".btn-scale")) {
       if (parseInt(data.quantity) > 18000) {
-        socket.emit("port", "COM1");
+        socket.emit("port", "COM4");
       } else {
-        socket.emit("port", "COM2");
+        socket.emit("port", "COM3");
       }
       $progresBar.setAttribute("aria-valuemin", 0);
       $progresBar.setAttribute("aria-valuemax", data.quantity);
