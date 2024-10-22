@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.addEventListener("click", async (event) => {
     let data = event.target.dataset;
     if (event.target.matches(".btn-modal-recipe")) {
+      $recipeForm.reset();
+      $recipeForm.id.value = "";
       $("#recipeModal").modal("show");
     } else if (event.target.matches(".btn-delete")) {
       Swal.fire({

@@ -25,6 +25,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.addEventListener("click", async (event) => {
     let data = event.target.dataset;
     if (event.target.matches(".btn-modal-user")) {
+      $userForm.reset();
+      $userForm.id.value = "";
       $("#userModal").modal("show");
     } else if (event.target.matches(".btn-delete")) {
       Swal.fire({
