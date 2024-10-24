@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   $proUserName.textContent = user;
   const socket = io("http://localhost:3004", {
     reconnection: true,
-    timeout: 2000,
+    timeout: 2000
   });
 
   socket.on("connect", (io) => {
