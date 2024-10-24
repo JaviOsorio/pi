@@ -24,8 +24,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const $proUserName = document.querySelector(".pro-username");
   $proUserName.textContent = user;
   const socket = io("http://localhost:3004", {
-    reconnection: false, // deshabilita la reconexión automática
-    timeout: 20000, // 20 segundos de timeout
+    reconnection: true,
+    timeout: 2000,
   });
 
   socket.on("connect", (io) => {
