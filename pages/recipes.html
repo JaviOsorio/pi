@@ -70,8 +70,8 @@
                 
                                 <!-- item-->
                                 <a href="/pi/" class="dropdown-item notify-item logout">
-                                    <i class="fe-log-out logout"></i>
-                                    <span class="logout">Salir</span>
+                                    <i class="fe-log-out logout" onclick="logout()"></i>
+                                    <span class="logout" onclick="logout()">Salir</span>
                                 </a>
                 
                             </div>
@@ -374,6 +374,11 @@
         
         <!-- App js -->
         <script src="./../assets/js/app.min.js"></script>
-        <script src="./../assets/custom/js/recipes/index.js"></script>
+        <script src="./../assets/custom/js/recipes/index.js?1"></script>
+        <script>
+            function logout(){
+                localStorage.removeItem('token');
+            }
+        </script>
     </body>
 </html>

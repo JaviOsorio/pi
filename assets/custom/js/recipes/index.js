@@ -146,14 +146,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         };
 
         // Asociar ingrediente a la receta
-        const ingredientResponse = await fetch(`https://gestor.andar.com.co/pesi/items`, {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${dataToken.token}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(ingredientData),
-        });
+        const ingredientResponse = await fetch(
+          `https://gestor.andar.com.co/pesi/items`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${dataToken.token}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(ingredientData),
+          }
+        );
 
         if (!ingredientResponse.ok) {
           Swal.fire({
@@ -285,13 +288,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Función para cargar los ingredientes desde el backend
   async function loadIngredients() {
     try {
-      const response = await fetch("https://gestor.andar.com.co/pesi/ingredients", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${dataToken.token}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://gestor.andar.com.co/pesi/ingredients",
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${dataToken.token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const data = await response.json();
       availableIngredients = data; // Guardar los ingredientes cargados
 

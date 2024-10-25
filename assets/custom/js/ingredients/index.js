@@ -73,11 +73,13 @@ document.addEventListener("DOMContentLoaded", async () => {
           body: JSON.stringify(jsonData),
         }
       )
-        .then((response) => {
+        .then(async (response) => {
           if (response.ok) {
             return response.json();
           }
-          throw new Error("No autorizado");
+          // Captura el error y convierte el cuerpo a JSON para obtener detalles
+          const errorData = await response.json();
+          throw new Error(errorData.message || "No autorizado");
         })
         .then((data) => {
           if (data) {
@@ -98,6 +100,14 @@ document.addEventListener("DOMContentLoaded", async () => {
               icon: "warning",
             });
           }
+        })
+        .catch((error) => {
+          // Mensaje del error personalizado
+          Swal.fire({
+            title: "Ops...",
+            text: error.message || "Ocurrió un error desconocido",
+            icon: "error",
+          });
         });
     }
   });
