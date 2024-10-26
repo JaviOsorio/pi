@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       destroy: true,
       deferRender: true,
       ajax: {
-        url: "https://gestor.andar.com.co/pesi/tasks/filter",
+        url: "http://localhost:3000/tasks/filter",
         type: "GET",
         headers: {
           Authorization: `Bearer ${dataToken.token}`, // Enviar el token en el encabezado de autorización

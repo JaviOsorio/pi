@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       // Enviar la solicitud para crear o actualizar la receta
       const recipeResponse = await fetch(
-        `https://gestor.andar.com.co/pesi/products${
+        `http://localhost:3003/products${
           $recipeForm.id.value != "" ? `/${$recipeForm.id.value}` : ""
         }`,
         {
@@ -146,17 +146,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         };
 
         // Asociar ingrediente a la receta
-        const ingredientResponse = await fetch(
-          `https://gestor.andar.com.co/pesi/items`,
-          {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${dataToken.token}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(ingredientData),
-          }
-        );
+        const ingredientResponse = await fetch(`http://localhost:3003/items`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${dataToken.token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(ingredientData),
+        });
 
         if (!ingredientResponse.ok) {
           Swal.fire({
@@ -186,7 +183,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   async function loadDatatable() {
     $(".table-products").DataTable({
       ajax: {
-        url: "https://gestor.andar.com.co/pesi/products",
+        url: "http://localhost:3003/products",
         type: "GET",
         headers: {
           Authorization: `Bearer ${dataToken.token}`, // Enviar el token en el encabezado de autorización
@@ -251,7 +248,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   async function remove(id) {
-    await fetch(`https://gestor.andar.com.co/pesi/products/${id}`, {
+    await fetch(`http://localhost:3003/products/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${dataToken.token}`,
@@ -288,16 +285,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Función para cargar los ingredientes desde el backend
   async function loadIngredients() {
     try {
-      const response = await fetch(
-        "https://gestor.andar.com.co/pesi/ingredients",
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${dataToken.token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch("http://localhost:3003/ingredients", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${dataToken.token}`,
+          "Content-Type": "application/json",
+        },
+      });
       const data = await response.json();
       availableIngredients = data; // Guardar los ingredientes cargados
 
@@ -374,7 +368,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const ingredientsList = document.getElementById("ingredientsList");
       ingredientsList.innerHTML = ""; // Limpia la lista antes de agregar nuevos ingredientes
       const response = await fetch(
-        `https://gestor.andar.com.co/pesi/products/${recipeId}`,
+        `http://localhost:3003/products/${recipeId}`,
         {
           method: "GET",
           headers: {

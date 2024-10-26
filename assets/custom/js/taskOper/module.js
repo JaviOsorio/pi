@@ -9,7 +9,7 @@ let recipe = {};
 export async function loadDatatable() {
   $(".table-tasks").DataTable({
     ajax: {
-      url: "https://gestor.andar.com.co/pesi/tasks",
+      url: "http://localhost:3003/tasks",
       type: "GET",
       headers: {
         Authorization: `Bearer ${token}`, // Enviar el token en el encabezado de autorización
@@ -83,16 +83,13 @@ export async function loadDatatable() {
 // Función para cargar las recetas desde el backend
 export async function loadOneTask(id) {
   try {
-    const response = await fetch(
-      `https://gestor.andar.com.co/pesi/tasks/${id}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`http://localhost:3003/tasks/${id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
     if (response.ok) {
       const data = await response.json();
       $titleRecipe.textContent = `${data.product.name.toUpperCase()}`;

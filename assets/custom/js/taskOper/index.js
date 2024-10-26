@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       $("#detailTaskModal").modal("show");
       $("#igredientModal").modal("hide");
     } else if (event.target.matches(".btn-task-save")) {
-      await fetch(`https://gestor.andar.com.co/pesi/tasks/${data.taskid}`, {
+      await fetch(`http://localhost:3003/tasks/${data.taskid}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${dataToken.token}`,
@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       try {
         let pData = $progresBar.dataset;
         let response = await fetch(
-          `https://gestor.andar.com.co/pesi/tasks-detail`,
+          `http://localhost:3003/tasks-detail`,
           {
             method: "POST",
             headers: {
