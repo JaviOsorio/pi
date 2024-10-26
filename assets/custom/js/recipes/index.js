@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const ingredientData = {
           productId: recipeId, // El ID de la receta recién creada o actualizada
           ingredientId: parseInt(ingredientIds[i].value), // Convertir ID del ingrediente a número
-          cuantity: quantities[i].value, // Convertir la cantidad a número
+          cuantity: Number(quantities[i].value.replace(".", "")), // Convertir la cantidad a número
           controlUnit: controlUnits[i].value, // Unidad de control del ingrediente
         };
 
