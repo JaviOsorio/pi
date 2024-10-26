@@ -337,7 +337,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   </select>
               </div>
               <div class="col-sm-4">
-                  <input type="number" class="form-control mb-2" name="ingredient_quantity[]" placeholder="Cantidad" required="">
+                  <input type="number" class="form-control mb-2" name="ingredient_quantity[]" placeholder="Cantidad" step="any" required="">
               </div>
               <div class="col-sm-2">
                   <select class="form-control mb-2 ingredient-select" name="ingredient_control_unit[]" required="">
@@ -407,7 +407,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                           </select>
                       </div>
                       <div class="col-sm-4">
-                          <input type="number" class="form-control mb-2" name="ingredient_quantity[]" placeholder="Cantidad" value="${
+                          <input type="number" class="form-control mb-2" name="ingredient_quantity[]" placeholder="Cantidad" step="any" value="${
                             ingredient.cuantity
                           }" required="">
                       </div>
@@ -469,7 +469,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   </select>
               </div>
               <div class="col-sm-4">
-                  <input type="number" class="form-control mb-2" name="ingredient_quantity[]" value="${
+                  <input type="number" class="form-control mb-2" name="ingredient_quantity[]" step="any" value="${
                     item.cuantity
                   }" placeholder="Cantidad" required="">
               </div>
