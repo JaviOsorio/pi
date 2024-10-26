@@ -33,6 +33,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (event.target.matches(".btn-modal-recipe")) {
       $taskForm.reset();
       $taskForm.id.value = "";
+      $taskForm.productionBatch.value = `${date.getFullYear()}${
+        date.getMonth() + 1
+      }${date.getDate()}`;
       $("#taskModal").modal("show");
     } else if (event.target.matches(".btn-delete")) {
       Swal.fire({
