@@ -103,7 +103,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         data.quantity > 18000 ? `Bascula de Piso` : `Bascula de Mesa`;
       if (data.ingredientid == 9) {
         $btnConfirmIngredient.removeAttribute("disabled");
-        $btnConfirmIngredient.click();
       }
     } else if (event.target.matches(".btn-close-ingredient")) {
       $("#detailTaskModal").modal("show");
