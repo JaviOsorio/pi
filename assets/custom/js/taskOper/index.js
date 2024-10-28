@@ -128,8 +128,6 @@ document.addEventListener("DOMContentLoaded", async () => {
           }
         });
     } else if (event.target.matches(".btn-confirm-ingredient")) {
-      console.log(event.target);
-
       try {
         let pData = $progresBar.dataset;
         let response = await fetch(`http://localhost:3003/tasks-detail`, {
