@@ -81,7 +81,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       await loadOneTask(data.id);
       $("#detailTaskModal").modal("show");
     } else if (event.target.matches(".btn-scale")) {
-      
       $btnConfirmIngredient.setAttribute("disabled", "true");
       if (parseInt(data.quantity) > 18000) {
         socket.emit("port", "COM3");
@@ -104,6 +103,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.querySelector(".title-scale").textContent =
         data.quantity > 18000 ? `Bascula de Piso` : `Bascula de Mesa`;
       if (data.ingredientid == 9) {
+        $progresBar.setAttribute("data-currentValue", data.quantity);
         $btnConfirmIngredient.removeAttribute("disabled");
       }
     } else if (event.target.matches(".btn-close-ingredient")) {
@@ -166,8 +166,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       } catch (error) {
         console.error("Error en la solicitud:", error);
       }
-      // $("#detailTaskModal").modal("show");
-      // $("#igredientModal").modal("hide");
     }
   });
   await loadDatatable();
