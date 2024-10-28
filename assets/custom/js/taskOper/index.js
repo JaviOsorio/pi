@@ -53,7 +53,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       $progresBar.classList.remove("bg-warning", "bg-success", "bg-danger");
       $progresBar.classList.add("bg-warning");
     }
-    if ((data <= parseInt(valueMax) + 10 && data >= parseInt(valueMax) - 10) || $progresBar.dataset.ingredientid == 9) {
+
+    if ($progresBar.dataset.ingredientid == 9) {
+      $progresBar.setAttribute("data-currentValue", valueMax);
+      $btnConfirmIngredient.removeAttribute("disabled");
+    } else if (
+      data <= parseInt(valueMax) + 10 &&
+      data >= parseInt(valueMax) - 10
+    ) {
       $progresBar.classList.remove("bg-warning", "bg-success", "bg-danger");
       $progresBar.classList.add("bg-success");
       $progresBar.setAttribute("data-currentValue", data);
