@@ -18,9 +18,6 @@ document.addEventListener("submit", async (e) => {
     if (response.status === 201 && data.access_token) {
       localStorage.setItem("token", data.access_token); // Almacenar el token
       localStorage.setItem("user", data.user.name); // Almacenar el usuario
-      setTimeout(() => {
-        console.log(data);
-      }, 10000);
       window.location.href = "pages/home.html"; // Redirigir a una página protegida
     } else {
       $messageLogin.removeAttribute("hidden");

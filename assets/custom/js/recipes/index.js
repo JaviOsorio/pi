@@ -144,7 +144,6 @@ document.addEventListener("DOMContentLoaded", async () => {
           cuantity: Number(quantities[i].value), // Convertir la cantidad a número
           controlUnit: controlUnits[i].value, // Unidad de control del ingrediente
         };
-        console.log(ingredientData);
 
         // Asociar ingrediente a la receta
         const ingredientResponse = await fetch(`http://localhost:3003/items`, {

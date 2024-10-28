@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("token");
   const user = localStorage.getItem("user");
-  const { loadDatatable, loadOneTask } = await import("./module.js");
+  const { loadDatatable, loadOneTask } = await import("./module.js?5");
   const { decodeToken } = await import("./../auth/auth.js");
   const $progresBar = document.querySelector(".progress-bar");
   const $btnConfirmIngredient = document.querySelector(
@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     $btnConfirmIngredient.setAttribute("disabled", "true");
     document.querySelector(".current-weight").textContent = `${data} G`;
     const $progresBar = document.querySelector(".progress-bar");
-    console.log($progresBar.datase);
 
     let valueMax = $progresBar.getAttribute("aria-valuemax");
     let result = (data * 100) / parseInt(valueMax);
@@ -91,6 +90,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       $progresBar.setAttribute("aria-valuemax", data.quantity);
       $progresBar.setAttribute("data-taskId", data.taskid);
       $progresBar.setAttribute("data-ingredientId", data.ingredientid);
+      $progresBar.setAttribute("data-itemId", data.itemid);
       $progresBar.style.width = `0%`;
       $("#detailTaskModal").modal("hide");
       $("#igredientModal").modal("show");
@@ -150,9 +150,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             taskId: parseInt(pData.taskid),
             ingredientId: parseInt(pData.ingredientid),
             weight: parseInt(pData.currentvalue),
+            itemId: parseInt(pData.itemid),
           }),
         });
-        console.log(response);
 
         if (response.ok) {
           let result = await response.json();

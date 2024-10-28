@@ -99,7 +99,10 @@ export async function loadOneTask(id) {
       let itemsHtml = "";
       data.product.items.map((item) => {
         let result = data.details.find((ing) => {
-          return item.ingredient.id === ing?.ingredient?.id;
+          return (
+            item.ingredient.id === ing?.ingredient?.id &&
+            item?.id === ing?.itemId
+          );
         });
 
         itemsHtml += `
@@ -117,13 +120,11 @@ export async function loadOneTask(id) {
                       ${
                         result
                           ? `<button class="btn text-white border-white btn-sm">Pesado</button>`
-                          : `<button class="btn btn-primary btn-sm btn-scale" data-taskId="${data.id}" data-ingredientId="${item.ingredient.id}" data-ingredientName="${item.ingredient.name}" data-quantity="${item.cuantity}" data-controlUnit="${item.controlUnit}">Pesar</button>`
+                          : `<button class="btn btn-primary btn-sm btn-scale" data-taskId="${data.id}" data-itemId="${item?.id}" data-ingredientId="${item.ingredient.id}" data-ingredientName="${item.ingredient.name}" data-quantity="${item.cuantity}" data-controlUnit="${item.controlUnit}">Pesar</button>`
                       }
                       </td>
                   </tr>`;
       });
-
-      console.log(data);
 
       if (data?.details.length == data?.product?.items.length) {
         const $btnTaskSave = document.querySelector(".btn-task-save");
