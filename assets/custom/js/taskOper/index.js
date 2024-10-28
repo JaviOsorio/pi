@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     $btnConfirmIngredient.setAttribute("disabled", "true");
     document.querySelector(".current-weight").textContent = `${data} G`;
     const $progresBar = document.querySelector(".progress-bar");
+    console.log($progresBar.datase);
+
     let valueMax = $progresBar.getAttribute("aria-valuemax");
     let result = (data * 100) / parseInt(valueMax);
     $progresBar.style.width = `${result}%`;
@@ -51,7 +53,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       $progresBar.classList.remove("bg-warning", "bg-success", "bg-danger");
       $progresBar.classList.add("bg-warning");
     }
-    if (data <= parseInt(valueMax) + 10 && data >= parseInt(valueMax) - 10) {
+    if ((data <= parseInt(valueMax) + 10 && data >= parseInt(valueMax) - 10) || $progresBar.dataset.ingredientid == 9) {
       $progresBar.classList.remove("bg-warning", "bg-success", "bg-danger");
       $progresBar.classList.add("bg-success");
       $progresBar.setAttribute("data-currentValue", data);
