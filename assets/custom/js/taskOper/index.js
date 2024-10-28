@@ -81,6 +81,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       await loadOneTask(data.id);
       $("#detailTaskModal").modal("show");
     } else if (event.target.matches(".btn-scale")) {
+      
+      $btnConfirmIngredient.setAttribute("disabled", "true");
       if (parseInt(data.quantity) > 18000) {
         socket.emit("port", "COM3");
       } else {
