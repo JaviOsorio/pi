@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   $proUserName.textContent = user;
   const socket = io("http://localhost:3004", {
     reconnection: true,
-    timeout: 2000
+    timeout: 2000,
   });
 
   socket.on("connect", (io) => {
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       $progresBar.classList.remove("bg-warning", "bg-success", "bg-danger");
       $progresBar.classList.add("bg-warning");
     }
-    if (data <= parseInt(valueMax) + 10 && data >= parseInt(valueMax)) {
+    if (data <= parseInt(valueMax) + 10 && data >= parseInt(valueMax) - 10) {
       $progresBar.classList.remove("bg-warning", "bg-success", "bg-danger");
       $progresBar.classList.add("bg-success");
       $progresBar.setAttribute("data-currentValue", data);
@@ -92,6 +92,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       ).textContent = `${data.quantity} ${data.controlunit}`;
       document.querySelector(".title-scale").textContent =
         data.quantity > 18000 ? `Bascula de Piso` : `Bascula de Mesa`;
+      if (data.ingredientid == 9) {
+        $btnConfirmIngredient.removeAttribute("disabled");
+        $btnConfirmIngredient.click();
+      }
     } else if (event.target.matches(".btn-close-ingredient")) {
       $("#detailTaskModal").modal("show");
       $("#igredientModal").modal("hide");
@@ -128,21 +132,18 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       try {
         let pData = $progresBar.dataset;
-        let response = await fetch(
-          `http://localhost:3003/tasks-detail`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({
-              taskId: parseInt(pData.taskid),
-              ingredientId: parseInt(pData.ingredientid),
-              weight: parseInt(pData.currentvalue),
-            }),
-          }
-        );
+        let response = await fetch(`http://localhost:3003/tasks-detail`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            taskId: parseInt(pData.taskid),
+            ingredientId: parseInt(pData.ingredientid),
+            weight: parseInt(pData.currentvalue),
+          }),
+        });
         console.log(response);
 
         if (response.ok) {
