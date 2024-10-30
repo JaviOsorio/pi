@@ -28,9 +28,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     timeout: 2000,
   });
 
-  socket.on("connect", (io) => {
-    console.log("Conectado al servidor Socket.IO");
-  });
+  // socket.on("connect", (io) => {
+  //   console.log("Conectado al servidor Socket.IO");
+  // });
 
   socket.on("serialData", (data) => {
     data = data.match(/\d+/g)?.join("");

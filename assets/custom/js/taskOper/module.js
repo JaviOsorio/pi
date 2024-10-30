@@ -6,6 +6,9 @@ const $tableItemsTaskBody = $tableItemsTask.querySelector("tbody");
 const $btnConfirmIngredient = document.querySelector(".btn-confirm-ingredient");
 let recipe = {};
 
+socket.on("connect", (io) => {
+  console.log("Conectado al servidor Socket.IO");
+});
 // Load task
 export async function loadDatatable() {
   $(".table-tasks").DataTable({
@@ -158,6 +161,11 @@ export async function loadOneTask(id) {
             element.cuantity > 15000 ? `Bascula de Piso` : `Bascula de Mesa`;
           if (element.ingredient.id == 9) {
             $progresBar.setAttribute("data-currentValue", element.cuantity);
+            if (parseInt(element.quantity) > 18000) {
+              socket.emit("port", "COM3");
+            } else {
+              socket.emit("port", "COM4");
+            }
             $btnConfirmIngredient.removeAttribute("disabled");
           } else {
             $btnConfirmIngredient.setAttribute("disabled", "true");
