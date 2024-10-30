@@ -335,6 +335,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             } else {
               // $btnConfirmIngredient.setAttribute("disabled", "true");
             }
+            console.log(parseInt(element.quantity) > 18000);
+
             if (parseInt(element.quantity) > 18000) {
               socket.emit("port", "COM3");
             } else {
