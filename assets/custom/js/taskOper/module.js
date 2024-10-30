@@ -3,6 +3,7 @@ const $titleRecipe = document.querySelector(".title-recipe");
 const $progresBar = document.querySelector(".progress-bar");
 const $tableItemsTask = document.querySelector(".table-items-task");
 const $tableItemsTaskBody = $tableItemsTask.querySelector("tbody");
+const $btnConfirmIngredient = document.querySelector(".btn-confirm-ingredient");
 let recipe = {};
 
 // Load task
@@ -120,7 +121,7 @@ export async function loadOneTask(id) {
                       ${
                         result
                           ? `<button class="btn text-white border-white btn-sm">Pesado</button>`
-                          : `<button class="btn btn-primary btn-sm btn-scale" data-taskId="${data.id}" data-itemId="${item?.id}" data-ingredientId="${item.ingredient.id}" data-ingredientName="${item.ingredient.name}" data-quantity="${item.cuantity}" data-controlUnit="${item.controlUnit}">Pesar</button>`
+                          : `<button class="btn btn-primary btn-sm btn-scale" data-taskId="${data.id}" data-itemId="${item?.id}" data-ingredientId="${item.ingredient.id}" data-ingredientName="${item.ingredient.name}" data-quantity="${item.cuantity}" data-controlUnit="${item.controlUnit}" disabled>Pesar</button>`
                       }
                       </td>
                   </tr>`;
@@ -134,7 +135,10 @@ export async function loadOneTask(id) {
       for (let index = 0; index < ingredients.length; index++) {
         let element = ingredients[index];
         let result = data.details.find((ing) => {
-          return element.ingredient.id === ing?.ingredient?.id;
+          return (
+            element.ingredient.id === ing?.ingredient?.id &&
+            element?.id === ing?.itemId
+          );
         });
 
         if (!result) {
@@ -142,9 +146,8 @@ export async function loadOneTask(id) {
           $progresBar.setAttribute("aria-valuemax", element.cuantity);
           $progresBar.setAttribute("data-taskId", id);
           $progresBar.setAttribute("data-ingredientId", element.ingredient.id);
+          $progresBar.setAttribute("data-itemId", element.id);
           $progresBar.style.width = `0%`;
-          $("#detailTaskModal").modal("hide");
-          // $("#igredientModal").modal("show");
           document.querySelector(".title-modal-ingredient").textContent =
             element.ingredient.name;
           document.querySelector(".current-weight").textContent = 0;
@@ -153,6 +156,14 @@ export async function loadOneTask(id) {
           ).textContent = `${element.cuantity} ${element.controlUnit}`;
           document.querySelector(".title-scale").textContent =
             element.cuantity > 15000 ? `Bascula de Piso` : `Bascula de Mesa`;
+          if (element.ingredient.id == 9) {
+            $progresBar.setAttribute("data-currentValue", element.cuantity);
+            $btnConfirmIngredient.removeAttribute("disabled");
+          } else {
+            $btnConfirmIngredient.setAttribute("disabled");
+          }
+          $("#detailTaskModal").modal("hide");
+          $("#igredientModal").modal("show");
           break;
         }
       }
