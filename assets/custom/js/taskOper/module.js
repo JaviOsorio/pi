@@ -160,7 +160,7 @@ export async function loadOneTask(id) {
             $progresBar.setAttribute("data-currentValue", element.cuantity);
             $btnConfirmIngredient.removeAttribute("disabled");
           } else {
-            $btnConfirmIngredient.setAttribute("disabled");
+            $btnConfirmIngredient.setAttribute("disabled", "true");
           }
           $("#detailTaskModal").modal("hide");
           $("#igredientModal").modal("show");
