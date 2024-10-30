@@ -327,7 +327,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               ".objective-weight"
             ).textContent = `${element.cuantity} ${element.controlUnit}`;
             document.querySelector(".title-scale").textContent =
-              element.cuantity > 1000 ? `Bascula de Piso` : `Bascula de Mesa`;
+              element.cuantity > 18000 ? `Bascula de Piso` : `Bascula de Mesa`;
             if (element.ingredient.id == 9) {
               $progresBar.setAttribute("data-currentValue", element.cuantity);
               $btnConfirmIngredient.removeAttribute("disabled");
