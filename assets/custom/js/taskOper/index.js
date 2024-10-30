@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("token");
   const user = localStorage.getItem("user");
+  const $titleRecipe = document.querySelector(".title-recipe");
+  const $tableItemsTask = document.querySelector(".table-items-task");
+  const $tableItemsTaskBody = $tableItemsTask.querySelector("tbody");
+  let recipe = {};
   const socket = io("http://localhost:3004", {
     reconnection: true,
     timeout: 2000,
