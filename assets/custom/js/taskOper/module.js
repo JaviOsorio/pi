@@ -9,9 +9,9 @@ const socket = io("http://localhost:3004", {
   reconnection: true,
   timeout: 2000,
 });
-// socket.on("connect", (io) => {
-//   console.log("Conectado al servidor Socket.IO");
-// });
+socket.on("connect", (io) => {
+  console.log("Conectado al servidor Socket.IO");
+});
 // Load task
 export async function loadDatatable() {
   $(".table-tasks").DataTable({
