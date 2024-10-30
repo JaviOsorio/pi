@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   socket.on("serialData", (data) => {
     data = data.match(/\d+/g)?.join("");
-    if (data == 0) {
+    if (data <= 5) {
       valueScale = 0;
     }
     console.log("Datos del puerto serie:", data);
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     $progresBar.style.width = `${result}%`;
     $progresBar.textContent = `${Math.round(result)}%`;
 
-    if ((data - valueScale) > parseInt(valueMax) + 10) {
+    if (data - valueScale > parseInt(valueMax) + 10) {
       $progresBar.classList.remove("bg-warning", "bg-success", "bg-danger");
       $progresBar.classList.add("bg-danger");
     }
@@ -65,12 +65,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       $progresBar.setAttribute("data-currentValue", valueMax);
       $btnConfirmIngredient.removeAttribute("disabled");
     } else if (
-      (data - valueScale) <= parseInt(valueMax) + 10 &&
-      (data - valueScale) >= parseInt(valueMax) - 10
+      data - valueScale <= parseInt(valueMax) + 10 &&
+      data - valueScale >= parseInt(valueMax) - 10
     ) {
       $progresBar.classList.remove("bg-warning", "bg-success", "bg-danger");
       $progresBar.classList.add("bg-success");
-      $progresBar.setAttribute("data-currentValue", (data - valueScale));
+      $progresBar.setAttribute("data-currentValue", data - valueScale);
       $btnConfirmIngredient.removeAttribute("disabled");
     }
   });
