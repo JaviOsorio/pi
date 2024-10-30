@@ -5,13 +5,7 @@ const $tableItemsTask = document.querySelector(".table-items-task");
 const $tableItemsTaskBody = $tableItemsTask.querySelector("tbody");
 const $btnConfirmIngredient = document.querySelector(".btn-confirm-ingredient");
 let recipe = {};
-const socket = io("http://localhost:3004", {
-  reconnection: true,
-  timeout: 2000,
-});
-socket.on("connect", (io) => {
-  console.log("Conectado al servidor Socket.IO");
-});
+
 // Load task
 export async function loadDatatable() {
   $(".table-tasks").DataTable({
@@ -127,7 +121,7 @@ export async function loadOneTask(id) {
                       ${
                         result
                           ? `<button class="btn text-white border-white btn-sm">Pesado</button>`
-                          : `<button class="btn btn-primary btn-sm btn-scale" data-taskId="${data.id}" data-itemId="${item?.id}" data-ingredientId="${item.ingredient.id}" data-ingredientName="${item.ingredient.name}" data-quantity="${item.cuantity}" data-controlUnit="${item.controlUnit}" disabled>Pesar</button>`
+                          : `<button class="btn btn-primary btn-sm btn-scale" data-taskId="${data.id}" data-itemId="${item?.id}" data-ingredientId="${item.ingredient.id}" data-ingredientName="${item.ingredient.name}" data-quantity="${item.cuantity}" data-controlUnit="${item.controlUnit}">Pesar</button>`
                       }
                       </td>
                   </tr>`;
@@ -166,12 +160,7 @@ export async function loadOneTask(id) {
             $progresBar.setAttribute("data-currentValue", element.cuantity);
             $btnConfirmIngredient.removeAttribute("disabled");
           } else {
-            $btnConfirmIngredient.setAttribute("disabled", "true");
-          }
-          if (parseInt(element.quantity) > 18000) {
-            socket.emit("port", "COM3");
-          } else {
-            socket.emit("port", "COM4");
+            // $btnConfirmIngredient.setAttribute("disabled", "true");
           }
           $("#detailTaskModal").modal("hide");
           $("#igredientModal").modal("show");
