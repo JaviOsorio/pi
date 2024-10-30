@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("token");
   const user = localStorage.getItem("user");
-  const { loadDatatable, loadOneTask } = await import("./module.js?15");
+  socket.on("connect", (io) => {
+    console.log("Conectado al servidor Socket.IO");
+  });
+  const { loadDatatable, loadOneTask } = await import("./module.js?16");
   const { decodeToken } = await import("./../auth/auth.js");
   const $progresBar = document.querySelector(".progress-bar");
   const $btnConfirmIngredient = document.querySelector(
@@ -27,10 +30,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     reconnection: true,
     timeout: 2000,
   });
-
-  // socket.on("connect", (io) => {
-  //   console.log("Conectado al servidor Socket.IO");
-  // });
 
   socket.on("serialData", (data) => {
     data = data.match(/\d+/g)?.join("");

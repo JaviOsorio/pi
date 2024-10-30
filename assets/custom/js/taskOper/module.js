@@ -6,9 +6,9 @@ const $tableItemsTaskBody = $tableItemsTask.querySelector("tbody");
 const $btnConfirmIngredient = document.querySelector(".btn-confirm-ingredient");
 let recipe = {};
 
-socket.on("connect", (io) => {
-  console.log("Conectado al servidor Socket.IO");
-});
+// socket.on("connect", (io) => {
+//   console.log("Conectado al servidor Socket.IO");
+// });
 // Load task
 export async function loadDatatable() {
   $(".table-tasks").DataTable({
