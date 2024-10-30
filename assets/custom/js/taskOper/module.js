@@ -5,7 +5,10 @@ const $tableItemsTask = document.querySelector(".table-items-task");
 const $tableItemsTaskBody = $tableItemsTask.querySelector("tbody");
 const $btnConfirmIngredient = document.querySelector(".btn-confirm-ingredient");
 let recipe = {};
-
+const socket = io("http://localhost:3004", {
+  reconnection: true,
+  timeout: 2000,
+});
 // socket.on("connect", (io) => {
 //   console.log("Conectado al servidor Socket.IO");
 // });
