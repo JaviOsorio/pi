@@ -291,7 +291,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         ${
                           result
                             ? `<button class="btn text-white border-white btn-sm">Pesado</button>`
-                            : `<button class="btn btn-primary btn-sm btn-scale" data-taskId="${data.id}" data-itemId="${item?.id}" data-ingredientId="${item.ingredient.id}" data-ingredientName="${item.ingredient.name}" data-quantity="${item.cuantity}" data-controlUnit="${item.controlUnit}">Pesar</button>`
+                            : `<button class="btn btn-primary btn-sm btn-scale" data-taskId="${data.id}" data-itemId="${item?.id}" data-ingredientId="${item.ingredient.id}" data-ingredientName="${item.ingredient.name}" data-quantity="${item.cuantity}" data-controlUnit="${item.controlUnit}" disabled>Pesar</button>`
                         }
                         </td>
                     </tr>`;
@@ -333,7 +333,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               $progresBar.setAttribute("data-currentValue", element.cuantity);
               $btnConfirmIngredient.removeAttribute("disabled");
             } else {
-              // $btnConfirmIngredient.setAttribute("disabled", "true");
+              $btnConfirmIngredient.setAttribute("disabled", "true");
             }
 
             if (parseInt(element.cuantity) > 18000) {
