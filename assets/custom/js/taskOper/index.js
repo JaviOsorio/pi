@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("token");
   const user = localStorage.getItem("user");
-  const { loadDatatable, loadOneTask } = await import("./module.js?14");
+  const { loadDatatable, loadOneTask } = await import("./module.js?15");
   const { decodeToken } = await import("./../auth/auth.js");
   const $progresBar = document.querySelector(".progress-bar");
   const $btnConfirmIngredient = document.querySelector(
