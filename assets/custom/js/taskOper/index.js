@@ -327,17 +327,17 @@ document.addEventListener("DOMContentLoaded", async () => {
               ".objective-weight"
             ).textContent = `${element.cuantity} ${element.controlUnit}`;
             document.querySelector(".title-scale").textContent =
-              element.cuantity > 15000 ? `Bascula de Piso` : `Bascula de Mesa`;
+              element.cuantity > 1000 ? `Bascula de Piso` : `Bascula de Mesa`;
             if (element.ingredient.id == 9) {
               $progresBar.setAttribute("data-currentValue", element.cuantity);
               $btnConfirmIngredient.removeAttribute("disabled");
             } else {
               // $btnConfirmIngredient.setAttribute("disabled", "true");
-              if (parseInt(element.quantity) > 18000) {
-                socket.emit("port", "COM3");
-              } else {
-                socket.emit("port", "COM4");
-              }
+            }
+            if (parseInt(element.quantity) > 18000) {
+              socket.emit("port", "COM3");
+            } else {
+              socket.emit("port", "COM4");
             }
             $("#detailTaskModal").modal("hide");
             $("#igredientModal").modal("show");
