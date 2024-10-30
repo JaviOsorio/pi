@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("token");
   const user = localStorage.getItem("user");
+  const socket = io("http://localhost:3004", {
+    reconnection: true,
+    timeout: 2000,
+  });
   socket.on("connect", (io) => {
     console.log("Conectado al servidor Socket.IO");
   });
@@ -26,10 +30,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const $proUserName = document.querySelector(".pro-username");
   $proUserName.textContent = user;
-  const socket = io("http://localhost:3004", {
-    reconnection: true,
-    timeout: 2000,
-  });
 
   socket.on("serialData", (data) => {
     data = data.match(/\d+/g)?.join("");
