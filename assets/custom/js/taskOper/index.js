@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const $titleRecipe = document.querySelector(".title-recipe");
   const $tableItemsTask = document.querySelector(".table-items-task");
   const $tableItemsTaskBody = $tableItemsTask.querySelector("tbody");
+  let valueScale = 0;
   const socket = io("http://localhost:3004", {
     reconnection: true,
     timeout: 2000,
@@ -36,17 +37,22 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   socket.on("serialData", (data) => {
     data = data.match(/\d+/g)?.join("");
+    if (data == 0) {
+      valueScale = 0;
+    }
     console.log("Datos del puerto serie:", data);
     $btnConfirmIngredient.setAttribute("disabled", "true");
-    document.querySelector(".current-weight").textContent = `${data} G`;
+    document.querySelector(".current-weight").textContent = `${
+      data - valueScale
+    } G`;
     const $progresBar = document.querySelector(".progress-bar");
 
     let valueMax = $progresBar.getAttribute("aria-valuemax");
-    let result = (data * 100) / parseInt(valueMax);
+    let result = ((data - valueScale) * 100) / parseInt(valueMax);
     $progresBar.style.width = `${result}%`;
     $progresBar.textContent = `${Math.round(result)}%`;
 
-    if (data > parseInt(valueMax) + 10) {
+    if ((data - valueScale) > parseInt(valueMax) + 10) {
       $progresBar.classList.remove("bg-warning", "bg-success", "bg-danger");
       $progresBar.classList.add("bg-danger");
     }
@@ -59,12 +65,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       $progresBar.setAttribute("data-currentValue", valueMax);
       $btnConfirmIngredient.removeAttribute("disabled");
     } else if (
-      data <= parseInt(valueMax) + 10 &&
-      data >= parseInt(valueMax) - 10
+      (data - valueScale) <= parseInt(valueMax) + 10 &&
+      (data - valueScale) >= parseInt(valueMax) - 10
     ) {
       $progresBar.classList.remove("bg-warning", "bg-success", "bg-danger");
       $progresBar.classList.add("bg-success");
-      $progresBar.setAttribute("data-currentValue", data);
+      $progresBar.setAttribute("data-currentValue", (data - valueScale));
       $btnConfirmIngredient.removeAttribute("disabled");
     }
   });
@@ -82,32 +88,32 @@ document.addEventListener("DOMContentLoaded", async () => {
       await loadOneTask(data.id);
       $("#detailTaskModal").modal("show");
     } else if (event.target.matches(".btn-scale")) {
-      $btnConfirmIngredient.setAttribute("disabled", "true");
-      if (parseInt(data.quantity) > 18000) {
-        socket.emit("port", "COM3");
-      } else {
-        socket.emit("port", "COM4");
-      }
-      $progresBar.setAttribute("aria-valuemin", 0);
-      $progresBar.setAttribute("aria-valuemax", data.quantity);
-      $progresBar.setAttribute("data-taskId", data.taskid);
-      $progresBar.setAttribute("data-ingredientId", data.ingredientid);
-      $progresBar.setAttribute("data-itemId", data.itemid);
-      $progresBar.style.width = `0%`;
-      $("#detailTaskModal").modal("hide");
-      $("#igredientModal").modal("show");
-      document.querySelector(".title-modal-ingredient").textContent =
-        data.ingredientname;
-      document.querySelector(".current-weight").textContent = 0;
-      document.querySelector(
-        ".objective-weight"
-      ).textContent = `${data.quantity} ${data.controlunit}`;
-      document.querySelector(".title-scale").textContent =
-        data.quantity > 18000 ? `Bascula de Piso` : `Bascula de Mesa`;
-      if (data.ingredientid == 9) {
-        $progresBar.setAttribute("data-currentValue", data.quantity);
-        $btnConfirmIngredient.removeAttribute("disabled");
-      }
+      // $btnConfirmIngredient.setAttribute("disabled", "true");
+      // if (parseInt(data.quantity) > 18000) {
+      //   socket.emit("port", "COM3");
+      // } else {
+      //   socket.emit("port", "COM4");
+      // }
+      // $progresBar.setAttribute("aria-valuemin", 0);
+      // $progresBar.setAttribute("aria-valuemax", data.quantity);
+      // $progresBar.setAttribute("data-taskId", data.taskid);
+      // $progresBar.setAttribute("data-ingredientId", data.ingredientid);
+      // $progresBar.setAttribute("data-itemId", data.itemid);
+      // $progresBar.style.width = `0%`;
+      // $("#detailTaskModal").modal("hide");
+      // $("#igredientModal").modal("show");
+      // document.querySelector(".title-modal-ingredient").textContent =
+      //   data.ingredientname;
+      // document.querySelector(".current-weight").textContent = 0;
+      // document.querySelector(
+      //   ".objective-weight"
+      // ).textContent = `${data.quantity} ${data.controlunit}`;
+      // document.querySelector(".title-scale").textContent =
+      //   data.quantity > 18000 ? `Bascula de Piso` : `Bascula de Mesa`;
+      // if (data.ingredientid == 9) {
+      //   $progresBar.setAttribute("data-currentValue", data.quantity);
+      //   $btnConfirmIngredient.removeAttribute("disabled");
+      // }
     } else if (event.target.matches(".btn-close-ingredient")) {
       $("#detailTaskModal").modal("show");
       $("#igredientModal").modal("hide");
@@ -162,6 +168,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           setTimeout(() => {
             document.querySelector(`.btn-detail-${pData.taskid}`).click();
           }, 200);
+          valueScale = parseInt(pData.currentvalue);
           socket.emit("port", "COM0");
         } else {
           console.error("Error en la respuesta:", response.statusText);
