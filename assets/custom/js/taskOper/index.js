@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const token = localStorage.getItem("token");
+  const { decodeToken } = await import("./../auth/auth.js");
   const user = localStorage.getItem("user");
   const $titleRecipe = document.querySelector(".title-recipe");
   const $tableItemsTask = document.querySelector(".table-items-task");
@@ -12,8 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   socket.on("connect", (io) => {
     console.log("Conectado al servidor Socket.IO");
   });
-  // const { loadDatatable, loadOneTask } = await import("./module.js?16");
-  const { decodeToken } = await import("./../auth/auth.js");
+
   const $progresBar = document.querySelector(".progress-bar");
   const $btnConfirmIngredient = document.querySelector(
     ".btn-confirm-ingredient"
@@ -37,20 +36,22 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   socket.on("serialData", (data) => {
     data = data.match(/\d+/g)?.join("");
-    if (data == 0) {
+    if (data <= 5) {
       valueScale = 0;
     }
     console.log("Datos del puerto serie:", data);
     $btnConfirmIngredient.setAttribute("disabled", "true");
-    document.querySelector(".current-weight").textContent = ${data} G;
+    document.querySelector(".current-weight").textContent = `${
+      data - valueScale
+    } G`;
     const $progresBar = document.querySelector(".progress-bar");
 
     let valueMax = $progresBar.getAttribute("aria-valuemax");
-    let result = (data * 100) / parseInt(valueMax);
-    $progresBar.style.width = ${result}%;
-    $progresBar.textContent = ${Math.round(result)}%;
+    let result = ((data - valueScale) * 100) / parseInt(valueMax);
+    $progresBar.style.width = `${result}%`;
+    $progresBar.textContent = `${Math.round(result)}%`;
 
-    if (data > parseInt(valueMax) + 10) {
+    if (data - valueScale > parseInt(valueMax) + 10) {
       $progresBar.classList.remove("bg-warning", "bg-success", "bg-danger");
       $progresBar.classList.add("bg-danger");
     }
@@ -63,12 +64,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       $progresBar.setAttribute("data-currentValue", valueMax);
       $btnConfirmIngredient.removeAttribute("disabled");
     } else if (
-      data <= parseInt(valueMax) + 10 &&
-      data >= parseInt(valueMax) - 10
+      data - valueScale <= parseInt(valueMax) + 10 &&
+      data - valueScale >= parseInt(valueMax) - 10
     ) {
       $progresBar.classList.remove("bg-warning", "bg-success", "bg-danger");
       $progresBar.classList.add("bg-success");
-      $progresBar.setAttribute("data-currentValue", data);
+      $progresBar.setAttribute("data-currentValue", data - valueScale);
       $btnConfirmIngredient.removeAttribute("disabled");
     }
   });
@@ -97,7 +98,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       $progresBar.setAttribute("data-taskId", data.taskid);
       $progresBar.setAttribute("data-ingredientId", data.ingredientid);
       $progresBar.setAttribute("data-itemId", data.itemid);
-      $progresBar.style.width = 0%;
+      $progresBar.style.width = `0%`;
       $("#detailTaskModal").modal("hide");
       $("#igredientModal").modal("show");
       document.querySelector(".title-modal-ingredient").textContent =
@@ -105,9 +106,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.querySelector(".current-weight").textContent = 0;
       document.querySelector(
         ".objective-weight"
-      ).textContent = ${data.quantity} ${data.controlunit};
+      ).textContent = `${data.quantity} ${data.controlunit}`;
       document.querySelector(".title-scale").textContent =
-        data.quantity > 18000 ? Bascula de Piso : Bascula de Mesa;
+        data.quantity > 18000 ? `Bascula de Piso` : `Bascula de Mesa`;
       if (data.ingredientid == 9) {
         $progresBar.setAttribute("data-currentValue", data.quantity);
         $btnConfirmIngredient.removeAttribute("disabled");
@@ -116,10 +117,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       $("#detailTaskModal").modal("show");
       $("#igredientModal").modal("hide");
     } else if (event.target.matches(".btn-task-save")) {
-      await fetch(http://localhost:3003/tasks/${data.taskid}, {
+      await fetch(`http://localhost:3003/tasks/${data.taskid}`, {
         method: "PUT",
         headers: {
-          Authorization: Bearer ${dataToken.token},
+          Authorization: `Bearer ${dataToken.token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ status: "Finalizada" }),
@@ -146,17 +147,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else if (event.target.matches(".btn-confirm-ingredient")) {
       try {
         let pData = $progresBar.dataset;
-        let response = await fetch(http://localhost:3003/tasks-detail, {
+        let response = await fetch(`http://localhost:3003/tasks-detail`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: Bearer ${token},
+            Authorization: `Bearer ${dataToken.token}`,
           },
           body: JSON.stringify({
             taskId: parseInt(pData.taskid),
             ingredientId: parseInt(pData.ingredientid),
             weight: parseInt(pData.currentvalue),
             itemId: parseInt(pData.itemid),
+            userId: dataToken?.sub,
           }),
         });
 
@@ -164,7 +166,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           let result = await response.json();
           document.querySelector(".btn-close-ingredient").click();
           setTimeout(() => {
-            document.querySelector(.btn-detail-${pData.taskid}).click();
+            document.querySelector(`.btn-detail-${pData.taskid}`).click();
           }, 200);
           valueScale = parseInt(pData.currentvalue);
           socket.emit("port", "COM0");
@@ -187,7 +189,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         url: "http://localhost:3003/tasks",
         type: "GET",
         headers: {
-          Authorization: Bearer ${token}, // Enviar el token en el encabezado de autorización
+          Authorization: `Bearer ${dataToken.token}`, // Enviar el token en el encabezado de autorización
           "Content-Type": "application/json",
         },
         dataSrc: function (json) {
@@ -223,19 +225,19 @@ document.addEventListener("DOMContentLoaded", async () => {
         {
           data: "endDate", // Columna para fecha de creación
           render: function (data, type, row) {
-            return <button class="btn btn-primary btn-detail btn-detail-${row.id} btn-sm" data-id="${row.id}" data-name="${row.product?.name}">Iniciar</button>;
+            return `<button class="btn btn-primary btn-detail btn-detail-${row.id} btn-sm" data-id="${row.id}" data-name="${row.product?.name}">Iniciar</button>`;
           },
         },
       ],
       language: {
         decimal: "",
         emptyTable: "No hay datos disponibles en la tabla",
-        info: "Mostrando START a END de TOTAL entradas",
+        info: "Mostrando _START_ a _END_ de _TOTAL_ entradas",
         infoEmpty: "Mostrando 0 a 0 de 0 entradas",
-        infoFiltered: "(filtrado de MAX entradas totales)",
+        infoFiltered: "(filtrado de _MAX_ entradas totales)",
         infoPostFix: "",
         thousands: ",",
-        lengthMenu: "Mostrar MENU entradas",
+        lengthMenu: "Mostrar _MENU_ entradas",
         loadingRecords: "Cargando...",
         processing: "Procesando...",
         search: "Buscar:",
@@ -259,16 +261,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Función para cargar las recetas desde el backend
   async function loadOneTask(id) {
     try {
-      const response = await fetch(http://localhost:3003/tasks/${id}, {
+      const response = await fetch(`http://localhost:3003/tasks/${id}`, {
         method: "GET",
         headers: {
-          Authorization: Bearer ${token},
+          Authorization: `Bearer ${dataToken.token}`,
           "Content-Type": "application/json",
         },
       });
       if (response.ok) {
         const data = await response.json();
-        $titleRecipe.textContent = ${data.product.name.toUpperCase()};
+        $titleRecipe.textContent = `${data.product.name.toUpperCase()}`;
         recipe = data;
 
         // Detail
@@ -283,20 +285,23 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           itemsHtml += `
                     <tr class="ingredient-row">
-                        <td class="${result ? bg-success text-white : ``}">${
+                        <td class="${result ? `bg-success text-white` : ``}">${
             item.ingredient.name
           }</td>
-                        <td class="${result ? bg-success text-white : ``}">${
+                        <td class="${result ? `bg-success text-white` : ``}">${
             item.cuantity
           }</td>
-                        <td class="${result ? bg-success text-white : ``}">${
+                        <td class="${result ? `bg-success text-white` : ``}">${
             item.controlUnit
           }</td>
-                        <td class="text-center ${result ? bg-success : ``}">
+                        <td class="${result ? `bg-success text-white` : ``}">${
+            result ? result?.user?.name : ``
+          }</td>
+                        <td class="text-center ${result ? `bg-success` : ``}">
                         ${
                           result
-                            ? <button class="btn text-white border-white btn-sm">Pesado</button>
-                            : <button class="btn btn-primary btn-sm btn-scale" data-taskId="${data.id}" data-itemId="${item?.id}" data-ingredientId="${item.ingredient.id}" data-ingredientName="${item.ingredient.name}" data-quantity="${item.cuantity}" data-controlUnit="${item.controlUnit}" disabled>Pesar</button>
+                            ? `<button class="btn text-white border-white btn-sm">Pesado</button>`
+                            : `<button class="btn btn-primary btn-sm btn-scale" data-taskId="${data.id}" data-itemId="${item?.id}" data-ingredientId="${item.ingredient.id}" data-ingredientName="${item.ingredient.name}" data-quantity="${item.cuantity}" data-controlUnit="${item.controlUnit}">Pesar</button>`
                         }
                         </td>
                     </tr>`;
@@ -325,20 +330,20 @@ document.addEventListener("DOMContentLoaded", async () => {
               element.ingredient.id
             );
             $progresBar.setAttribute("data-itemId", element.id);
-            $progresBar.style.width = 0%;
+            $progresBar.style.width = `0%`;
             document.querySelector(".title-modal-ingredient").textContent =
               element.ingredient.name;
             document.querySelector(".current-weight").textContent = 0;
             document.querySelector(
               ".objective-weight"
-            ).textContent = ${element.cuantity} ${element.controlUnit};
+            ).textContent = `${element.cuantity} ${element.controlUnit}`;
             document.querySelector(".title-scale").textContent =
-              element.cuantity > 18000 ? Bascula de Piso : Bascula de Mesa;
+              element.cuantity > 18000 ? `Bascula de Piso` : `Bascula de Mesa`;
             if (element.ingredient.id == 9) {
               $progresBar.setAttribute("data-currentValue", element.cuantity);
-              $btnConfirmIngredient.removeAttribute("disabled");
+              // $btnConfirmIngredient.removeAttribute("disabled");
             } else {
-              $btnConfirmIngredient.setAttribute("disabled", "true");
+              // $btnConfirmIngredient.setAttribute("disabled", "true");
             }
 
             if (parseInt(element.cuantity) > 18000) {
@@ -355,6 +360,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     } catch (error) {
       console.error("Error al cargar tarea:", error);
-    }
-  }
+    }
+  }
 });
