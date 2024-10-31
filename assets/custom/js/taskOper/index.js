@@ -282,18 +282,26 @@ document.addEventListener("DOMContentLoaded", async () => {
               item?.id === ing?.itemId
             );
           });
-          
+
           itemsHtml += `
                     <tr class="ingredient-row">
-                        <td class="${result ? `bg-success text-white` : ``}">${item.ingredient.name}</td>
-                        <td class="${result ? `bg-success text-white` : ``}">${item.cuantity}</td>
-                        <td class="${result ? `bg-success text-white` : ``}">${item.controlUnit}</td>
-                        <td class="${result ? `bg-success text-white` : ``}">${result ? result?.user?.name : ``}</td>
+                        <td class="${result ? `bg-success text-white` : ``}">${
+            item.ingredient.name
+          }</td>
+                        <td class="${result ? `bg-success text-white` : ``}">${
+            item.cuantity
+          }</td>
+                        <td class="${result ? `bg-success text-white` : ``}">${
+            item.controlUnit
+          }</td>
+                        <td class="${result ? `bg-success text-white` : ``}">${
+            result ? result?.user?.name : ``
+          }</td>
                         <td class="text-center ${result ? `bg-success` : ``}">
                         ${
                           result
                             ? `<button class="btn text-white border-white btn-sm">Pesado</button>`
-                            : `<button class="btn btn-primary btn-sm btn-scale" data-taskId="${data.id}" data-itemId="${item?.id}" data-ingredientId="${item.ingredient.id}" data-ingredientName="${item.ingredient.name}" data-quantity="${item.cuantity}" data-controlUnit="${item.controlUnit}" disabled>Pesar</button>`
+                            : `<button class="btn btn-primary btn-sm btn-scale" data-taskId="${data.id}" data-itemId="${item?.id}" data-ingredientId="${item.ingredient.id}" data-ingredientName="${item.ingredient.name}" data-quantity="${item.cuantity}" data-controlUnit="${item.controlUnit}">Pesar</button>`
                         }
                         </td>
                     </tr>`;
@@ -333,9 +341,9 @@ document.addEventListener("DOMContentLoaded", async () => {
               element.cuantity > 18000 ? `Bascula de Piso` : `Bascula de Mesa`;
             if (element.ingredient.id == 9) {
               $progresBar.setAttribute("data-currentValue", element.cuantity);
-              $btnConfirmIngredient.removeAttribute("disabled");
+              // $btnConfirmIngredient.removeAttribute("disabled");
             } else {
-              $btnConfirmIngredient.setAttribute("disabled", "true");
+              // $btnConfirmIngredient.setAttribute("disabled", "true");
             }
 
             if (parseInt(element.cuantity) > 18000) {
