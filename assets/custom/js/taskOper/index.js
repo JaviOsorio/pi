@@ -87,32 +87,32 @@ document.addEventListener("DOMContentLoaded", async () => {
       await loadOneTask(data.id);
       $("#detailTaskModal").modal("show");
     } else if (event.target.matches(".btn-scale")) {
-      // $btnConfirmIngredient.setAttribute("disabled", "true");
-      // if (parseInt(data.quantity) > 18000) {
-      //   socket.emit("port", "COM3");
-      // } else {
-      //   socket.emit("port", "COM4");
-      // }
-      // $progresBar.setAttribute("aria-valuemin", 0);
-      // $progresBar.setAttribute("aria-valuemax", data.quantity);
-      // $progresBar.setAttribute("data-taskId", data.taskid);
-      // $progresBar.setAttribute("data-ingredientId", data.ingredientid);
-      // $progresBar.setAttribute("data-itemId", data.itemid);
-      // $progresBar.style.width = `0%`;
-      // $("#detailTaskModal").modal("hide");
-      // $("#igredientModal").modal("show");
-      // document.querySelector(".title-modal-ingredient").textContent =
-      //   data.ingredientname;
-      // document.querySelector(".current-weight").textContent = 0;
-      // document.querySelector(
-      //   ".objective-weight"
-      // ).textContent = `${data.quantity} ${data.controlunit}`;
-      // document.querySelector(".title-scale").textContent =
-      //   data.quantity > 18000 ? `Bascula de Piso` : `Bascula de Mesa`;
-      // if (data.ingredientid == 9) {
-      //   $progresBar.setAttribute("data-currentValue", data.quantity);
-      //   $btnConfirmIngredient.removeAttribute("disabled");
-      // }
+      $btnConfirmIngredient.setAttribute("disabled", "true");
+      if (parseInt(data.quantity) > 18000) {
+        socket.emit("port", "COM3");
+      } else {
+        socket.emit("port", "COM4");
+      }
+      $progresBar.setAttribute("aria-valuemin", 0);
+      $progresBar.setAttribute("aria-valuemax", data.quantity);
+      $progresBar.setAttribute("data-taskId", data.taskid);
+      $progresBar.setAttribute("data-ingredientId", data.ingredientid);
+      $progresBar.setAttribute("data-itemId", data.itemid);
+      $progresBar.style.width = `0%`;
+      $("#detailTaskModal").modal("hide");
+      $("#igredientModal").modal("show");
+      document.querySelector(".title-modal-ingredient").textContent =
+        data.ingredientname;
+      document.querySelector(".current-weight").textContent = 0;
+      document.querySelector(
+        ".objective-weight"
+      ).textContent = `${data.quantity} ${data.controlunit}`;
+      document.querySelector(".title-scale").textContent =
+        data.quantity > 18000 ? `Bascula de Piso` : `Bascula de Mesa`;
+      if (data.ingredientid == 9) {
+        $progresBar.setAttribute("data-currentValue", data.quantity);
+        $btnConfirmIngredient.removeAttribute("disabled");
+      }
     } else if (event.target.matches(".btn-close-ingredient")) {
       $("#detailTaskModal").modal("show");
       $("#igredientModal").modal("hide");
