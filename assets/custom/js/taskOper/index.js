@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           setTimeout(() => {
             document.querySelector(`.btn-detail-${pData.taskid}`).click();
           }, 200);
-          valueScale = parseInt(pData.currentvalue);
+          valueScale = (valueScale + parseInt(pData.currentvalue));
           socket.emit("port", "COM0");
         } else {
           console.error("Error en la respuesta:", response.statusText);
