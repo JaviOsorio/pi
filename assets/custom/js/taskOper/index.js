@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const token = localStorage.getItem("token");
+  const { decodeToken } = await import("./../auth/auth.js");
   const user = localStorage.getItem("user");
   const $titleRecipe = document.querySelector(".title-recipe");
   const $tableItemsTask = document.querySelector(".table-items-task");
@@ -12,8 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   socket.on("connect", (io) => {
     console.log("Conectado al servidor Socket.IO");
   });
-  // const { loadDatatable, loadOneTask } = await import("./module.js?16");
-  const { decodeToken } = await import("./../auth/auth.js");
+
   const $progresBar = document.querySelector(".progress-bar");
   const $btnConfirmIngredient = document.querySelector(
     ".btn-confirm-ingredient"
@@ -152,13 +151,14 @@ document.addEventListener("DOMContentLoaded", async () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${dataToken.token}`,
           },
           body: JSON.stringify({
             taskId: parseInt(pData.taskid),
             ingredientId: parseInt(pData.ingredientid),
             weight: parseInt(pData.currentvalue),
             itemId: parseInt(pData.itemid),
+            userId: dataToken?.sub,
           }),
         });
 
@@ -189,7 +189,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         url: "http://localhost:3003/tasks",
         type: "GET",
         headers: {
-          Authorization: `Bearer ${token}`, // Enviar el token en el encabezado de autorización
+          Authorization: `Bearer ${dataToken.token}`, // Enviar el token en el encabezado de autorización
           "Content-Type": "application/json",
         },
         dataSrc: function (json) {
@@ -264,7 +264,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const response = await fetch(`http://localhost:3003/tasks/${id}`, {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${dataToken.token}`,
           "Content-Type": "application/json",
         },
       });
@@ -282,18 +282,13 @@ document.addEventListener("DOMContentLoaded", async () => {
               item?.id === ing?.itemId
             );
           });
-
+          
           itemsHtml += `
                     <tr class="ingredient-row">
-                        <td class="${result ? `bg-success text-white` : ``}">${
-            item.ingredient.name
-          }</td>
-                        <td class="${result ? `bg-success text-white` : ``}">${
-            item.cuantity
-          }</td>
-                        <td class="${result ? `bg-success text-white` : ``}">${
-            item.controlUnit
-          }</td>
+                        <td class="${result ? `bg-success text-white` : ``}">${item.ingredient.name}</td>
+                        <td class="${result ? `bg-success text-white` : ``}">${item.cuantity}</td>
+                        <td class="${result ? `bg-success text-white` : ``}">${item.controlUnit}</td>
+                        <td class="${result ? `bg-success text-white` : ``}">${result ? result?.user?.name : ``}</td>
                         <td class="text-center ${result ? `bg-success` : ``}">
                         ${
                           result
