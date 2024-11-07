@@ -282,7 +282,6 @@ document.addEventListener("DOMContentLoaded", async () => {
               item?.id === ing?.itemId
             );
           });
-          console.log(data);
 
           itemsHtml += `
                     <tr class="ingredient-row">
