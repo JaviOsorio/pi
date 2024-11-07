@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Formato en "YYYY-MM-DD" para campos de tipo date
   const formattedDate = `${year}-${month}-${day}`;
   
-  await loadDatatable(formattedDate, `${year}-${month}-${(day + 1)}`);
+  await loadDatatable(formattedDate, `${year}-${month}-${(today.getDate() + 1)}`);
   document.addEventListener("change", async (event) => {
     if (event.target == startDate || event.target == endDate) {
       if (startDate.value != "" && endDate.value != "") {
