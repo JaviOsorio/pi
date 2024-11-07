@@ -115,7 +115,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       columns: [
         { data: "id" },
         { data: "name" },
-        { data: "cuantity" },
+        {
+          data: "cuantity",
+          render: function (data, type, row) {
+            return data.toLocaleString("en-US"); // Aplica el formato de miles
+          },
+        },
         {
           data: "weight",
           render: function (data, type, row) {
