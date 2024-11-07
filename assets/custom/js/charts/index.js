@@ -116,7 +116,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         { data: "id" },
         { data: "name" },
         { data: "cuantity" },
-        { data: "weight" },
+        {
+          data: "weight",
+          render: function (data, type, row) {
+            return data.toLocaleString("en-US"); // Aplica el formato de miles
+          },
+        },
         { data: "controlUnit" },
       ],
     });
