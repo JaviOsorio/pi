@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.addEventListener("change", async (event) => {
     if (event.target == startDate || event.target == endDate) {
       if (startDate.value != "" && endDate.value != "") {
-        await loadDatatable(startDate, endDate);
+        await loadDatatable(startDate.value, endDate.value);
       }
     }
   });
