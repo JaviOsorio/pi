@@ -209,10 +209,20 @@
                             <div class="col-md-12">
                                 <div class="widget-rounded-circle card">
                                     <div class="card-body">
-                                        <div class="row mb-1">
+                                        <div class="row">
                                             <div class="col-sm-6"></div>
                                             <div class="col-sm-6">
                                                 <!-- <button class="btn btn-primary btn-sm float-end btn-modal-user"><i class="fas fa-plus pe-2 btn-modal-user"></i>Nuevo</button> -->
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6 mb-2">
+                                                <label for="">Desde</label>
+                                                <input type="date" class="form-control start-date">
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="">Hasta</label>
+                                                <input type="date" class="form-control end-date">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -369,7 +379,7 @@
         <!-- App js -->
         <script src="./../assets/js/app.min.js"></script>
         <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
-        <script type="module" src="../assets/custom/js/taskOper/index.js?39"></script>
+        <script type="module" src="../assets/custom/js/taskOper/index.js?40"></script>
         <script>
             function logout(){
                 localStorage.removeItem('token');

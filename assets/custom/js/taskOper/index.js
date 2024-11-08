@@ -178,15 +178,41 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     }
   });
-  await loadDatatable();
 
   let recipe = {};
 
+  const startDate = document.querySelector(".start-date");
+  const endDate = document.querySelector(".end-date");
+  // Obtén la fecha actual
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0"); // Añade el 0 si es necesario
+  const day = String(today.getDate()).padStart(2, "0"); // Añade el 0 si es necesario
+
+  // Formato en "YYYY-MM-DD" para campos de tipo date
+  const formattedDate = `${year}-${month}-${day}`;
+  startDate.value = formattedDate;
+  endDate.value = formattedDate;
+  await loadDatatable(formattedDate, `${year}-${month}-${today.getDate() + 1}`);
+  document.addEventListener("change", async (event) => {
+    if (event.target == startDate || event.target == endDate) {
+      if (startDate.value != "" && endDate.value != "") {
+        await loadDatatable(startDate.value, endDate.value);
+      }
+    }
+  });
+
   // Load task
-  async function loadDatatable() {
+  async function loadDatatable(startDate, endDate) {
+    // Check if the table has already been initialized
+    if ($.fn.dataTable.isDataTable(".table-tasks")) {
+      // If it has been initialized, destroy the previous instance
+      $(".table-tasks").DataTable().destroy();
+      $(".table-tasks").empty(); // Optional: Clear the table body
+    }
     $(".table-tasks").DataTable({
       ajax: {
-        url: "http://localhost:3003/tasks",
+        url: `http://localhost:3003/tasks/${startDate}/${endDate}`,
         type: "GET",
         headers: {
           Authorization: `Bearer ${dataToken.token}`, // Enviar el token en el encabezado de autorización

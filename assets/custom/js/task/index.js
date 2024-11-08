@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     }
   });
+
   // Event clcik
   document.addEventListener("click", async (event) => {
     let data = event.target.dataset;
