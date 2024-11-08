@@ -189,7 +189,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         // { data: 'id' },
         { data: "productionBatch" },
         { data: "product.name" },
-        { data: "status" },
+        {
+          data: "status", // Columna para fecha de creación
+          render: function (data, type, row) {
+            return `<button class="btn btn-sm ${
+              row.status == "Finalizada" ? "btn-success" : "btn-primary"
+            }">${row.status}</button>`;
+          },
+        },
         { data: "repetition" },
         {
           data: "startDate", // Columna para fecha de creación
