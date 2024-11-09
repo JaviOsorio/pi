@@ -298,6 +298,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const data = await response.json();
         $titleRecipe.textContent = `${data.product.name.toUpperCase()}`;
         recipe = data;
+        console.log(data);
 
         // Detail
         let itemsHtml = "";
