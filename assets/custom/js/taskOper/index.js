@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       $("#detailTaskModal").modal("show");
     } else if (event.target.matches(".btn-scale")) {
       $btnConfirmIngredient.setAttribute("disabled", "true");
-      if (parseInt(data.quantity) > 18000) {
+      if (parseInt(data.quantity) > 15000) {
         socket.emit("port", "COM3");
       } else {
         socket.emit("port", "COM4");
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         ".objective-weight"
       ).textContent = `${data.quantity} ${data.controlunit}`;
       document.querySelector(".title-scale").textContent =
-        data.quantity > 18000 ? `Bascula de Piso` : `Bascula de Mesa`;
+        data.quantity > 15000 ? `Bascula de Piso` : `Bascula de Mesa`;
       if (data.ingredientid == 9) {
         $progresBar.setAttribute("data-currentValue", data.quantity);
         $btnConfirmIngredient.removeAttribute("disabled");
@@ -365,7 +365,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               ".objective-weight"
             ).textContent = `${element.cuantity} ${element.controlUnit}`;
             document.querySelector(".title-scale").textContent =
-              element.cuantity > 18000 ? `Bascula de Piso` : `Bascula de Mesa`;
+              element.cuantity > 15000 ? `Bascula de Piso` : `Bascula de Mesa`;
             if (element.ingredient.id == 9) {
               $progresBar.setAttribute("data-currentValue", element.cuantity);
               // $btnConfirmIngredient.removeAttribute("disabled");
@@ -373,7 +373,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               // $btnConfirmIngredient.setAttribute("disabled", "true");
             }
 
-            if (parseInt(element.cuantity) > 18000) {
+            if (parseInt(element.cuantity) > 15000) {
               socket.emit("port", "COM3");
             } else {
               socket.emit("port", "COM4");
