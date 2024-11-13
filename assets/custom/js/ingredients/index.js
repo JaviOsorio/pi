@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else if (event.target.matches(".btn-edit")) {
       $recipeForm.id.value = data?.id;
       $recipeForm.name.value = data?.name;
+      $recipeForm.marginTolerance.value = data?.margintolerance;
       $("#recipeModal").modal("show");
     }
   });
@@ -132,6 +133,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       columns: [
         { data: "id" }, // Columna para ID
         { data: "name" }, // Columna para nombre
+        { data: "marginTolerance" }, // Columna para nombre
         { data: "status" }, // Columna para estado
         {
           data: "createAt", // Columna para fecha de creación
@@ -146,7 +148,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             // Crear botones Eliminar y Editar
             return `
                           <i class="fas fa-trash bg-danger text-white btn-xs me-2 btn-delete" data-id="${row.id}" data-name="${row.name}"></i>
-                          <i class="fas fa-edit bg-warning text-white btn-xs btn-edit" data-id="${row.id}" data-name="${row.name}"></i>
+                          <i class="fas fa-edit bg-warning text-white btn-xs btn-edit" data-id="${row.id}" data-name="${row.name}" data-marginTolerance="${row.marginTolerance}"></i>
                       `;
           },
         },

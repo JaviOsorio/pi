@@ -221,6 +221,7 @@
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Nombre</th>
+                                                        <th>M Tolerancia</th>
                                                         <th>Estado</th>
                                                         <th>Fecha creación</th>
                                                         <th class="text-center">Opciones</th>
@@ -291,6 +292,13 @@
                                                         Ok
                                                     </div>
                                                 </div>
+                                                <div class="mb-3">
+                                                    <label for="validationCustom02" class="form-label">Margen de Tolerancia (en gramos)</label>
+                                                    <input type="number" class="form-control" id="validationCustom02" name="marginTolerance" placeholder="margen de toleracia" value="10" required="">
+                                                    <div class="valid-feedback">
+                                                        Ok
+                                                    </div>
+                                                </div>
                                                 <div class="d-grid gap-2">
                                                     <button class="btn btn-primary" type="submit">Guardar</button>
                                                 </div>
@@ -342,7 +350,7 @@
         
         <!-- App js -->
         <script src="./../assets/js/app.min.js"></script>
-        <script src="./../assets/custom/js/ingredients/index.js?3"></script>
+        <script src="./../assets/custom/js/ingredients/index.js?8"></script>
         <script>
             function logout(){
                 localStorage.removeItem('token');

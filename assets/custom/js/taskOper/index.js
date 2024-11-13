@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     $progresBar.style.width = `${result}%`;
     $progresBar.textContent = `${Math.round(result)}%`;
 
-    if (data - valueScale > parseInt(valueMax) + 10) {
+    if (data - valueScale > parseInt(valueMax) + parseInt($progresBar.dataset.margintolerance)) {
       $progresBar.classList.remove("bg-warning", "bg-success", "bg-danger");
       $progresBar.classList.add("bg-danger");
     }
@@ -60,12 +60,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       $progresBar.classList.add("bg-warning");
     }
 
+    console.log($progresBar.dataset);
+    
     if ($progresBar.dataset.ingredientid == 9) {
       $progresBar.setAttribute("data-currentValue", valueMax);
       $btnConfirmIngredient.removeAttribute("disabled");
     } else if (
-      data - valueScale <= parseInt(valueMax) + 10 &&
-      data - valueScale >= parseInt(valueMax) - 10
+      data - valueScale <= parseInt(valueMax) + parseInt($progresBar.dataset.margintolerance) &&
+      data - valueScale >= parseInt(valueMax) - parseInt($progresBar.dataset.margintolerance)
     ) {
       $progresBar.classList.remove("bg-warning", "bg-success", "bg-danger");
       $progresBar.classList.add("bg-success");
@@ -98,6 +100,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       $progresBar.setAttribute("data-taskId", data.taskid);
       $progresBar.setAttribute("data-ingredientId", data.ingredientid);
       $progresBar.setAttribute("data-itemId", data.itemid);
+      $progresBar.setAttribute("data-marginTolerance", data.margintolerance);
       $progresBar.style.width = `0%`;
       $("#detailTaskModal").modal("hide");
       $("#igredientModal").modal("show");
@@ -328,7 +331,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         ${
                           result
                             ? `<button class="btn text-white border-white btn-sm">Pesado</button>`
-                            : `<button class="btn btn-primary btn-sm btn-scale" data-taskId="${data.id}" data-itemId="${item?.id}" data-ingredientId="${item.ingredient.id}" data-ingredientName="${item.ingredient.name}" data-quantity="${item.cuantity}" data-controlUnit="${item.controlUnit}">Pesar</button>`
+                            : `<button class="btn btn-primary btn-sm btn-scale" data-taskId="${data.id}" data-itemId="${item?.id}" data-ingredientId="${item.ingredient.id}" data-ingredientName="${item.ingredient.name}" data-marginTolerance="${item.ingredient.marginTolerance}" data-quantity="${item.cuantity}" data-controlUnit="${item.controlUnit}">Pesar</button>`
                         }
                         </td>
                     </tr>`;
@@ -349,6 +352,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           });
 
           if (!result) {
+            $progresBar.setAttribute("data-marginTolerance", element.ingredient.marginTolerance);
             $progresBar.setAttribute("aria-valuemin", 0);
             $progresBar.setAttribute("aria-valuemax", element.cuantity);
             $progresBar.setAttribute("data-taskId", id);
