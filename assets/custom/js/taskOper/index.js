@@ -51,7 +51,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     $progresBar.style.width = `${result}%`;
     $progresBar.textContent = `${Math.round(result)}%`;
 
-    if (data - valueScale > parseInt(valueMax) + parseInt($progresBar.dataset.margintolerance)) {
+    if (
+      data - valueScale >
+      parseInt(valueMax) + parseInt($progresBar.dataset.margintolerance)
+    ) {
       $progresBar.classList.remove("bg-warning", "bg-success", "bg-danger");
       $progresBar.classList.add("bg-danger");
     }
@@ -61,13 +64,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     console.log($progresBar.dataset);
-    
+
     if ($progresBar.dataset.ingredientid == 9) {
       $progresBar.setAttribute("data-currentValue", valueMax);
       $btnConfirmIngredient.removeAttribute("disabled");
     } else if (
-      data - valueScale <= parseInt(valueMax) + parseInt($progresBar.dataset.margintolerance) &&
-      data - valueScale >= parseInt(valueMax) - parseInt($progresBar.dataset.margintolerance)
+      data - valueScale <=
+        parseInt(valueMax) + parseInt($progresBar.dataset.margintolerance) &&
+      data - valueScale >=
+        parseInt(valueMax) - parseInt($progresBar.dataset.margintolerance)
     ) {
       $progresBar.classList.remove("bg-warning", "bg-success", "bg-danger");
       $progresBar.classList.add("bg-success");
@@ -90,7 +95,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       $("#detailTaskModal").modal("show");
     } else if (event.target.matches(".btn-scale")) {
       $btnConfirmIngredient.setAttribute("disabled", "true");
-      if (parseInt(data.quantity) > 15000) {
+      if (parseInt(data.quantity) > 12000) {
         socket.emit("port", "COM3");
       } else {
         socket.emit("port", "COM4");
@@ -111,7 +116,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         ".objective-weight"
       ).textContent = `${data.quantity} ${data.controlunit}`;
       document.querySelector(".title-scale").textContent =
-        data.quantity > 15000 ? `Bascula de Piso` : `Bascula de Mesa`;
+        data.quantity > 12000 ? `Bascula de Piso` : `Bascula de Mesa`;
       if (data.ingredientid == 9) {
         $progresBar.setAttribute("data-currentValue", data.quantity);
         $btnConfirmIngredient.removeAttribute("disabled");
@@ -352,7 +357,10 @@ document.addEventListener("DOMContentLoaded", async () => {
           });
 
           if (!result) {
-            $progresBar.setAttribute("data-marginTolerance", element.ingredient.marginTolerance);
+            $progresBar.setAttribute(
+              "data-marginTolerance",
+              element.ingredient.marginTolerance
+            );
             $progresBar.setAttribute("aria-valuemin", 0);
             $progresBar.setAttribute("aria-valuemax", element.cuantity);
             $progresBar.setAttribute("data-taskId", id);
@@ -369,7 +377,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               ".objective-weight"
             ).textContent = `${element.cuantity} ${element.controlUnit}`;
             document.querySelector(".title-scale").textContent =
-              element.cuantity > 15000 ? `Bascula de Piso` : `Bascula de Mesa`;
+              element.cuantity > 12000 ? `Bascula de Piso` : `Bascula de Mesa`;
             if (element.ingredient.id == 9) {
               $progresBar.setAttribute("data-currentValue", element.cuantity);
               // $btnConfirmIngredient.removeAttribute("disabled");
@@ -377,7 +385,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               // $btnConfirmIngredient.setAttribute("disabled", "true");
             }
 
-            if (parseInt(element.cuantity) > 15000) {
+            if (parseInt(element.cuantity) > 12000) {
               socket.emit("port", "COM3");
             } else {
               socket.emit("port", "COM4");
