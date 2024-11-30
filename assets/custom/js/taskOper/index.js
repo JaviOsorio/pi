@@ -383,9 +383,9 @@ document.addEventListener("DOMContentLoaded", async () => {
               element.cuantity > 12000 ? `Bascula de Piso` : `Bascula de Mesa`;
             if (element.ingredient.id == 9) {
               $progresBar.setAttribute("data-currentValue", element.cuantity);
-              // $btnConfirmIngredient.removeAttribute("disabled");
+              $btnConfirmIngredient.removeAttribute("disabled");
             } else {
-              // $btnConfirmIngredient.setAttribute("disabled", "true");
+              $btnConfirmIngredient.setAttribute("disabled", "true");
             }
 
             if (parseInt(element.cuantity) > 12000) {
