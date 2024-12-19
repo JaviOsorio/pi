@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     } else if (event.target.matches(".btn-confirm-ingredient")) {
       try {
-        $btnConfirmIngredient.setAttribute("disabled", "true");
+        event.target.setAttribute("disabled", "true");
         let pData = $progresBar.dataset;
         let response = await fetch(`http://localhost:3003/tasks-detail`, {
           method: "POST",
@@ -179,13 +179,15 @@ document.addEventListener("DOMContentLoaded", async () => {
           }, 200);
           valueScale = valueScale + parseInt(pData.currentvalue);
           socket.emit("port", "COM0");
+          event.target.removeAttribute("disabled");
         } else {
           console.error("Error en la respuesta:", response.statusText);
         }
-        $btnConfirmIngredient.removeAttribute("disabled");
       } catch (error) {
         console.error("Error en la solicitud:", error);
-        $btnConfirmIngredient.removeAttribute("disabled");
+        event.target.removeAttribute("disabled");
+      } finally {
+        event.target.removeAttribute("disabled");
       }
     }
   });
