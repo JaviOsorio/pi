@@ -375,6 +375,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             );
             $progresBar.setAttribute("data-itemId", element.id);
             $progresBar.style.width = `0%`;
+            
+            document.querySelector(".title-modal-product").textContent =
+            data.product.name;
+            document.querySelector(".production-batch").textContent =
+            data.productionBatch;
+            document.querySelector(".end-dateproduction-batch").textContent =
+            data.endDate.substr(0, 10);
+            
             document.querySelector(".title-modal-ingredient").textContent =
               element.ingredient.name;
             document.querySelector(".current-weight").textContent = 0;
@@ -382,7 +390,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               ".objective-weight"
             ).textContent = `${element.cuantity} ${element.controlUnit}`;
             document.querySelector(".title-scale").textContent =
-              element.cuantity > 12000 ? `Bascula de Piso` : `Bascula de Mesa`;
+              element.cuantity > 12000 ? `Báscula de Piso` : `Báscula de Mesa`;
             if (element.ingredient.id == 9) {
               $progresBar.setAttribute("data-currentValue", element.cuantity);
               $btnConfirmIngredient.removeAttribute("disabled");
