@@ -31,11 +31,104 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (event.target == startDate || event.target == endDate) {
       if (startDate.value != "" && endDate.value != "") {
         await loadDatatable(startDate.value, endDate.value);
+        await loadDatatableProduct(startDate.value, endDate.value);
       }
     }
   });
 
-  // Load data
+  // Load data datatable products
+  async function loadDatatableProduct(startDate, endDate) {
+    $(".table-chart-product").DataTable({
+      language: {
+        url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json",
+      },
+      drawCallback: function () {
+        $(".dataTables_paginate > .pagination").addClass("pagination-rounded");
+      },
+      responsive: true,
+      autoWidth: false,
+      destroy: true,
+      deferRender: true,
+      ajax: {
+        url: `http://localhost:3003/tasks/filter/${startDate}/${endDate}`,
+        type: "GET",
+        headers: {
+          Authorization: `Bearer ${dataToken.token}`, // Enviar el token en el encabezado de autorización
+          "Content-Type": "application/json",
+        },
+        dataSrc: function (json) {
+          return json.products; // En caso de que el JSON devuelto sea un array de objetos
+        },
+        error: function (xhr, error, thrown) {
+          console.error("Error al obtener datos protegidos:", error);
+        },
+      },
+      dom: "Bfrtip",
+      buttons: {
+        dom: {
+          button: {
+            className: "btn",
+          },
+        },
+        buttons: [
+          {
+            extend: "excel",
+            text: "Exportar a Excel",
+            sheetName: "Ingredientes",
+            title: "Ingredientes",
+            className: "btn btn-outline-success",
+            excelStyles: [
+              {
+                template: "blue_medium",
+              },
+              {
+                cells: "sh",
+                style: {
+                  font: {
+                    size: 14,
+                    b: true,
+                    color: "FFFFFF",
+                  },
+                  fill: {
+                    pattern: {
+                      color: "1C3144",
+                    },
+                  },
+                },
+              },
+              {
+                cells: "A1:H1",
+                style: {
+                  font: {
+                    size: 16,
+                    b: true,
+                    color: "FFFFFF",
+                  },
+                  fill: {
+                    pattern: {
+                      color: "1C3144",
+                    },
+                  },
+                },
+              },
+            ],
+          },
+        ],
+      },
+      columns: [
+        { data: "id" },
+        { data: "name" },
+        {
+          data: "count",
+          render: function (data, type, row) {
+            return data.toLocaleString("en-US"); // Aplica el formato de miles
+          },
+        },
+      ],
+    });
+  }
+
+  // Load data datatable ingresdients
   async function loadDatatable(startDate, endDate) {
     $(".table-chart").DataTable({
       language: {
@@ -56,7 +149,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           "Content-Type": "application/json",
         },
         dataSrc: function (json) {
-          return json; // En caso de que el JSON devuelto sea un array de objetos
+          return json.comparison; // En caso de que el JSON devuelto sea un array de objetos
         },
         error: function (xhr, error, thrown) {
           console.error("Error al obtener datos protegidos:", error);
