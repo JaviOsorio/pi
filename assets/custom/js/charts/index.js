@@ -42,9 +42,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       language: {
         url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json",
       },
-      drawCallback: function () {
-        $(".dataTables_paginate > .pagination").addClass("pagination-rounded");
-      },
+      // drawCallback: function () {
+      //   $(".dataTables_paginate > .pagination").addClass("pagination-rounded");
+      // },
       responsive: true,
       autoWidth: false,
       destroy: true,
