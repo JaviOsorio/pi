@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else if (event.target.matches(".btn-edit")) {
       $taskForm.id.value = data?.id;
       $taskForm.productId.value = data?.productid;
-      $taskForm.productionBatch.value = data?.production_batch;
+      $taskForm.productionBatch.value = data?.productionbatch;
       $taskForm.startDate.value = data?.startdate;
       $taskForm.endDate.value = data?.enddate;
       $taskForm.repetition.value = data?.repetition;
@@ -226,6 +226,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           className: "text-center",
           render: function (data, type, row) {
             // Crear botones Eliminar y Editar
+            console.log(row);
+            
             return `
                           <i class="text-center fas fa-trash bg-danger text-white btn-xs btn-delete" data-id="${
                             row.id
@@ -237,6 +239,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                               data-startDate="${row.startDate.substr(0, 10)}"
                               data-endDate="${row.endDate.substr(0, 10)}"
                               data-repetition="${row.repetition}"
+                              data-productionbatch="${row.productionBatch}"
                           ></i>
                       `;
           },
