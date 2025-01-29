@@ -75,6 +75,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else if (event.target.matches(".btn-edit")) {
       $taskForm.id.value = data?.id;
       $taskForm.productId.value = data?.productid;
+      $taskForm.productionBatch.value = data?.production_batch;
       $taskForm.startDate.value = data?.startdate;
       $taskForm.endDate.value = data?.enddate;
       $taskForm.repetition.value = data?.repetition;
