@@ -114,44 +114,57 @@
                     <!--- Sidemenu -->
                     <div id="sidebar-menu" class="slide-menu-admin">
                         <ul id="side-menu">
+                          <li>
+                              <a href="./../home.html">
+                                  <i class="fas fa-home"></i>
+                                  <span> Home </span>
+                              </a>
+                          </li>
                             <li>
-                                <a href="home.html">
-                                    <i class="fas fa-home"></i>
-                                    <span> Home </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="users.html">
+                                <a href="./../users.html">
                                     <i class="fas fa-users"></i>
                                     <span> Usuarios </span>
                                 </a>
                             </li>
                             <li>
-                                <a href="recipes.html">
+                                <a href="#sidebarMultilevel2" data-bs-toggle="collapse" class="collapsed" aria-expanded="false">
+                                    <i class="fas fa-boxes"></i>
+                                    <span>Inventario <span class="menu-arrow"></span></span>
+                                </a>
+                                <div class="collapse" id="sidebarMultilevel2" style="">
+                                    <ul class="nav-second-level">
+                                      <li>
+                                        <a href="./inventory/ingredients.html">Materia prima</a>
+                                      </li>
+                                        <li>
+                                            <a href="./inventory/stock.html">Gestión de Stock</a>
+                                        </li>
+                                        <li>
+                                            <a href="./inventory/movements.html">Movimientos de Stock</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="./../recipes.html">
                                     <i class="fas fa-cookie"></i>
                                     <span> Recetas </span>
                                 </a>
                             </li>
                             <li>
-                                <a href="ingredients.html">
-                                    <i class="fas fa-list-alt"></i>
-                                    <span> Ingredientes </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tasks.html">
+                                <a href="./../tasks.html">
                                     <i class="fas fa-list-ol"></i>
                                     <span>Gestión Tareas</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="task-oper.html">
+                                <a href="./../task-oper.html">
                                     <i class="fas fa-balance-scale-left"></i>
                                     <span>Tareas Operario</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="charts.html">
+                                <a href="./../charts.html">
                                     <i class="fas fa-chart-bar"></i>
                                     <span> Informes </span>
                                 </a>
@@ -322,11 +335,8 @@
                             <button type="button" class="btn-close btn-close-ingredient" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body bg-light mb-2" style="height: 440px;">
-                            <div class="mb-3">
-                                <h3>Lote: <span class="production-batch text-muted"></span></h3>
-                                <h3>Fecha Vencimiento: <span class="end-dateproduction-batch text-muted"></span></h3>
-                            </div>
                             <h1 class="mb-3" id="igredientModalLabel">Ingrediente: <span class="title-modal-ingredient text-muted"></span></h1>
+                            <div class="mb-3 production-lots"></div>
                             <h3 class="title-scale">Báscula de Mesa</h3>
                             <div class="progress mt-2" style="height: 60px; border: 1px gray solid; box-shadow: 4px 4px 2px 2px gray;">
                             <div class="progress-bar bg-warning" role="progressbar" style="width: 0%;" aria-valuenow="45" aria-valuemin="0" aria-valuemax="0">0%</div>
@@ -384,7 +394,7 @@
         <!-- App js -->
         <script src="./../assets/js/app.min.js"></script>
         <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
-        <script type="module" src="../assets/custom/js/taskOper/index.js?53"></script>
+        <script type="module" src="../assets/custom/js/taskOper/index.js?57"></script>
         <script>
             function logout(){
                 localStorage.removeItem('token');

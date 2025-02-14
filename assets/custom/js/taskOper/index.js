@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           body: JSON.stringify({
             taskId: parseInt(pData.taskid),
             ingredientId: parseInt(pData.ingredientid),
-            weight: parseInt(pData.currentvalue),
+            weight: 1000, // parseInt(pData.currentvalue),
             itemId: parseInt(pData.itemid),
             userId: dataToken?.sub,
           }),
@@ -173,6 +173,20 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (response.ok) {
           let result = await response.json();
+          if (result.message) {
+            Swal.fire({
+              title: `No hay "${result.lots[0].ingredient.name || ''}" disponible en inventario.`,
+              text: result.message,
+              html:`<div class="text-left">
+                      <p class="p-0 m-0"><b>Cantidad disponible: </b>${Number(result.availableQuantity)} G</p>
+                      <p class="p-0 m-0"><b>Cantidad requerida: </b>${Number(result.requiredQuantity)} G</p>
+                    </div>`,
+              icon: "warning",
+            });
+            event.target.removeAttribute("disabled");
+            return
+          }
+
           document.querySelector(".btn-close-ingredient").click();
           setTimeout(() => {
             document.querySelector(`.btn-detail-${pData.taskid}`).click();
@@ -312,7 +326,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         $titleRecipe.textContent = `${data.product.name.toUpperCase()}`;
         recipe = data;
         console.log(data);
-
         // Detail
         let itemsHtml = "";
         data.product.items.map((item) => {
@@ -378,10 +391,21 @@ document.addEventListener("DOMContentLoaded", async () => {
             
             document.querySelector(".title-modal-product").textContent =
             data.product.name;
-            document.querySelector(".production-batch").textContent =
-            data.productionBatch;
-            document.querySelector(".end-dateproduction-batch").textContent =
-            data.endDate.substr(0, 10);
+            
+            document.querySelector(".production-lots").innerHTML = `
+                <div class="row mb-0">
+                  <div class="col-md-4"><h4>Lotes afectados</h4></div>
+                  <div class="col-md-4"><h4>Fecha Vencimiento</h4></div>
+                  <div class="col-md-4"><h4>Cantidad Disponible</div>
+                </div>`;
+            element.ingredient.stock.map((lot) => {
+              document.querySelector(".production-lots").innerHTML += `
+                <div class="row">
+                  <div class="col-md-4 my-0 py-0"><h4 class="my-0 py-1"><span class="text-muted">${lot.batchNumber}</span></h4></div>
+                  <div class="col-md-4 my-0 py-0"><h4 class="my-0 py-1"><span class="text-muted">${lot.expirationDate}</span></h4></div>
+                  <div class="col-md-4 my-0 py-0"><h4 class="my-0 py-1"><span class="text-muted">${lot.quantity}</span></h4></div>
+                </div>`
+            })
             
             document.querySelector(".title-modal-ingredient").textContent =
               element.ingredient.name;

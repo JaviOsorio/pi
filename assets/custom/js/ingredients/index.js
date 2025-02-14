@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       $recipeForm.id.value = data?.id;
       $recipeForm.name.value = data?.name;
       $recipeForm.marginTolerance.value = data?.margintolerance;
+      $recipeForm.minimumCuantity.value = data?.minimumcuantity;
       $("#recipeModal").modal("show");
     }
   });
@@ -130,15 +131,86 @@ document.addEventListener("DOMContentLoaded", async () => {
           console.error("Error al obtener datos protegidos:", error);
         },
       },
+      dom: "Bfrtip",
+      buttons: {
+        dom: {
+          button: {
+            className: "btn",
+          },
+        },
+        buttons: [
+          {
+            extend: "excel",
+            text: "Exportar a Excel",
+            sheetName: "Materia Prima",
+            title: "Materia prima",
+            className: "btn btn-outline-success",
+            exportOptions: {
+              columns: ":visible", // Exportar solo columnas visibles
+              format: {
+                body: function (data, row, column, node) {
+                  if (column === 5) { // Cambia el índice según la posición de 'totalStock'
+                      let numberValue = $("<div>").html(data).text().replace(/[^0-9]/g, ""); 
+                      return Number(numberValue); // Se exporta como número
+                  }
+                  return $("<div>").html(data).text(); // Elimina HTML en otras columnas
+                }
+              }
+            },
+            excelStyles: [
+              {
+                template: "blue_medium",
+              },
+              {
+                cells: "sh",
+                style: {
+                  font: {
+                    size: 14,
+                    b: true,
+                    color: "FFFFFF",
+                  },
+                  fill: {
+                    pattern: {
+                      color: "1C3144",
+                    },
+                  },
+                },
+              },
+              {
+                cells: "A1:H1",
+                style: {
+                  font: {
+                    size: 16,
+                    b: true,
+                    color: "FFFFFF",
+                  },
+                  fill: {
+                    pattern: {
+                      color: "1C3144",
+                    },
+                  },
+                },
+              },
+            ],
+          },
+        ],
+      },
       columns: [
         { data: "id" }, // Columna para ID
         { data: "name" }, // Columna para nombre
         { data: "marginTolerance" }, // Columna para nombre
+        { data: "minimumCuantity" }, // Columna para nombre
         { data: "status" }, // Columna para estado
         {
           data: "createAt", // Columna para fecha de creación
           render: function (data) {
             return data.substr(0, 10); // Mostrar solo la fecha en formato 'YYYY-MM-DD'
+          },
+        },
+        {
+          data: "totalStock",
+          render: function (data, type, row) {
+            return (Number(data) < Number(row.minimumCuantity)) ? `<i class="fas fa-exclamation-triangle text-danger"></i> ${Number(data).toLocaleString()}` : Number(data).toLocaleString();
           },
         },
         {
@@ -148,7 +220,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             // Crear botones Eliminar y Editar
             return `
                           <i class="fas fa-trash bg-danger text-white btn-xs me-2 btn-delete" data-id="${row.id}" data-name="${row.name}"></i>
-                          <i class="fas fa-edit bg-warning text-white btn-xs btn-edit" data-id="${row.id}" data-name="${row.name}" data-marginTolerance="${row.marginTolerance}"></i>
+                          <i class="fas fa-edit bg-warning text-white btn-xs btn-edit" data-id="${row.id}" data-name="${row.name}" data-marginTolerance="${row.marginTolerance}" data-minimumCuantity="${row.minimumCuantity}"></i>
                       `;
           },
         },
