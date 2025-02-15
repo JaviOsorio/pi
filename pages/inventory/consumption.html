@@ -113,74 +113,74 @@
 
                     <!--- Sidemenu -->
                     <div id="sidebar-menu" class="slide-menu-admin">
-                      <ul id="side-menu">
-                        <li>
-                            <a href="./../home.html">
-                                <i class="fas fa-home"></i>
-                                <span> Home </span>
-                            </a>
-                        </li>
+                        <ul id="side-menu">
                           <li>
-                              <a href="./../users.html">
-                                  <i class="fas fa-users"></i>
-                                  <span> Usuarios </span>
+                              <a href="./../home.html">
+                                  <i class="fas fa-home"></i>
+                                  <span> Home </span>
                               </a>
                           </li>
-                          <li>
-                              <a href="#sidebarMultilevel2" data-bs-toggle="collapse" class="collapsed" aria-expanded="false">
-                                  <i class="fas fa-boxes"></i>
-                                  <span>Inventario <span class="menu-arrow"></span></span>
-                              </a>
-                              <div class="collapse" id="sidebarMultilevel2" style="">
-                                  <ul class="nav-second-level">
-                                    <li>
-                                      <a href="./ingredients.html">Materia prima</a>
-                                    </li>
-                                      <li>
-                                          <a href="./stock.html">Gestión de Stock</a>
-                                      </li>
-                                      <li>
-                                          <a href="./movements.html">Movimientos de Stock</a>
-                                      </li>
-                                      <li>
-                                        <a href="./consumption.html">Consumo por fecha</a>
-                                      </li>
-                                  </ul>
-                              </div>
-                          </li>
-                          <li>
-                              <a href="./../recipes.html">
-                                  <i class="fas fa-cookie"></i>
-                                  <span> Recetas </span>
-                              </a>
-                          </li>
-                          <li>
-                              <a href="./../tasks.html">
-                                  <i class="fas fa-list-ol"></i>
-                                  <span>Gestión Tareas</span>
-                              </a>
-                          </li>
-                          <li>
-                              <a href="./../task-oper.html">
-                                  <i class="fas fa-balance-scale-left"></i>
-                                  <span>Tareas Operario</span>
-                              </a>
-                          </li>
-                          <li>
-                              <a href="./../charts.html">
-                                  <i class="fas fa-chart-bar"></i>
-                                  <span> Informes </span>
-                              </a>
-                          </li>
-                      </ul>
-                  </div>
+                            <li>
+                                <a href="./../users.html">
+                                    <i class="fas fa-users"></i>
+                                    <span> Usuarios </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#sidebarMultilevel2" data-bs-toggle="collapse" class="collapsed" aria-expanded="false">
+                                    <i class="fas fa-boxes"></i>
+                                    <span>Inventario <span class="menu-arrow"></span></span>
+                                </a>
+                                <div class="collapse" id="sidebarMultilevel2" style="">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                          <a href="./ingredients.html">Materia prima</a>
+                                        </li>
+                                        <li>
+                                            <a href="./stock.html">Gestión de Stock</a>
+                                        </li>
+                                        <li>
+                                            <a href="./movements.html">Movimientos de Stock</a>
+                                        </li>
+                                        <li>
+                                          <a href="./consumption.html">Consumo por fecha</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="./../recipes.html">
+                                    <i class="fas fa-cookie"></i>
+                                    <span> Recetas </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./../tasks.html">
+                                    <i class="fas fa-list-ol"></i>
+                                    <span>Gestión Tareas</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./../task-oper.html">
+                                    <i class="fas fa-balance-scale-left"></i>
+                                    <span>Tareas Operario</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./../charts.html">
+                                    <i class="fas fa-chart-bar"></i>
+                                    <span> Informes </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                     <div id="sidebar-menu" class="slide-menu-user">
 
                         <ul id="side-menu">
                             <li>
                                 <a href="home.html">
                                     <i class="fas fa-home"></i>
-                                    <span>Home</span>
+                                    <span> Home </span>
                                 </a>
                             </li>
                             <li>
@@ -216,7 +216,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Movimientos</h4>
+                                    <h4 class="page-title">Consumo por fecha</h4>
                                 </div>
                             </div>
                         </div>
@@ -225,26 +225,29 @@
                             <div class="col-md-12">
                                 <div class="widget-rounded-circle card">
                                     <div class="card-body">
-                                      <div class="row mb-1">
-                                        <div class="col-sm-6"></div>
-                                        <div class="col-sm-6">
-                                            <!-- <button class="btn btn-primary btn-sm float-end btn-modal-stock"><i class="fas fa-plus pe-2 btn-modal-stock"></i>Nuevo</button> -->
+                                        <div class="row">
+                                          <div class="col-sm-6 mb-2">
+                                              <label for="">Desde</label>
+                                              <input type="date" class="form-control start-date">
+                                          </div>
+                                          <div class="col-sm-6">
+                                              <label for="">Hasta</label>
+                                              <input type="date" class="form-control end-date">
+                                          </div>
                                         </div>
-                                      </div>
-                                      <div class="row overflow-auto">
-                                        <table class="table table-hover table-movements">
-                                          <thead>
-                                            <tr>
-                                              <th>Producto</th>
-                                              <th>Movimiento</th>
-                                              <th>Cantidad</th>
-                                              <th>Fecha Movimiento</th>
-                                              <th>Usuario registra</th>
-                                              <th>Opciones</th>
-                                            </tr>
-                                          </thead>
-                                        </table>
-                                      </div>
+                                        <div class="row">
+                                            <table class="table table-hover table-striped table-consum">
+                                                <thead>
+                                                    <tr>
+                                                        <!-- <th>#</th> -->
+                                                        <th>Nombre</th>
+                                                        <th>Cantidad Consumida</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div> <!-- end row-->
                                     </div>
                                 </div> <!-- end widget-rounded-circle-->
                             </div> <!-- end col-->
@@ -252,65 +255,6 @@
                         </div>
                         <!-- end row-->
                         
-                        <!-- Modal -->
-                        <div class="modal fade" id="stockModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog">
-                              <div class="modal-content">
-                                  <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLabel">Producto</h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <form class="needs-validation was-validated recipe-form" novalidate="" autocomplete="off">
-                                              <div class="mb-2">
-                                                <label for="">Producto</label>
-                                                <select name="ingredientId" id="ingredientId" class="form-select select2" required>
-                                                  <option value="">-- Seleccionar --</option>
-                                                </select>
-                                              </div>
-                                              <div class="mb-2">
-                                                <label for="">Número de Lote</label>
-                                                <input type="text" name="" id="" class="form-control" required>
-                                              </div>
-                                              <div class="mb-2">
-                                                <label for="">Fecha recepción</label>
-                                                <input type="date" name="" id="" class="form-control" required>
-                                              </div>
-                                              <div class="mb-2">
-                                                <label for="">Hora recepción</label>
-                                                <input type="time" name="" id="" class="form-control" required>
-                                              </div>
-                                              <div class="mb-2">
-                                                <label for="">Fecha Vencimiento</label>
-                                                <input type="date" name="" id="" class="form-control" required>
-                                              </div>
-                                              <div class="mb-2">
-                                                <label for="">Cantidad</label>
-                                                <input type="number" name="" id="" class="form-control" required>
-                                              </div>
-                                              <div class="mb-2">
-                                                <label for="">Estado</label>
-                                                <select name="" id="" class="form-select">
-                                                  <option value="">-- Seleccionar --</option>
-                                                </select>
-                                              </div>
-                                              <div class="mb-2">
-                                                <label for="">Observación</label>
-                                                <textarea class="form-control" rows="2" name="" id=""></textarea>
-                                              </div>
-                                              <div class="d-grid gap-2">
-                                                <button class="btn btn-primary" type="submit">Guardar</button>
-                                              </div>
-                                            </form>
-                                        </div> <!-- end card-body-->
-                                    </div> <!-- end card-->
-                                  </div>
-                              </div>
-                          </div>
-                        </div>
-
                     </div> <!-- container -->
 
                 </div> <!-- content -->
@@ -339,9 +283,10 @@
             <!-- ============================================================== -->
             <!-- End Page content -->
             <!-- ============================================================== -->
-
         </div>
         <!-- END wrapper -->
+
+        <!-- /Right-bar -->
 
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
@@ -364,9 +309,11 @@
         <script src="./../../assets/libs/pdfmake/build/pdfmake.min.js"></script>
         <script src="./../../assets/libs/pdfmake/build/vfs_fonts.js"></script>
         
+        <script src="./../../assets/libs/datatables.net-buttons/js/jszip-2.5.0.min.js"></script>
+        
         <!-- Sweet Alerts js -->
         <script src="./../../assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
-
+        
         <!-- Datatables init -->
         <script src="./../../assets/js/pages/datatables.init.js"></script>
         
@@ -396,19 +343,33 @@
               window.location.href = "../../";
             }
 
-            // event click
-            document.addEventListener("click", (e) => {
-              if (e.target.matches('.btn-modal-stock')) {
-                $('#stockModal').modal('show')
+            const startDate = document.querySelector(".start-date");
+            const endDate = document.querySelector(".end-date");
+            // Obtén la fecha actual
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, "0"); // Añade el 0 si es necesario
+            const day = String(today.getDate()).padStart(2, "0"); // Añade el 0 si es necesario
+
+            // Formato en "YYYY-MM-DD" para campos de tipo date
+            const formattedDate = `${year}-${month}-${day}`;
+            startDate.value = formattedDate;
+            endDate.value = formattedDate;
+            await loadDatatable(formattedDate, `${year}-${month}-${today.getDate() + 1}`);
+            document.addEventListener("change", async (event) => {
+              if (event.target == startDate || event.target == endDate) {
+                if (startDate.value != "" && endDate.value != "") {
+                  await loadDatatable(startDate.value, endDate.value);
+                }
               }
             });
             
-
-            (async () => {
-              $(".table-movements").DataTable({
+            async function loadDatatable(startDate, endDate) {
+              $('.table-consum').DataTable().destroy();
+              $(".table-consum").DataTable({
                 ordering: false,
                 ajax: {
-                  url: "http://localhost:3003/stock-movement",
+                  url: `http://localhost:3003/stock-movement/consumption?startDate=${startDate}&endDate=${endDate}`,
                   type: "GET",
                   headers: {
                     Authorization: `Bearer ${dataToken.token}`, // Enviar el token en el encabezado de autorización
@@ -424,34 +385,9 @@
                 columns: [
                   { data: "ingredient.name" },
                   {
-                    data: null, // Columna para botones de acción
-                    className: "text-left",
-                    render: function (data, type, row) {
-                      // Crear botones Eliminar y Editar
-                      return (row.type == 'IN') 
-                                ? '<p class="bg-success text-white text-center p-0 rounded">Entrada</p>' 
-                                : (row.type == 'OUT')
-                                ? '<p class="bg-dark text-white text-center p-0 rounded">Salida</p>'
-                                : (row.type == 'DEV') ? '<p class="bg-info text-white text-center p-0 rounded">Devolución</p>': '';
-                    },
-                  },
-                  { data: "quantity", className: "text-center", },
-                  {
-                    data: null,
-                    className: "text-center",
-                    render: function (data, type, row) {
-                      return row.createdAt.substr(0, 10);
-                    }
-                  },
-                  { data: "user.name" },
-                  {
-                    data: null, // Columna para botones de acción
-                    className: "text-center",
-                    render: function (data, type, row) {
-                      // Crear botones Eliminar y Editar
-                      return `
-                        <span class="btn btn-primary btn-xs py-0 px-4">Ver</span>
-                      `;
+                    data: "totalQuantity",
+                    render: function (data) {
+                      return Number(data).toLocaleString();
                     },
                   },
                 ],
@@ -482,32 +418,7 @@
                   },
                 },
               });
-            })();
-
-            // Función para cargar los ingredientes desde el backend
-            (async () => {
-              const ingredients = document.querySelector('#ingredientId');
-              try {
-                const response = await fetch("http://localhost:3003/ingredients", {
-                  method: "GET",
-                  headers: {
-                    Authorization: `Bearer ${dataToken.token}`,
-                    "Content-Type": "application/json",
-                  },
-                });
-                const data = await response.json();
-                if (data.length > 0) {
-                  data.map((el) => {
-                    const option = document.createElement('option');
-                    option.text = el.name;
-                    option.value = el.id;
-                    ingredients.appendChild(option)
-                  })
-                }
-              } catch (error) {
-                console.error("Error al cargar los ingredientes:", error);
-              }
-            })();
+            };
           });
         </script>
     </body>

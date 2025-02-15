@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           body: JSON.stringify({
             taskId: parseInt(pData.taskid),
             ingredientId: parseInt(pData.ingredientid),
-            weight: 1000, // parseInt(pData.currentvalue),
+            weight: parseInt(pData.currentvalue),
             itemId: parseInt(pData.itemid),
             userId: dataToken?.sub,
           }),
