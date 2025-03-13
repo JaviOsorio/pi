@@ -232,7 +232,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Tareas</h4>
+                                    <h4 class="page-title">Producción</h4>
                                 </div>
                             </div>
                         </div>
@@ -244,7 +244,7 @@
                                         <div class="row">
                                             <div class="col-sm-6"></div>
                                             <div class="col-sm-6">
-                                                <button class="btn btn-primary btn-sm float-end btn-modal-recipe"><i class="fas fa-plus pe-2 btn-modal-recipe"></i>Nuevo</button>
+                                                <button class="btn btn-primary btn-sm float-end btn-modal-production"><i class="fas fa-plus pe-2 btn-modal-recipe"></i>Nuevo</button>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -258,17 +258,17 @@
                                             </div>
                                         </div>
                                         <div class="row table-responsive">
-                                            <table class="table table-hover table-striped table-tasks">
+                                            <table class="table table-hover table-striped table-production" style="font-size: 12px;">
                                                 <thead>
                                                     <tr>
-                                                        <th>Lote</th>
-                                                        <th>Nombre</th>
-                                                        <th>Estado</th>
-                                                        <th>Repetición</th>
-                                                        <th>Fecha ini</th>
-                                                        <th>Fecha final</th>
-                                                        <th>Ver</th>
-                                                        <th class="text-center">Opciones</th>
+                                                        <th>Moje</th>
+                                                        <th>Producción</th>
+                                                        <th>Detalle Moje</th>
+                                                        <th>Personas</th>
+                                                        <th>Dañados</th>
+                                                        <th>Hora</th>
+                                                        <th>Observación</th>
+                                                        <th class="text-center">Opci</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -312,69 +312,107 @@
             <!-- ============================================================== -->
 
             <!-- ============================================================== -->
-            <!-- Start modal task -->
+            <!-- Start modal production -->
             <!-- ============================================================== -->
-                <!-- Modal task -->
-                <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                <!-- Modal production -->
+                <div class="modal fade" id="productionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Tarea</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Producción</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="">
                                     <div class="card">
                                         <div class="card-body">
-                                            <form class="needs-validation was-validated recipe-form" novalidate="" autocomplete="off">
+                                            <form class="needs-validation was-validated production-form" novalidate="" autocomplete="off">
                                                 <input type="hidden" name="id" class="form-control">
-                                                <input type="hidden" name="unit" value="Moje" class="form-control">
                                                 <div class="row">
                                                     <div class="mb-1 col-sm-6">
-                                                        <label for="validationCustom01" class="form-label">Lote de producción</label>
-                                                        <input type="text" class="form-control" id="validationCustom01" name="productionBatch" placeholder="" required="">
-                                                        <div class="valid-feedback">
-                                                            Ok
-                                                        </div>
-                                                    </div>
-                                                    <div class="mb-1 col-sm-6">
-                                                        <label for="status" class="form-label">Estado</label>
-                                                        <select class="form-control mb-2 status-select" name="status" required="">
-                                                            <option value="Pendiente">Pendiente</option>
-                                                            <option value="En curso">En curso</option>
-                                                            <option value="Finalizada">Finalizada</option>
+                                                        <label for="validationCustom01" class="form-label">Producto</label>
+                                                        <select class="form-select select-product" name="productId" id="validationCustom01" required>
+                                                            <option value="">-- Seleccionar --</option>
                                                         </select>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-1">
-                                                    <label for="validationCustom02" class="form-label">Receta</label>
-                                                    <select class="form-control mb-2 recipe-select" name="productId" required="">
-                                                        <!-- Aquí se cargarán las recetas -->
-                                                    </select>
-                                                    <div class="valid-feedback">
-                                                        Ok
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="mb-1 col-sm-6">
-                                                        <label for="validationCustom03" class="form-label">Fecha inicio</label>
-                                                        <input type="date" class="form-control" id="validationCustom03" name="startDate" placeholder="" required="">
                                                         <div class="valid-feedback">
                                                             Ok
                                                         </div>
                                                     </div>
                                                     <div class="mb-1 col-sm-6">
-                                                        <label for="validationCustom04" class="form-label">Fecha Finalización</label>
-                                                        <input type="date" class="form-control" id="validationCustom04" name="endDate" placeholder="" required="">
+                                                        <label for="validationCustom02" class="form-label">Fecha producción</label>
+                                                        <input type="date" class="form-control" id="validationCustom02" name="productionDate" placeholder="" required="">
                                                         <div class="valid-feedback">
                                                             Ok
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
+
+                                                    <div class="mb-1 col-sm-3">
+                                                        <label for="validationCustom03" class="form-label">Hora Inicio</label>
+                                                        <input type="time" class="form-control" id="validationCustom03" name="initHour" placeholder="" required="">
+                                                        <div class="valid-feedback">
+                                                            Ok
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="mb-1 col-sm-3">
+                                                        <label for="validationCustom04" class="form-label">Hora Finalización</label>
+                                                        <input type="time" class="form-control" id="validationCustom04" name="endHour" placeholder="" required="">
+                                                        <div class="valid-feedback">
+                                                            Ok
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-1 col-sm-3">
+                                                        <label for="validationCustom05" class="form-label">Mojes programados</label>
+                                                        <input type="number" class="form-control" id="validationCustom05" name="recipsScheduled" placeholder="" required="">
+                                                        <div class="valid-feedback">
+                                                            Ok
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="mb-1 col-sm-3">
+                                                        <label for="validationCustom06" class="form-label">Mojes producidos</label>
+                                                        <input type="number" class="form-control" id="validationCustom06" name="recipesProduced" placeholder="" required="">
+                                                        <div class="valid-feedback">
+                                                            Ok
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-1 col-sm-3">
+                                                        <label for="validationCustom07" class="form-label">Número de carros</label>
+                                                        <input type="number" class="form-control" id="validationCustom07" name="numberCars" placeholder="" required="">
+                                                        <div class="valid-feedback">
+                                                            Ok
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-1 col-sm-3">
+                                                        <label for="validationCustom08" class="form-label">Número de latas</label>
+                                                        <input type="number" class="form-control" id="validationCustom08" name="numberCans" placeholder="" required="">
+                                                        <div class="valid-feedback">
+                                                            Ok
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-1 col-sm-3">
+                                                        <label for="validationCustom09" class="form-label">Número de personas</label>
+                                                        <input type="number" class="form-control" id="validationCustom09" name="numberPeoples" placeholder="" required="">
+                                                        <div class="valid-feedback">
+                                                            Ok
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-1 col-sm-3">
+                                                        <label for="validationCustom010" class="form-label">Cantidad dañada</label>
+                                                        <input type="number" class="form-control" id="validationCustom010" name="damagedProducts" value="0" placeholder="" required="">
+                                                        <div class="valid-feedback">
+                                                            Ok
+                                                        </div>
+                                                    </div>
+
                                                     <div class="mb-1 col-sm-12">
-                                                        <label for="validationCustom05" class="form-label">Repetición</label>
-                                                        <input type="number" class="form-control" id="validationCustom05" name="repetition" placeholder="" required="">
+                                                        <label for="validationCustom011" class="form-label">Observación</label>
+                                                        <textarea class="form-control" name="observation" id="validationCustom011"></textarea>
                                                         <div class="valid-feedback">
                                                             Ok
                                                         </div>
@@ -392,7 +430,7 @@
                     </div>
                 </div>
             <!-- ============================================================== -->
-            <!-- Start modal task -->
+            <!-- Start modal production -->
             <!-- ============================================================== -->
 
             <!-- ============================================================== -->
@@ -468,11 +506,261 @@
         
         <!-- App js -->
         <script src="./../assets/js/app.min.js"></script>
-        <script src="./../assets/custom/js/task/index.js?13"></script>
+        <!-- <script src="./../assets/custom/js/production/index.js"></script> -->
         <script>
             function logout(){
                 localStorage.removeItem('token');
             }
+            
+            document.addEventListener("DOMContentLoaded", async () => {
+                const { decodeToken, logout } = await import("./../assets/custom/js/auth/auth.js");
+                const dataToken = decodeToken();
+                if (!dataToken.token) return;
+                // Mostrar/ocultar funcionalidades basadas en los roles
+                if (dataToken.role == "admin" || dataToken.role == "superadmin") {
+                    document.querySelector(".slide-menu-admin").style.display = "block";
+                    document.querySelector(".slide-menu-user").style.display = "none";
+                } else {
+                    document.querySelector(".slide-menu-admin").style.display = "none";
+                    document.querySelector(".slide-menu-user").style.display = "block";
+                }
+
+                // variables
+                const btnModalProduction = document.querySelector('.btn-modal-production')
+                const productionForm = document.querySelector('.production-form')
+                const selectProduct = productionForm.querySelector('.select-product')
+                const startDate = document.querySelector(".start-date");
+                const endDate = document.querySelector(".end-date");
+                const today = new Date();
+                const year = today.getFullYear();
+                const month = String(today.getMonth() + 1).padStart(2, "0");
+                const day = String(today.getDate()).padStart(2, "0");
+                const formattedDate = `${year}-${month}-${day}`;
+                startDate.value = formattedDate;
+                endDate.value = formattedDate;
+
+                await loadProduction(formattedDate, `${year}-${month}-${today.getDate() + 1}`);
+                document.addEventListener("change", async (event) => {
+                    if (event.target == startDate || event.target == endDate) {
+                        if (startDate.value != "" && endDate.value != "") {
+                            await loadProduction(startDate.value, endDate.value);
+                        }
+                    }
+                });
+
+                document.addEventListener("click", (event) => {
+                    // Open modal
+                    let data = event.target.dataset;
+                    if (event.target == btnModalProduction) {
+                        productionForm.reset();
+                        productionForm.id.value='';
+                        $("#productionModal").modal("show")
+                    } else if (event.target.matches('.btn-detail')) {
+                        productionForm.id.value = data.id;
+                        productionForm.productId.value = data.productid;
+                        productionForm.recipsScheduled.value = data.recipsscheduled;
+                        productionForm.productionDate.value = data.productiondate;
+                        productionForm.initHour.value = data.inithour;
+                        productionForm.endHour.value = data.endhour;
+                        productionForm.recipesProduced.value = data.recipesproduced;
+                        productionForm.numberCars.value = data.numbercars;
+                        productionForm.numberCans.value = data.numbercans;
+                        productionForm.numberPeoples.value = data.numberpeoples;
+                        productionForm.damagedProducts.value = data.damagedproducts;
+                        productionForm.observation.value = data.observation;
+                        $("#productionModal").modal("show")
+                    }
+                });
+
+                document.addEventListener("submit", async (event) => {
+                    event.preventDefault()
+                    if (event.target === productionForm) {
+                        const formData = new FormData(event.target);
+                        let jsonData = Object.fromEntries(formData.entries());
+
+                        delete jsonData["id"]; // Si es actualización, el 'id' no se envía en el body
+
+                        // Convertir valores numéricos
+                        jsonData = {
+                            ...jsonData,
+                            productId: Number(jsonData.productId),
+                            recipsScheduled: Number(jsonData.recipsScheduled),
+                            recipesProduced: Number(jsonData.recipesProduced),
+                            numberCars: Number(jsonData.numberCars),
+                            numberCans: Number(jsonData.numberCans),
+                            numberPeoples: Number(jsonData.numberPeoples),
+                            damagedProducts: Number(jsonData.damagedProducts || 0), // Si no está presente, asigna 0
+                        };
+                        // Enviar la solicitud para crear o actualizar la receta
+                        const recipeResponse = await fetch(
+                            `http://localhost:3003/production${
+                            productionForm.id.value != "" ? `/${productionForm.id.value}` : ""
+                            }`,
+                            {
+                            method: productionForm.id.value != "" ? "PUT" : "POST",
+                            headers: {
+                                Authorization: `Bearer ${dataToken.token}`,
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(jsonData), // Solo enviamos los datos de la receta
+                            }
+                        );
+
+                        if (!recipeResponse.ok) {
+                            Swal.fire({
+                            title: "Ops...",
+                            text: "Ocurrió un error al registrar la producción",
+                            icon: "warning",
+                            });
+                            return;
+                        }
+
+                        // Si todo salió bien, recargar la tabla y cerrar el modal
+                        $(".table-production").DataTable().ajax.reload();
+                        $("#productionModal").modal("hide");
+                        event.target.reset();
+                        event.target.id.value = "";
+
+                        Swal.fire({
+                            title: "Proceso exitoso",
+                            icon: "success",
+                        });
+                    }
+                });
+                
+                // Load producto terminado
+                (async () => {
+                    try {
+                        const response = await fetch("http://localhost:3003/products", {
+                            method: "GET",
+                            headers: {
+                            Authorization: `Bearer ${dataToken.token}`,
+                            "Content-Type": "application/json",
+                            },
+                        });
+                        const data = await response.json();
+                        data.forEach(element => {
+                            if (element.type == 'Receta') {
+                                const option = document.createElement("option")
+                                option.value = element.id
+                                option.text = element.name
+                                selectProduct.appendChild(option)
+                            }
+                        });
+                    } catch (error) {
+                        console.error("Error al cargar los productos:", error);
+                    }
+                })();
+
+                // Load production
+                async function loadProduction(startDate, endDate) {
+                    // Check if the table has already been initialized
+                    if ($.fn.dataTable.isDataTable(".table-production")) {
+                        // If it has been initialized, destroy the previous instance
+                        $(".table-production").DataTable().destroy();
+                    }
+                    $(".table-production").DataTable({
+                    ajax: {
+                        url: `http://localhost:3003/production/${startDate}/${endDate}`,
+                        type: "GET",
+                        headers: {
+                        Authorization: `Bearer ${dataToken.token}`, // Enviar el token en el encabezado de autorización
+                        "Content-Type": "application/json",
+                        },
+                        dataSrc: function (json) {
+                        return json; // En caso de que el JSON devuelto sea un array de objetos
+                        },
+                        error: function (xhr, error, thrown) {
+                        console.error("Error al obtener datos protegidos:", error);
+                        },
+                    },
+                    columns: [
+                        // { data: 'id' },
+                        { data: "product.name" },
+                        {
+                            data: "productionDate", // Columna para botones de acción
+                            className: "text-center",
+                            render: function (data) {
+                                return data.substr(0, 10);
+                            },
+                        },
+                        {
+                        data: null, // Columna para botones de acción
+                        className: "text-left",
+                        render: function (data, type, row) {
+                            // Crear botones Eliminar y Editar
+                            return `
+                                    <p class="p-0 m-0"><b>Programados:</b>${row.recipsScheduled}</p>
+                                    <p class="p-0 m-0"><b>Producidos:</b>${row.recipesProduced}</p>
+                                    `;
+                            },
+                        },
+                        { data: "numberPeoples" },
+                        { data: "damagedProducts" },
+                        {
+                        data: null, // Columna para botones de acción
+                        className: "text-left",
+                        render: function (data, type, row) {
+                            // Crear botones Eliminar y Editar
+                            return `
+                                    <p class="p-0 m-0"><b>Inicio:</b>${row.initHour}</p>
+                                    <p class="p-0 m-0"><b>Final:</b>${row.endHour}</p>
+                                    `;
+                            },
+                        },
+                        { data: "observation" },
+                        {
+                            data: null, // Columna para botones de acción
+                            className: "text-center",
+                            render: function (data, type, row) {
+                                // Crear botones Eliminar y Editar
+                                return `<i
+                                            class="fas fa-edit bg-warning text-white btn-xs btn-detail"
+                                            data-id="${row.id}"
+                                            data-productId="${row.product.id}"
+                                            data-recipsScheduled="${row.recipsScheduled}"
+                                            data-productionDate="${row.productionDate.substr(0, 10)}"
+                                            data-initHour="${row.initHour}"
+                                            data-endHour="${row.endHour}"
+                                            data-recipesProduced="${row.recipesProduced}"
+                                            data-numberCars="${row.numberCars}"
+                                            data-numberCans="${row.numberCans}"
+                                            data-numberPeoples="${row.numberPeoples}"
+                                            data-damagedProducts="${row.damagedProducts}"
+                                            data-observation="${row.observation}"
+                                        ></i>`;
+                            },
+                        },
+                    ],
+                    language: {
+                        decimal: "",
+                        emptyTable: "No hay datos disponibles en la tabla",
+                        info: "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                        infoEmpty: "Mostrando 0 a 0 de 0 entradas",
+                        infoFiltered: "(filtrado de _MAX_ entradas totales)",
+                        infoPostFix: "",
+                        thousands: ",",
+                        lengthMenu: "Mostrar _MENU_ entradas",
+                        loadingRecords: "Cargando...",
+                        processing: "Procesando...",
+                        search: "Buscar:",
+                        zeroRecords: "No se encontraron resultados",
+                        paginate: {
+                        first: "Primero",
+                        last: "Último",
+                        next: "Siguiente",
+                        previous: "Anterior",
+                        },
+                        aria: {
+                        sortAscending:
+                            ": Activar para ordenar la columna de forma ascendente",
+                        sortDescending:
+                            ": Activar para ordenar la columna de forma descendente",
+                        },
+                    },
+                    });
+                };
+            });
         </script>
     </body>
 </html>

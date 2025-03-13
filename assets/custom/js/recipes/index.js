@@ -23,6 +23,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const ingredientsList = document.getElementById("ingredientsList");
   const addIngredientButton = document.getElementById("addIngredient");
   let availableIngredients = [];
+  let ingredientsSection = document.querySelector(".ingredients-section");
+  let btnAddIngredient = document.querySelector("#addIngredient");
 
   // Event clcik
   document.addEventListener("click", async (event) => {
@@ -30,6 +32,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (event.target.matches(".btn-modal-recipe")) {
       $recipeForm.id.value = "";
       $recipeForm.reset();
+      ingredientsSection.removeAttribute("hidden");
+      btnAddIngredient.removeAttribute("hidden");
       const ingredientItems =
         ingredientsList.querySelectorAll(".ingredient-item");
       // Mantener solo el primer ingredient-item
@@ -74,9 +78,29 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     } else if (event.target.matches(".btn-edit")) {
       $recipeForm.id.value = data?.id;
+      $recipeForm.type.value = data?.type;
       $recipeForm.name.value = data?.name;
+      if (data?.type == "Receta") {
+        ingredientsSection.removeAttribute("hidden");
+        btnAddIngredient.removeAttribute("hidden");
+      } else {
+        ingredientsSection.setAttribute("hidden", true);
+        btnAddIngredient.setAttribute("hidden", true);
+      }
       $("#recipeModal").modal("show");
       await handleEditButtonClick(data?.id);
+    }
+  });
+
+  document.addEventListener("change", (event) => {
+    if (event.target.matches(".select-type")) {
+      if (event.target.value == "Receta") {
+        ingredientsSection.removeAttribute("hidden");
+        btnAddIngredient.removeAttribute("hidden");
+      } else {
+        ingredientsSection.setAttribute("hidden", true);
+        btnAddIngredient.setAttribute("hidden", true);
+      }
     }
   });
 
@@ -122,46 +146,51 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
       }
 
-      const createdOrUpdatedRecipe = await recipeResponse.json();
+      if ($recipeForm.type.value == "Receta") {
+        const createdOrUpdatedRecipe = await recipeResponse.json();
 
-      const recipeId = createdOrUpdatedRecipe.id; // Obtenemos el ID de la receta creada o actualizada
+        const recipeId = createdOrUpdatedRecipe.id; // Obtenemos el ID de la receta creada o actualizada
 
-      // Paso 2: Enviar los ingredientes asociados a la receta
-      const ingredientIds = document.querySelectorAll(
-        '[name="ingredient_id[]"]'
-      );
-      const quantities = document.querySelectorAll(
-        '[name="ingredient_quantity[]"]'
-      );
-      const controlUnits = document.querySelectorAll(
-        '[name="ingredient_control_unit[]"]'
-      );
+        // Paso 2: Enviar los ingredientes asociados a la receta
+        const ingredientIds = document.querySelectorAll(
+          '[name="ingredient_id[]"]'
+        );
+        const quantities = document.querySelectorAll(
+          '[name="ingredient_quantity[]"]'
+        );
+        const controlUnits = document.querySelectorAll(
+          '[name="ingredient_control_unit[]"]'
+        );
 
-      for (let i = 0; i < ingredientIds.length; i++) {
-        const ingredientData = {
-          productId: recipeId, // El ID de la receta recién creada o actualizada
-          ingredientId: parseInt(ingredientIds[i].value), // Convertir ID del ingrediente a número
-          cuantity: Number(quantities[i].value), // Convertir la cantidad a número
-          controlUnit: controlUnits[i].value, // Unidad de control del ingrediente
-        };
+        for (let i = 0; i < ingredientIds.length; i++) {
+          const ingredientData = {
+            productId: recipeId, // El ID de la receta recién creada o actualizada
+            ingredientId: parseInt(ingredientIds[i].value), // Convertir ID del ingrediente a número
+            cuantity: Number(quantities[i].value), // Convertir la cantidad a número
+            controlUnit: controlUnits[i].value, // Unidad de control del ingrediente
+          };
 
-        // Asociar ingrediente a la receta
-        const ingredientResponse = await fetch(`http://localhost:3003/items`, {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${dataToken.token}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(ingredientData),
-        });
+          // Asociar ingrediente a la receta
+          const ingredientResponse = await fetch(
+            `http://localhost:3003/items`,
+            {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${dataToken.token}`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(ingredientData),
+            }
+          );
 
-        if (!ingredientResponse.ok) {
-          Swal.fire({
-            title: "Ops...",
-            text: "Ocurrió un error al asociar los ingredientes",
-            icon: "warning",
-          });
-          return;
+          if (!ingredientResponse.ok) {
+            Swal.fire({
+              title: "Ops...",
+              text: "Ocurrió un error al asociar los ingredientes",
+              icon: "warning",
+            });
+            return;
+          }
         }
       }
 
@@ -173,7 +202,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       Swal.fire({
         title: "Proceso exitoso",
-        text: "Receta y sus ingredientes creados/actualizados correctamente",
+        text: "Producto actualizado correctamente",
         icon: "success",
       });
     }
@@ -199,6 +228,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       columns: [
         { data: "id" }, // Columna para ID
         { data: "name" }, // Columna para nombre
+        { data: "type" }, // Columna para tipo
         { data: "status" }, // Columna para estado
         {
           data: "createAt", // Columna para fecha de creación
@@ -213,7 +243,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             // Crear botones Eliminar y Editar
             return `
                           <button class="btn btn-danger text-white btn-xs me-2 btn-delete" data-id="${row.id}" data-name="${row.name}">Eliminar</button>
-                          <button class="btn btn-warning text-white btn-xs btn-edit" data-id="${row.id}" data-name="${row.name}">Editar</button>
+                          <button class="btn btn-warning text-white btn-xs btn-edit" data-id="${row.id}" data-name="${row.name}" data-type="${row.type}">Editar</button>
                       `;
           },
         },

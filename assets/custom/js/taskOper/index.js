@@ -153,8 +153,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           }
         });
     } else if (event.target.matches(".btn-confirm-ingredient")) {
+      event.target.setAttribute("disabled", "true");
       try {
-        event.target.setAttribute("disabled", "true");
         let pData = $progresBar.dataset;
         let response = await fetch(`http://localhost:3003/tasks-detail`, {
           method: "POST",
@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           document.querySelector(".btn-close-ingredient").click();
           setTimeout(() => {
             document.querySelector(`.btn-detail-${pData.taskid}`).click();
-          }, 200);
+          }, 300);
           valueScale = valueScale + parseInt(pData.currentvalue);
           socket.emit("port", "COM0");
           event.target.removeAttribute("disabled");

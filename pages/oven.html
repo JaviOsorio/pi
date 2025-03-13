@@ -132,7 +132,7 @@
                                     <i class="fas fa-boxes"></i>
                                     <span>Inventario <span class="menu-arrow"></span></span>
                                 </a>
-                                <div class="collapse" id="sidebarMultilevel2">
+                                <div class="collapse" id="sidebarMultilevel2" style="">
                                     <ul class="nav-second-level">
                                       <li>
                                         <a href="./inventory/ingredients.html">Materia prima</a>
@@ -232,7 +232,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Recetas</h4>
+                                    <h4 class="page-title">Temperaturas y Tiempos de Horneo de Producto</h4>
                                 </div>
                             </div>
                         </div>
@@ -241,22 +241,43 @@
                             <div class="col-md-12">
                                 <div class="widget-rounded-circle card">
                                     <div class="card-body">
-                                        <div class="row mb-1">
+                                        <div class="row">
                                             <div class="col-sm-6"></div>
                                             <div class="col-sm-6">
-                                                <button class="btn btn-primary btn-sm float-end btn-modal-recipe"><i class="fas fa-plus pe-2 btn-modal-recipe"></i>Nueva</button>
+                                                <button class="btn btn-primary btn-sm float-end btn-modal-recipe"><i class="fas fa-plus pe-2 btn-modal-recipe"></i>Nuevo</button>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <table class="table table-hover table-striped table-products">
-                                                <thead>
+                                            <div class="col-sm-6 mb-2">
+                                                <label for="">Desde</label>
+                                                <input type="date" class="form-control start-date">
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="">Hasta</label>
+                                                <input type="date" class="form-control end-date">
+                                            </div>
+                                        </div>
+                                        <div class="row table-responsive">
+                                            <table class="table table-hover table-striped table-production" style="font-size: 12px;">
+                                                <thead class="bg-black text-white">
+                                                    <tr class="border border-white">
+                                                        <th class="p-0 px-1 m-0 border border-white align-middle" rowspan="2">Producto</th>
+                                                        <th class="p-0 px-1 m-0 border border-white text-center" colspan="2">Hora</th>
+                                                        <th class="p-0 px-1 m-0 border border-white align-middle" rowspan="2">Carros</th>
+                                                        <th class="p-0 px-1 m-0 border border-white align-middle" rowspan="2">Latas</th>
+                                                        <th class="p-0 px-1 m-0 border border-white align-middle" rowspan="2">Temperatura Interna(94-96°C)</th>
+                                                        <th class="p-0 px-1 m-0 border border-white text-center" colspan="3">Estándar T° y T</th>
+                                                        <th class="p-0 px-1 m-0 border border-white align-middle" rowspan="2">Calificación</th>
+                                                        <th class="p-0 px-1 m-0 border border-white align-middle" rowspan="2">Responsable Ejecución</th>
+                                                        <th class="p-0 px-1 m-0 border border-white align-middle" rowspan="2">Responsable Verificación</th>
+                                                        <th class="p-0 px-1 m-0 border border-white align-middle" rowspan="2">Observación</th>
+                                                    </tr>
                                                     <tr>
-                                                        <th>#</th>
-                                                        <th>Nombre</th>
-                                                        <th>Tipo</th>
-                                                        <th>Estado</th>
-                                                        <th>Fecha creación</th>
-                                                        <th class="text-center">Opciones</th>
+                                                        <th class="border border-white">inicio</th>
+                                                        <th class="border border-white">Final</th>
+                                                        <th class="border border-white">Horno-Proceso</th>
+                                                        <th class="border border-white">Temperatura(C°)</th>
+                                                        <th class="border border-white">Tiempo(Min)</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -300,78 +321,78 @@
             <!-- ============================================================== -->
 
             <!-- ============================================================== -->
-            <!-- Start modal content -->
+            <!-- Start modal task -->
             <!-- ============================================================== -->
-            <!-- Button trigger modal -->
-                <!-- Modal -->
-                <div class="modal fade" id="recipeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                <!-- Modal task -->
+                <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Receta</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Tarea</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="">
                                     <div class="card">
                                         <div class="card-body">
-                                            <form class="needs-validation was-validated recipe-form" novalidate="" autocomplete="off" id="recipeForm">
+                                            <form class="needs-validation was-validated recipe-form" novalidate="" autocomplete="off">
                                                 <input type="hidden" name="id" class="form-control">
-                                                
+                                                <input type="hidden" name="unit" value="Moje" class="form-control">
                                                 <div class="row">
-                                                    <!-- Campo para el nombre del producto -->
-                                                    <div class="mb-3 col-md-8">
-                                                        <label for="validationCustom01" class="form-label">Nombre producto</label>
-                                                        <input type="text" class="form-control" id="validationCustom01" name="name" placeholder="Nombre del producto" required="">
-                                                        <div class="valid-feedback">Ok</div>
+                                                    <div class="mb-1 col-sm-6">
+                                                        <label for="validationCustom01" class="form-label">Lote de producción</label>
+                                                        <input type="text" class="form-control" id="validationCustom01" name="productionBatch" placeholder="" required="">
+                                                        <div class="valid-feedback">
+                                                            Ok
+                                                        </div>
                                                     </div>
-                                                    
-                                                    <!-- Campo para el tipo del producto -->
-                                                    <div class="mb-3 col-md-4">
-                                                        <label for="validationCustom01" class="form-label">Tipo</label>
-                                                        <select class="form-select select-type" name="type" id="validationCustom02">
-                                                            <option value="Receta">Receta</option>
-                                                            <option value="Producto terminado">Producto terminado</option>
+                                                    <div class="mb-1 col-sm-6">
+                                                        <label for="status" class="form-label">Estado</label>
+                                                        <select class="form-control mb-2 status-select" name="status" required="">
+                                                            <option value="Pendiente">Pendiente</option>
+                                                            <option value="En curso">En curso</option>
+                                                            <option value="Finalizada">Finalizada</option>
                                                         </select>
-                                                        <div class="valid-feedback">Ok</div>
                                                     </div>
                                                 </div>
-                                            
-                                                <!-- Selección de ingredientes -->
-                                                <div class="mb-3 ingredients-section">
-                                                    <label class="form-label">Ingredientes</label>
-                                                    <div id="ingredientsList">
-                                                        <div class="ingredient-item">
-                                                            <div class="row">
-                                                                <div class="col-sm-5">
-                                                                    <select class="form-control mb-2 ingredient-select" name="ingredient_id[]">
-                                                                        <!-- Aquí se cargarán los ingredientes dinámicamente -->
-                                                                    </select>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <input type="number" class="form-control mb-2" name="ingredient_quantity[]" placeholder="Cantidad" step="0.1" min="0" value="0">
-                                                                </div>
-                                                                <div class="col-sm-2">
-                                                                    <select class="form-control mb-2 control-unit-select" name="ingredient_control_unit[]">
-                                                                        <option value="G">G</option>
-                                                                        <option value="KG">KG</option>
-                                                                        <option value="LB">LB</option>
-                                                                        <option value="L">L</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="col-sm-1">
-                                                                    <button type="button" class="btn btn-danger btn-sm remove-ingredient" disabled><i class="fas fa-trash"></i></button>
-                                                                </div>
-                                                            </div>
+                                                <div class="mb-1">
+                                                    <label for="validationCustom02" class="form-label">Receta</label>
+                                                    <select class="form-control mb-2 recipe-select" name="productId" required="">
+                                                        <!-- Aquí se cargarán las recetas -->
+                                                    </select>
+                                                    <div class="valid-feedback">
+                                                        Ok
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="mb-1 col-sm-6">
+                                                        <label for="validationCustom03" class="form-label">Fecha inicio</label>
+                                                        <input type="date" class="form-control" id="validationCustom03" name="startDate" placeholder="" required="">
+                                                        <div class="valid-feedback">
+                                                            Ok
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-1 col-sm-6">
+                                                        <label for="validationCustom04" class="form-label">Fecha Finalización</label>
+                                                        <input type="date" class="form-control" id="validationCustom04" name="endDate" placeholder="" required="">
+                                                        <div class="valid-feedback">
+                                                            Ok
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
-                                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                    <button type="button" class="btn btn-success btn-sm" id="addIngredient">Agregar Ingrediente</button>
+                                                <div class="row">
+                                                    <div class="mb-1 col-sm-12">
+                                                        <label for="validationCustom05" class="form-label">Repetición</label>
+                                                        <input type="number" class="form-control" id="validationCustom05" name="repetition" placeholder="" required="">
+                                                        <div class="valid-feedback">
+                                                            Ok
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="d-grid gap-2">
                                                     <button class="btn btn-primary" type="submit">Guardar</button>
                                                 </div>
-                                            </form>                                            
+                                            </form>
                                         </div> <!-- end card-body-->
                                     </div> <!-- end card-->
                                 </div>
@@ -380,9 +401,46 @@
                     </div>
                 </div>
             <!-- ============================================================== -->
-            <!-- Start modal content -->
+            <!-- Start modal task -->
             <!-- ============================================================== -->
 
+            <!-- ============================================================== -->
+            <!-- Start modal detailtask -->
+            <!-- ============================================================== -->
+                <!-- Modal detailtask -->
+                <div class="modal fade" id="detailTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Detalle de tarea</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h3 class="text-center title-recipe"></h3>                                         
+                                            <table class="table-items-task table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Ingrediente</th>
+                                                        <th>Cantidad</th>
+                                                        <th class="text-center">Unidad de control</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div> <!-- end card-body-->
+                                    </div> <!-- end card-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- ============================================================== -->
+            <!-- Start modal detailtask -->
+            <!-- ============================================================== -->
         </div>
         <!-- END wrapper -->
 
@@ -419,11 +477,128 @@
         
         <!-- App js -->
         <script src="./../assets/js/app.min.js"></script>
-        <script src="./../assets/custom/js/recipes/index.js?21"></script>
+        <!-- <script src="./../assets/custom/js/production/index.js"></script> -->
         <script>
             function logout(){
                 localStorage.removeItem('token');
             }
+            // document.addEventListener("DOMContentLoaded", async () => {
+
+            // });
+            
+            document.addEventListener("DOMContentLoaded", async () => {
+                const { decodeToken, logout } = await import("./../assets/custom/js/auth/auth.js");
+                const dataToken = decodeToken();
+                if (!dataToken.token) return;
+                // Mostrar/ocultar funcionalidades basadas en los roles
+                if (dataToken.role == "admin" || dataToken.role == "superadmin") {
+                    document.querySelector(".slide-menu-admin").style.display = "block";
+                    document.querySelector(".slide-menu-user").style.display = "none";
+                } else {
+                    document.querySelector(".slide-menu-admin").style.display = "none";
+                    document.querySelector(".slide-menu-user").style.display = "block";
+                }
+                
+                (() => {
+                    // Check if the table has already been initialized
+                    if ($.fn.dataTable.isDataTable(".table-production")) {
+                        // If it has been initialized, destroy the previous instance
+                        $(".table-production").DataTable().destroy();
+                        $(".table-production").empty(); // Optional: Clear the table body
+                    }
+                    $(".table-production").DataTable({
+                    ajax: {
+                        url: `http://localhost:3003/production`,
+                        type: "GET",
+                        headers: {
+                        Authorization: `Bearer ${dataToken.token}`, // Enviar el token en el encabezado de autorización
+                        "Content-Type": "application/json",
+                        },
+                        dataSrc: function (json) {
+                        return json; // En caso de que el JSON devuelto sea un array de objetos
+                        },
+                        error: function (xhr, error, thrown) {
+                        console.error("Error al obtener datos protegidos:", error);
+                        },
+                    },
+                    columns: [
+                        // { data: 'id' },
+                        { data: "product.name" },
+                        {
+                            data: null, // Columna para botones de acción
+                            className: "text-left",
+                            render: function (data, type, row) {
+                                // Crear botones Eliminar y Editar
+                                return `<input type="time" class="form-control" />`;
+                            },
+                        },
+                        {
+                            data: null, // Columna para botones de acción
+                            className: "text-left",
+                            render: function (data, type, row) {
+                                // Crear botones Eliminar y Editar
+                                return `<input type="time" class="form-control" />`;
+                            },
+                        },
+                        { data: "numberPeoples" },
+                        { data: "damagedProducts" },
+                        {
+                            data: null, // Columna para botones de acción
+                            className: "text-left",
+                            style: "width: 80px;",
+                            render: function (data, type, row) {
+                                // Crear botones Eliminar y Editar
+                                return `<input type="number" class="form-control" style="width: 80px;"  />`;
+                            },
+                        },
+                        { data: "observation" },
+                        {
+                            data: null, // Columna para botones de acción
+                            className: "text-center",
+                            render: function (data, type, row) {
+                                // Crear botones Eliminar y Editar
+                                return `<i
+                                            class="fas fa-edit bg-warning text-white btn-xs btn-detail"
+                                            data-id="${row.id}"
+                                            data-name="${row.product?.name}">
+                                        </i>`;
+                            },
+                        },
+                        { data: "observation" },
+                        { data: "observation" },
+                        { data: "observation" },
+                        { data: "observation" },
+                        { data: "observation" },
+                    ],
+                    language: {
+                        decimal: "",
+                        emptyTable: "No hay datos disponibles en la tabla",
+                        info: "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                        infoEmpty: "Mostrando 0 a 0 de 0 entradas",
+                        infoFiltered: "(filtrado de _MAX_ entradas totales)",
+                        infoPostFix: "",
+                        thousands: ",",
+                        lengthMenu: "Mostrar _MENU_ entradas",
+                        loadingRecords: "Cargando...",
+                        processing: "Procesando...",
+                        search: "Buscar:",
+                        zeroRecords: "No se encontraron resultados",
+                        paginate: {
+                        first: "Primero",
+                        last: "Último",
+                        next: "Siguiente",
+                        previous: "Anterior",
+                        },
+                        aria: {
+                        sortAscending:
+                            ": Activar para ordenar la columna de forma ascendente",
+                        sortDescending:
+                            ": Activar para ordenar la columna de forma descendente",
+                        },
+                    },
+                    });
+                })();
+            });
         </script>
     </body>
 </html>
