@@ -318,17 +318,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         },
       });
       const data = await response.json();
-      availableIngredients = data; // Guardar las recetas cargados
+      availableIngredients = data;
 
       // Llenar el primer campo de selección de recetas
       const firstSelect = document.querySelector(".recipe-select");
-      populateIngredientSelect(firstSelect);
+      populateRecipeSelect(firstSelect);
     } catch (error) {
       console.error("Error al cargar las recetas:", error);
     }
   }
 
-  // Función para cargar las recetas desde el backend
+  // Función para cargar las tareas desde el backend
   async function loadOneTask(id) {
     try {
       let htmlDetailTask = "";
@@ -360,14 +360,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // Función para llenar el campo select con las recetas
-  function populateIngredientSelect(selectElement) {
+  function populateRecipeSelect(selectElement) {
     selectElement.innerHTML = ""; // Limpiar el select
 
-    availableIngredients.forEach((ingredient) => {
-      const option = document.createElement("option");
-      option.value = ingredient.id; // Usar el ID del ingrediente
-      option.textContent = ingredient.name; // Mostrar el nombre del ingrediente
-      selectElement.appendChild(option);
+    availableIngredients.forEach((recipe) => {
+      if (recipe.type=='Receta') {
+        const option = document.createElement("option");
+        option.value = recipe.id;
+        option.textContent = recipe.name;
+        selectElement.appendChild(option);
+      }
     });
   }
 

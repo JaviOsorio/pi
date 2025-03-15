@@ -238,7 +238,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Producción</h4>
+                                    <h4 class="page-title">Despacho</h4>
                                 </div>
                             </div>
                         </div>
@@ -248,39 +248,93 @@
                                 <div class="widget-rounded-circle card">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-sm-6"></div>
-                                            <div class="col-sm-6">
-                                                <button class="btn btn-primary btn-sm float-end btn-modal-production"><i class="fas fa-plus pe-2 btn-modal-recipe"></i>Nuevo</button>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6 mb-2">
+                                            <div class="col-sm-4 mb-0">
                                                 <label for="">Desde</label>
                                                 <input type="date" class="form-control form-control-sm start-date">
                                             </div>
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-4">
                                                 <label for="">Hasta</label>
                                                 <input type="date" class="form-control form-control-sm end-date">
                                             </div>
+                                            <div class="col-sm-4">
+                                                <label for="">Bodega</label>
+                                                <select class="form-select select-warehouse form-select-sm">
+                                                    <option value="1">Bodega 1</option>
+                                                    <option value="2">Bodega 2</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                        <div class="row table-responsive">
-                                            <table class="table table-hover table-striped table-production" style="font-size: 12px;">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Moje</th>
-                                                        <th>Producción</th>
-                                                        <th>Detalle Moje</th>
-                                                        <th>Personas</th>
-                                                        <th>Dañados</th>
-                                                        <th>Hora</th>
-                                                        <th>Observación</th>
-                                                        <th class="text-center">Opci</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                </tbody>
-                                            </table>
-                                        </div> <!-- end row-->
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <ul class="nav nav-tabs h6">
+                                                    <li class="nav-item">
+                                                        <a href="#stock" data-bs-toggle="tab" aria-expanded="false" class="nav-link active">
+                                                            Stock
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a href="#input" data-bs-toggle="tab" aria-expanded="true" class="nav-link">
+                                                            Historial Entradas
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a href="#output" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+                                                            Historial Salidas
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="stock">
+                                                        <div class="row table-responsive">
+                                                            <table class="table table-hover table-striped table-stock" style="font-size: 12px;">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Productos</th>
+                                                                        <th>Paquetes</th>
+                                                                        <th>Canastas</th>
+                                                                        <th>Fecha actualización</th>
+                                                                        <th class="text-center">Recibir</th>
+                                                                        <th class="text-center">Despachar</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                </tbody>
+                                                            </table>
+                                                        </div> <!-- end row-->
+                                                    </div>
+                                                    <div class="tab-pane show" id="input">
+                                                        <table class="table table-hover table-striped table-history-movement-input" style="font-size: 12px;">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Producto</th>
+                                                                    <th>Bodega</th>
+                                                                    <th>Cantidad paquetes</th>
+                                                                    <th>Fecha movimiento</th>
+                                                                    <th>Usuario</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="tab-pane" id="output">
+                                                        <table class="table table-hover table-striped table-history-movement-dispatch" style="font-size: 12px;">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Producto</th>
+                                                                    <th>Bodega</th>
+                                                                    <th>Cantidad paquetes</th>
+                                                                    <th>Fecha movimiento</th>
+                                                                    <th>Usuario</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> <!-- end card-->
                                     </div>
                                 </div> <!-- end widget-rounded-circle-->
                             </div> <!-- end col-->
@@ -317,117 +371,23 @@
             <!-- End Page content -->
             <!-- ============================================================== -->
 
+                        <!-- ============================================================== -->
+            <!-- Start modal packing -->
             <!-- ============================================================== -->
-            <!-- Start modal production -->
-            <!-- ============================================================== -->
-                <!-- Modal production -->
-                <div class="modal fade" id="productionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <!-- Modal packing -->
+                <div class="modal fade" id="modalInput" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Producción</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Entradas pendientes</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="">
                                     <div class="card">
                                         <div class="card-body">
-                                            <form class="needs-validation was-validated production-form" novalidate="" autocomplete="off">
-                                                <input type="hidden" name="id" class="form-control">
-                                                <div class="row">
-                                                    <div class="mb-1 col-sm-6">
-                                                        <label for="validationCustom01" class="form-label">Producto</label>
-                                                        <select class="form-select select-product" name="productId" id="validationCustom01" required>
-                                                            <option value="">-- Seleccionar --</option>
-                                                        </select>
-                                                        <div class="valid-feedback">
-                                                            Ok
-                                                        </div>
-                                                    </div>
-                                                    <div class="mb-1 col-sm-6">
-                                                        <label for="validationCustom02" class="form-label">Fecha producción</label>
-                                                        <input type="date" class="form-control" id="validationCustom02" name="productionDate" placeholder="" required="">
-                                                        <div class="valid-feedback">
-                                                            Ok
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="mb-1 col-sm-3">
-                                                        <label for="validationCustom03" class="form-label">Hora Inicio</label>
-                                                        <input type="time" class="form-control" id="validationCustom03" name="initHour" placeholder="" required="">
-                                                        <div class="valid-feedback">
-                                                            Ok
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="mb-1 col-sm-3">
-                                                        <label for="validationCustom04" class="form-label">Hora Finalización</label>
-                                                        <input type="time" class="form-control" id="validationCustom04" name="endHour" placeholder="" required="">
-                                                        <div class="valid-feedback">
-                                                            Ok
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="mb-1 col-sm-3">
-                                                        <label for="validationCustom05" class="form-label">Mojes programados</label>
-                                                        <input type="number" class="form-control" id="validationCustom05" name="recipsScheduled" placeholder="" required="">
-                                                        <div class="valid-feedback">
-                                                            Ok
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="mb-1 col-sm-3">
-                                                        <label for="validationCustom06" class="form-label">Mojes producidos</label>
-                                                        <input type="number" class="form-control" id="validationCustom06" name="recipesProduced" placeholder="" required="">
-                                                        <div class="valid-feedback">
-                                                            Ok
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="mb-1 col-sm-3">
-                                                        <label for="validationCustom07" class="form-label">Número de carros</label>
-                                                        <input type="number" class="form-control" id="validationCustom07" name="numberCars" placeholder="" required="">
-                                                        <div class="valid-feedback">
-                                                            Ok
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="mb-1 col-sm-3">
-                                                        <label for="validationCustom08" class="form-label">Número de latas</label>
-                                                        <input type="number" class="form-control" id="validationCustom08" name="numberCans" placeholder="" required="">
-                                                        <div class="valid-feedback">
-                                                            Ok
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="mb-1 col-sm-3">
-                                                        <label for="validationCustom09" class="form-label">Número de personas</label>
-                                                        <input type="number" class="form-control" id="validationCustom09" name="numberPeoples" placeholder="" required="">
-                                                        <div class="valid-feedback">
-                                                            Ok
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="mb-1 col-sm-3">
-                                                        <label for="validationCustom010" class="form-label">Cantidad dañada</label>
-                                                        <input type="number" class="form-control" id="validationCustom010" name="damagedProducts" value="0" placeholder="" required="">
-                                                        <div class="valid-feedback">
-                                                            Ok
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="mb-1 col-sm-12">
-                                                        <label for="validationCustom011" class="form-label">Observación</label>
-                                                        <textarea class="form-control" name="observation" id="validationCustom011"></textarea>
-                                                        <div class="valid-feedback">
-                                                            Ok
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="d-grid gap-2">
-                                                    <button class="btn btn-primary" type="submit">Guardar</button>
-                                                </div>
-                                            </form>
+                                            <div class="container-inputs" style="height: 200px; overflow-y: auto; overflow-x: hidden;">
+                                            </div>
                                         </div> <!-- end card-body-->
                                     </div> <!-- end card-->
                                 </div>
@@ -439,43 +399,6 @@
             <!-- Start modal production -->
             <!-- ============================================================== -->
 
-            <!-- ============================================================== -->
-            <!-- Start modal detailtask -->
-            <!-- ============================================================== -->
-                <!-- Modal detailtask -->
-                <div class="modal fade" id="detailTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Detalle de tarea</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h3 class="text-center title-recipe"></h3>                                         
-                                            <table class="table-items-task table table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Ingrediente</th>
-                                                        <th>Cantidad</th>
-                                                        <th class="text-center">Unidad de control</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                </tbody>
-                                            </table>
-                                        </div> <!-- end card-body-->
-                                    </div> <!-- end card-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <!-- ============================================================== -->
-            <!-- Start modal detailtask -->
-            <!-- ============================================================== -->
         </div>
         <!-- END wrapper -->
 
@@ -532,9 +455,13 @@
                 }
 
                 // variables
-                const btnModalProduction = document.querySelector('.btn-modal-production')
-                const productionForm = document.querySelector('.production-form')
-                const selectProduct = productionForm.querySelector('.select-product')
+                const tableHistoryMovementInput = document.querySelector('.table-history-movement-input')
+                const tableHistoryMovementDispatch = document.querySelector('.table-history-movement-dispatch')
+                // Obtener los elementos tbody de las tablas
+                let tbodyInput = tableHistoryMovementInput.querySelector("tbody");
+                let tbodyDispatch = tableHistoryMovementDispatch.querySelector("tbody");
+                const containerInputs = document.querySelector('.container-inputs')
+                const selectWarehouse = document.querySelector(".select-warehouse");
                 const startDate = document.querySelector(".start-date");
                 const endDate = document.querySelector(".end-date");
                 const today = new Date();
@@ -545,99 +472,126 @@
                 startDate.value = formattedDate;
                 endDate.value = formattedDate;
 
-                await loadProduction(formattedDate, `${year}-${month}-${today.getDate() + 1}`);
+                await loadStock(formattedDate, `${year}-${month}-${today.getDate() + 2}`, selectWarehouse.value);
+                await loadMovements(formattedDate, `${year}-${month}-${today.getDate() + 2}`, selectWarehouse.value);
                 document.addEventListener("change", async (event) => {
-                    if (event.target == startDate || event.target == endDate) {
+                    if (event.target == startDate || event.target == endDate || event.target == selectWarehouse) {
                         if (startDate.value != "" && endDate.value != "") {
-                            await loadProduction(startDate.value, endDate.value);
+                            await loadStock(startDate.value, endDate.value, selectWarehouse.value);
+                            await loadMovements(startDate.value, endDate.value, selectWarehouse.value);
                         }
                     }
                 });
 
-                document.addEventListener("click", (event) => {
+                document.addEventListener("click", async (event) => {
                     // Open modal
                     let data = event.target.dataset;
-                    if (event.target == btnModalProduction) {
-                        productionForm.reset();
-                        productionForm.id.value='';
-                        $("#productionModal").modal("show")
-                    } else if (event.target.matches('.btn-detail')) {
-                        productionForm.id.value = data.id;
-                        productionForm.productId.value = data.productid;
-                        productionForm.recipsScheduled.value = data.recipsscheduled;
-                        productionForm.productionDate.value = data.productiondate;
-                        productionForm.initHour.value = data.inithour;
-                        productionForm.endHour.value = data.endhour;
-                        productionForm.recipesProduced.value = data.recipesproduced;
-                        productionForm.numberCars.value = data.numbercars;
-                        productionForm.numberCans.value = data.numbercans;
-                        productionForm.numberPeoples.value = data.numberpeoples;
-                        productionForm.damagedProducts.value = data.damagedproducts;
-                        productionForm.observation.value = data.observation;
-                        $("#productionModal").modal("show")
+                    if (event.target.matches('.btn-input')) {
+                        await getPackingByProduct(data.productid)
+                        $('#modalInput').modal('show')
+                    } else if (event.target.matches('.btn-input-confirm')) {
+                        event.target.setAttribute('disabled', true)
+                        let warehouseId = selectWarehouse.value
+                        await stockMovement({
+                            productId: Number(data.productid),
+                            numberPackages: Number(data.numberpackages),
+                            numberBaskets: Number(data.numberbaskets),
+                            warehouseId: Number(warehouseId),
+                            packingId: Number(data.packingid),
+                            movenetType: 'recibido'
+                        })
+                    } else if (event.target.matches('.btn-dispatch')) {
+                        event.target.setAttribute('disabled', true)
+
+                        Swal.fire({
+                            title: `Ingresa la cantidad que desea despachar.` ,
+                            input: "number",
+                            inputAttributes: {
+                                placeHolder: "Número de paquetes",
+                                autocapitalize: "off",
+                            },
+                            showCancelButton: true,
+                            confirmButtonText: "Despachar",
+                            cancelButtonText: "Cancelar",
+                            showLoaderOnConfirm: true,
+                            preConfirm: async (input) => {
+                                try {
+                                    if (Number(input) <= Number(data.numberpackages)) {
+                                        let warehouseId = selectWarehouse.value
+                                        await stockMovement({
+                                            productId: Number(data.productid),
+                                            numberPackages: Number(input),
+                                            numberBaskets: 0,
+                                            warehouseId: Number(warehouseId),
+                                            packingId: Number(data.id),
+                                            movenetType: 'despachado'
+                                        });
+                                    } else {
+                                        Swal.fire({
+                                            title: "OjO",
+                                            text: "La cantidad que intenta despachar no está disponible.",
+                                            icon: "warning",
+                                        });
+                                        event.target.removeAttribute('disabled')
+                                        return;
+                                    }
+                                } catch (error) {
+                                    Swal.fire({
+                                        title: "Ops...",
+                                        text: "Ocurrió un error al registrar la entrega",
+                                        icon: "warning",
+                                    });
+                                    return;
+                                }
+                            },
+                            allowOutsideClick: () => !Swal.isLoading()
+                        }).then((result) => {
+                            // ✅ Habilitar el botón solo si el usuario cancela o cierra la alerta
+                            if (!result.isConfirmed) {
+                                event.target.removeAttribute("disabled");
+                            }
+                        });
                     }
                 });
 
-                document.addEventListener("submit", async (event) => {
-                    event.preventDefault()
-                    if (event.target === productionForm) {
-                        const formData = new FormData(event.target);
-                        let jsonData = Object.fromEntries(formData.entries());
-
-                        delete jsonData["id"]; // Si es actualización, el 'id' no se envía en el body
-
-                        // Convertir valores numéricos
-                        jsonData = {
-                            ...jsonData,
-                            productId: Number(jsonData.productId),
-                            recipsScheduled: Number(jsonData.recipsScheduled),
-                            recipesProduced: Number(jsonData.recipesProduced),
-                            numberCars: Number(jsonData.numberCars),
-                            numberCans: Number(jsonData.numberCans),
-                            numberPeoples: Number(jsonData.numberPeoples),
-                            damagedProducts: Number(jsonData.damagedProducts || 0), // Si no está presente, asigna 0
-                        };
-                        // Enviar la solicitud para crear o actualizar la receta
-                        const recipeResponse = await fetch(
-                            `http://localhost:3003/production${
-                            productionForm.id.value != "" ? `/${productionForm.id.value}` : ""
-                            }`,
-                            {
-                            method: productionForm.id.value != "" ? "PUT" : "POST",
+                // Update stock
+                async function stockMovement(data) {
+                    // Enviar la solicitud para crear o actualizar la receta
+                    const recipeResponse = await fetch(`http://localhost:3003/warehouse-stock`,
+                        {
+                            method: "POST",
                             headers: {
                                 Authorization: `Bearer ${dataToken.token}`,
                                 "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify(jsonData), // Solo enviamos los datos de la receta
-                            }
-                        );
+                        },
+                            body: JSON.stringify(data),
+                        }
+                    );
 
                         if (!recipeResponse.ok) {
                             Swal.fire({
                             title: "Ops...",
-                            text: "Ocurrió un error al registrar la producción",
+                            text: "Ocurrió un error al registrar la entrada",
                             icon: "warning",
                             });
                             return;
                         }
 
                         // Si todo salió bien, recargar la tabla y cerrar el modal
-                        $(".table-production").DataTable().ajax.reload();
-                        $("#productionModal").modal("hide");
-                        event.target.reset();
-                        event.target.id.value = "";
+                        $(".table-stock").DataTable().ajax.reload();
+                        $("#warehouseModal").modal("hide");
 
                         Swal.fire({
                             title: "Proceso exitoso",
                             icon: "success",
                         });
-                    }
-                });
-                
-                // Load producto terminado
-                (async () => {
+                        
+                        $('#modalInput').modal('hide')
+                }
+
+                async function getPackingByProduct(productId) {
                     try {
-                        const response = await fetch("http://localhost:3003/products", {
+                        const response = await fetch(`http://localhost:3003/packing-products/product/${productId}`, {
                             method: "GET",
                             headers: {
                             Authorization: `Bearer ${dataToken.token}`,
@@ -645,96 +599,95 @@
                             },
                         });
                         const data = await response.json();
+                        let inputsHTML = '';
+                        containerInputs.innerHTML = '';
                         data.forEach(element => {
-                            if (element.type == 'Receta') {
-                                const option = document.createElement("option")
-                                option.value = element.id
-                                option.text = element.name
-                                selectProduct.appendChild(option)
-                            }
+                            inputsHTML += `<div class="border bordered-2 rounded rounded-4 p-1 mb-1">
+                                            <h4 class="m-1">${element.product.name}</h4>
+                                            <div class="row">
+                                                <p class="col-md-4"><b>Paquetes: </b>${element.loosePackages}</p>
+                                                <p class="col-md-3"><b>Canastas: </b>${element.numberBaskets}</p>
+                                                <p class="col-md-4"><b>Fecha empaque: </b>${element.packingDate.substr(0, 10)}</p>
+                                                <div class="col-md-1">
+                                                    <button
+                                                        class="btn btn-primary fas fa-check rounded rounded-8 p-1 btn-input-confirm"
+                                                        data-packingId="${element.id}"
+                                                        data-productId="${element.product.id}"
+                                                        data-numberPackages="${(element.loosePackages + (element.numberBaskets * element.product.packagesByBasket))}"
+                                                        data-numberBaskets="${element.numberBaskets}"
+                                                    ></button>
+                                                </div>
+                                            </div>
+                                        </div>`;
                         });
+                        containerInputs.innerHTML = inputsHTML
                     } catch (error) {
                         console.error("Error al cargar los productos:", error);
                     }
-                })();
+                };
 
-                // Load production
-                async function loadProduction(startDate, endDate) {
+                // Load packing
+                async function loadStock(startDate, endDate, warehouseId) {
                     // Check if the table has already been initialized
-                    if ($.fn.dataTable.isDataTable(".table-production")) {
+                    if ($.fn.dataTable.isDataTable(".table-stock")) {
                         // If it has been initialized, destroy the previous instance
-                        $(".table-production").DataTable().destroy();
+                        $(".table-stock").DataTable().destroy();
+                        // $(".table-stock").empty(); // Optional: Clear the table body
                     }
-                    $(".table-production").DataTable({
+                    $(".table-stock").DataTable({
                     ajax: {
-                        url: `http://localhost:3003/production/${startDate}/${endDate}`,
+                        url: `http://localhost:3003/warehouse-stock/filter?warehouseId=${warehouseId}`,
                         type: "GET",
                         headers: {
-                        Authorization: `Bearer ${dataToken.token}`, // Enviar el token en el encabezado de autorización
-                        "Content-Type": "application/json",
+                            Authorization: `Bearer ${dataToken.token}`, // Enviar el token en el encabezado de autorización
+                            "Content-Type": "application/json",
                         },
                         dataSrc: function (json) {
-                        return json; // En caso de que el JSON devuelto sea un array de objetos
+                            return json;
                         },
                         error: function (xhr, error, thrown) {
-                        console.error("Error al obtener datos protegidos:", error);
+                            console.error("Error al obtener datos protegidos:", error);
                         },
                     },
                     columns: [
-                        // { data: 'id' },
-                        { data: "product.name" },
+                        { data: "name" },
+                        { data: "stocks[0].numberPackages" },
                         {
-                            data: "productionDate", // Columna para botones de acción
+                            data: null,
+                            className: "text-center",
+                            render: function (data, type, row) {
+                                return (row?.stocks[0]?.numberPackages > 0)
+                                    ? row.stocks[0].numberPackages / row.packagesByBasket
+                                    : 0;
+                            },
+                        },
+                        {
+                            data: "stocks[0].updatedAt",
                             className: "text-center",
                             render: function (data) {
                                 return data.substr(0, 10);
                             },
                         },
                         {
-                        data: null, // Columna para botones de acción
-                        className: "text-left",
-                        render: function (data, type, row) {
-                            // Crear botones Eliminar y Editar
-                            return `
-                                    <p class="p-0 m-0"><b>Programados:</b>${row.recipsScheduled}</p>
-                                    <p class="p-0 m-0"><b>Producidos:</b>${row.recipesProduced}</p>
-                                    `;
-                            },
-                        },
-                        { data: "numberPeoples" },
-                        { data: "damagedProducts" },
-                        {
-                        data: null, // Columna para botones de acción
-                        className: "text-left",
-                        render: function (data, type, row) {
-                            // Crear botones Eliminar y Editar
-                            return `
-                                    <p class="p-0 m-0"><b>Inicio:</b>${row.initHour}</p>
-                                    <p class="p-0 m-0"><b>Final:</b>${row.endHour}</p>
-                                    `;
-                            },
-                        },
-                        { data: "observation" },
-                        {
-                            data: null, // Columna para botones de acción
+                            data: null,
                             className: "text-center",
                             render: function (data, type, row) {
-                                // Crear botones Eliminar y Editar
-                                return `<i
-                                            class="fas fa-edit bg-warning text-white btn-xs btn-detail"
-                                            data-id="${row.id}"
-                                            data-productId="${row.product.id}"
-                                            data-recipsScheduled="${row.recipsScheduled}"
-                                            data-productionDate="${row.productionDate.substr(0, 10)}"
-                                            data-initHour="${row.initHour}"
-                                            data-endHour="${row.endHour}"
-                                            data-recipesProduced="${row.recipesProduced}"
-                                            data-numberCars="${row.numberCars}"
-                                            data-numberCans="${row.numberCans}"
-                                            data-numberPeoples="${row.numberPeoples}"
-                                            data-damagedProducts="${row.damagedProducts}"
-                                            data-observation="${row.observation}"
-                                        ></i>`;
+                                return `<button class="btn btn-primary btn-xs btn-input" data-productId="${row.id}">Recibir</button>`;
+                            },
+                        },
+                        {
+                            data: null,
+                            className: "text-center",
+                            render: function (data, type, row) {
+                                return (row.stocks[0]?.numberPackages > 0)
+                                    ? `<button
+                                            class="btn btn-success btn-xs btn-dispatch"
+                                            data-id="${row.stocks[0]?.id || 0}"
+                                            data-productId="${row.id}"
+                                            data-productName="${row.name}"
+                                            data-numberPackages="${row.stocks[0]?.numberPackages}"
+                                        >Despachar</button>`
+                                    : '';
                             },
                         },
                     ],
@@ -766,6 +719,50 @@
                     },
                     });
                 };
+
+                async function loadMovements(startDate, endDate, warehouseId) {
+                    try {
+                        // Limpiar contenido previo de las tablas
+                        tbodyInput.innerHTML = "";
+                        tbodyDispatch.innerHTML = "";
+
+                        const response = await fetch(
+                            `http://localhost:3003/warehouse-stock/movements/filter?startDate=${startDate}&endDate=${endDate}&warehouseId=${warehouseId}`,
+                            {
+                                method: "GET",
+                                headers: {
+                                    Authorization: `Bearer ${dataToken.token}`,
+                                    "Content-Type": "application/json",
+                                },
+                            }
+                        );
+                        const data = await response.json();
+                        if (data.length === 0) return;
+
+                        data.forEach((element) => {
+                            const row = document.createElement("tr");
+
+                            // Crear columnas de la tabla con los datos del movimiento
+                            row.innerHTML = `
+                                <td>${element.product.name}</td>
+                                <td>${element.warehouse.name}</td>
+                                <td>${element.quantity}</td>
+                                <td>${new Date(element.createdAt).toLocaleString()}</td>
+                                <td>${element.user.name}</td>
+                            `;
+
+                            // Determinar si es una entrada (recibido) o salida (despachado)
+                            if (element.type === "recibido") {
+                                tbodyInput.appendChild(row);
+                            } else if (element.type === "despachado") {
+                                tbodyDispatch.appendChild(row);
+                            }
+                        });
+                    } catch (error) {
+                        console.error("Error al cargar los productos:", error);
+                    }
+
+                }
             });
         </script>
     </body>

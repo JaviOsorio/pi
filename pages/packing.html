@@ -171,6 +171,12 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="./dispatch.html">
+                                    <i class="fas fa-truck"></i>
+                                    <span>Despacho</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="./oven.html">
                                     <i class="fas fa-warehouse"></i>
                                     <span>Hornos</span>
@@ -250,11 +256,11 @@
                                         <div class="row">
                                             <div class="col-sm-6 mb-2">
                                                 <label for="">Desde</label>
-                                                <input type="date" class="form-control start-date">
+                                                <input type="date" class="form-control form-control-sm start-date">
                                             </div>
                                             <div class="col-sm-6">
                                                 <label for="">Hasta</label>
-                                                <input type="date" class="form-control end-date">
+                                                <input type="date" class="form-control form-control-sm end-date">
                                             </div>
                                         </div>
                                         <div class="row table-responsive">
@@ -265,7 +271,7 @@
                                                         <th>F_empaque</th>
                                                         <th>Hora</th>
                                                         <th>Detalle</th>
-                                                        <th>Temperatura</th>
+                                                        <th>Temp</th>
                                                         <th>Personas</th>
                                                         <th>Producción</th>
                                                         <th>Vencimiento</th>
@@ -331,7 +337,7 @@
                                             <form class="needs-validation was-validated packing-form" novalidate="" autocomplete="off">
                                                 <input type="hidden" name="id" class="form-control">
                                                 <div class="row">
-                                                    <div class="mb-1 col-sm-8">
+                                                    <div class="mb-1 col-sm-3">
                                                         <label for="validationCustom01" class="form-label">Producto</label>
                                                         <select class="form-select select-product" name="productId" id="validationCustom01" required>
                                                             <option value="">-- Seleccionar --</option>
@@ -341,7 +347,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="mb-1 col-sm-4">
+                                                    <div class="mb-1 col-sm-3">
                                                         <label for="validationCustom02" class="form-label">Fecha Empaque</label>
                                                         <input type="date" class="form-control" id="validationCustom02" name="packingDate" placeholder="" required="">
                                                         <div class="valid-feedback">
@@ -349,7 +355,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="mb-1 col-sm-4">
+                                                    <div class="mb-1 col-sm-3">
                                                         <label for="validationCustom03" class="form-label">Fecha producción</label>
                                                         <input type="date" class="form-control" id="validationCustom03" name="productionDate" placeholder="" required="">
                                                         <div class="valid-feedback">
@@ -357,7 +363,7 @@
                                                         </div>
                                                     </div>
                                                     
-                                                    <div class="mb-1 col-sm-4">
+                                                    <div class="mb-1 col-sm-3">
                                                         <label for="validationCustom04" class="form-label">Fecha Lote</label>
                                                         <input type="date" class="form-control" id="validationCustom04" name="batchDate" placeholder="" required="">
                                                         <div class="valid-feedback">
@@ -365,7 +371,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="mb-1 col-sm-4">
+                                                    <div class="mb-1 col-sm-3">
                                                         <label for="validationCustom05" class="form-label">Hora Inicio</label>
                                                         <input type="time" class="form-control" id="validationCustom05" name="initHour" placeholder="" required="">
                                                         <div class="valid-feedback">
@@ -373,7 +379,7 @@
                                                         </div>
                                                     </div>
                                                     
-                                                    <div class="mb-1 col-sm-4">
+                                                    <div class="mb-1 col-sm-3">
                                                         <label for="validationCustom06" class="form-label">Hora Finalización</label>
                                                         <input type="time" class="form-control" id="validationCustom06" name="endHour" placeholder="" required="">
                                                         <div class="valid-feedback">
@@ -381,7 +387,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="mb-1 col-sm-4">
+                                                    <div class="mb-1 col-sm-3">
                                                         <label for="validationCustom07" class="form-label">Temperatura (°C)</label>
                                                         <input type="number" class="form-control" id="validationCustom07" name="temperature" placeholder="" required="">
                                                         <div class="valid-feedback">
@@ -389,7 +395,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="mb-1 col-sm-4">
+                                                    <div class="mb-1 col-sm-3">
                                                         <label for="validationCustom08" class="form-label">Número Carros</label>
                                                         <input type="number" class="form-control" id="validationCustom08" name="numberCars" placeholder="" required="">
                                                         <div class="valid-feedback">
@@ -397,7 +403,7 @@
                                                         </div>
                                                     </div>
                                                     
-                                                    <div class="mb-1 col-sm-4">
+                                                    <div class="mb-1 col-sm-3">
                                                         <label for="validationCustom09" class="form-label">Número Latas</label>
                                                         <input type="number" class="form-control" id="validationCustom09" name="numberCans" placeholder="" required="">
                                                         <div class="valid-feedback">
@@ -405,7 +411,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="mb-1 col-sm-4">
+                                                    <div class="mb-1 col-sm-3">
                                                         <label for="validationCustom010" class="form-label">Número Canastas</label>
                                                         <input type="number" class="form-control" id="validationCustom010" name="numberBaskets" placeholder="" required="">
                                                         <div class="valid-feedback">
@@ -413,7 +419,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="mb-1 col-sm-4">
+                                                    <div class="mb-1 col-sm-3">
                                                         <label for="validationCustom011" class="form-label">Paquetes Sueltos</label>
                                                         <input type="number" class="form-control" id="validationCustom011" name="loosePackages" placeholder="">
                                                         <div class="valid-feedback">
@@ -421,7 +427,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="mb-1 col-sm-4">
+                                                    <div class="mb-1 col-sm-3">
                                                         <label for="validationCustom012" class="form-label">Número de personas</label>
                                                         <input type="number" class="form-control" id="validationCustom012" name="numberPeoples" placeholder="" required="">
                                                         <div class="valid-feedback">
@@ -429,15 +435,31 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="mb-1 col-sm-4">
+                                                    <div class="mb-1 col-sm-3">
                                                         <label for="validationCustom013" class="form-label">Fecha Vencimiento</label>
                                                         <input type="date" class="form-control" id="validationCustom013" name="expirationDate" placeholder="" required="">
                                                         <div class="valid-feedback">
                                                             Ok
                                                         </div>
                                                     </div>
-                                                    
-                                                    <div class="mb-1 col-sm-4">
+
+                                                    <div class="mb-1 col-sm-3">
+                                                        <label for="validationCustom015" class="form-label">Cantidad dañada</label>
+                                                        <input type="number" class="form-control" id="validationCustom015" name="quantityDamaged" placeholder="">
+                                                        <div class="valid-feedback">
+                                                            Ok
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-1 col-sm-3">
+                                                        <label for="validationCustom016" class="form-label">Cantidad devuelta</label>
+                                                        <input type="number" class="form-control" id="validationCustom016" name="quantityReturned" placeholder="">
+                                                        <div class="valid-feedback">
+                                                            Ok
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-1 col-sm-3">
                                                         <label for="validationCustom014" class="form-label">Opciones</label>
                                                         <select class="form-select select-option" name="options" id="validationCustom014">
                                                             <option value="">-- Seleccionar --</option>
@@ -450,8 +472,8 @@
                                                     </div>
 
                                                     <div class="mb-1 col-sm-12">
-                                                        <label for="validationCustom015" class="form-label">Observación</label>
-                                                        <textarea class="form-control" name="observation" id="validationCustom015"></textarea>
+                                                        <label for="validationCustom017" class="form-label">Observación</label>
+                                                        <textarea class="form-control" name="observation" id="validationCustom017"></textarea>
                                                         <div class="valid-feedback">
                                                             Ok
                                                         </div>
@@ -595,6 +617,7 @@
                         packingForm.id.value='';
                         $("#packingModal").modal("show")
                     } else if (event.target.matches('.btn-detail')) {
+                        console.log(data)
                         packingForm.id.value = data.id;
                         packingForm.productId.value=data.productid
                         packingForm.productionDate.value=data.productiondate
@@ -611,8 +634,8 @@
                         packingForm.expirationDate.value=data.expirationdate
                         packingForm.options.value=data.options
                         packingForm.observation.value=data.observation
-                        // packingForm.quantityReturned.value=data.quantityreturned
-                        // packingForm.quantityDamaged.value=data.quantitydamaged
+                        packingForm.quantityReturned.value=data.quantityreturned
+                        packingForm.quantityDamaged.value=data.quantitydamaged
                         $("#packingModal").modal("show")
                     }
                 });
@@ -637,7 +660,6 @@
                             numberPeoples: Number(jsonData.numberPeoples || 0),
                             quantityDamaged: Number(jsonData.quantityDamaged || 0),
                             quantityReturned: Number(jsonData.quantityReturned || 0),
-                            productId: Number(jsonData.productId || 0),
                         };
                         // Enviar la solicitud para crear o actualizar la receta
                         const recipeResponse = await fetch(
@@ -789,6 +811,7 @@
                             data: null,
                             className: "text-center",
                             render: function (data, type, row) {
+                                console.log(row)
                                 return `<i
                                             class="fas fa-edit bg-warning text-white btn-xs btn-detail"
                                             data-id="${row.id}"

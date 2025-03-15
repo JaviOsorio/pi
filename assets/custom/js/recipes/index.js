@@ -78,11 +78,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     } else if (event.target.matches(".btn-edit")) {
       $recipeForm.id.value = data?.id;
-      $recipeForm.type.value = data?.type;
       $recipeForm.name.value = data?.name;
+      $recipeForm.type.value = data?.type;
+      $recipeForm.packagesByBasket.value = data?.packagesbybasket;
       if (data?.type == "Receta") {
         ingredientsSection.removeAttribute("hidden");
-        btnAddIngredient.removeAttribute("hidden");
+        btnAddIngredient.removeAttribute("hidden"); 
       } else {
         ingredientsSection.setAttribute("hidden", true);
         btnAddIngredient.setAttribute("hidden", true);
@@ -116,7 +117,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       data.forEach((value, key) => {
         if (!key.startsWith("ingredient_")) {
           // Excluimos los campos de ingredientes
-          jsonData[key] = value;
+          jsonData[key] = key == "packagesByBasket" ? Number(value) : value;
         }
       });
 
@@ -229,6 +230,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         { data: "id" }, // Columna para ID
         { data: "name" }, // Columna para nombre
         { data: "type" }, // Columna para tipo
+        { data: "packagesByBasket" },
         { data: "status" }, // Columna para estado
         {
           data: "createAt", // Columna para fecha de creación
@@ -243,7 +245,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             // Crear botones Eliminar y Editar
             return `
                           <button class="btn btn-danger text-white btn-xs me-2 btn-delete" data-id="${row.id}" data-name="${row.name}">Eliminar</button>
-                          <button class="btn btn-warning text-white btn-xs btn-edit" data-id="${row.id}" data-name="${row.name}" data-type="${row.type}">Editar</button>
+                          <button class="btn btn-warning text-white btn-xs btn-edit" data-id="${row.id}" data-name="${row.name}" data-type="${row.type}" data-packagesByBasket="${row.packagesByBasket}">Editar</button>
                       `;
           },
         },

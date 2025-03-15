@@ -171,6 +171,12 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="./dispatch.html">
+                                    <i class="fas fa-truck"></i>
+                                    <span>Despacho</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="./oven.html">
                                     <i class="fas fa-warehouse"></i>
                                     <span>Hornos</span>
@@ -254,6 +260,7 @@
                                                         <th>#</th>
                                                         <th>Nombre</th>
                                                         <th>Tipo</th>
+                                                        <th>Paquetes</th>
                                                         <th>Estado</th>
                                                         <th>Fecha creación</th>
                                                         <th class="text-center">Opciones</th>
@@ -320,19 +327,26 @@
                                                 
                                                 <div class="row">
                                                     <!-- Campo para el nombre del producto -->
-                                                    <div class="mb-3 col-md-8">
+                                                    <div class="mb-3 col-md-6">
                                                         <label for="validationCustom01" class="form-label">Nombre producto</label>
                                                         <input type="text" class="form-control" id="validationCustom01" name="name" placeholder="Nombre del producto" required="">
                                                         <div class="valid-feedback">Ok</div>
                                                     </div>
                                                     
                                                     <!-- Campo para el tipo del producto -->
-                                                    <div class="mb-3 col-md-4">
-                                                        <label for="validationCustom01" class="form-label">Tipo</label>
+                                                    <div class="mb-3 col-md-3">
+                                                        <label for="validationCustom02" class="form-label">Tipo</label>
                                                         <select class="form-select select-type" name="type" id="validationCustom02">
                                                             <option value="Receta">Receta</option>
                                                             <option value="Producto terminado">Producto terminado</option>
                                                         </select>
+                                                        <div class="valid-feedback">Ok</div>
+                                                    </div>
+
+                                                    <!-- Campo para la cantidad de paquetes por canasta -->
+                                                    <div class="mb-3 col-md-3">
+                                                        <label for="validationCustom03" class="form-label">Paquetes por canasta</label>
+                                                        <input type="number" class="form-control" id="validationCustom03" name="packagesByBasket" placeholder="Número de paquetes por canasta" value="1" required="">
                                                         <div class="valid-feedback">Ok</div>
                                                     </div>
                                                 </div>
@@ -419,7 +433,7 @@
         
         <!-- App js -->
         <script src="./../assets/js/app.min.js"></script>
-        <script src="./../assets/custom/js/recipes/index.js?21"></script>
+        <script src="./../assets/custom/js/recipes/index.js?22"></script>
         <script>
             function logout(){
                 localStorage.removeItem('token');
