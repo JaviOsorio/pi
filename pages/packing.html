@@ -250,7 +250,7 @@
                                         <div class="row">
                                             <div class="col-sm-6"></div>
                                             <div class="col-sm-6">
-                                                <button class="btn btn-primary btn-sm float-end btn-modal-packing"><i class="fas fa-plus pe-2 btn-modal-recipe"></i>Nuevo</button>
+                                                <button class="btn btn-primary btn-xs float-end btn-modal-packing"><i class="fas fa-plus pe-2 btn-modal-recipe"></i>Nuevo</button>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -585,6 +585,9 @@
                     document.querySelector(".slide-menu-admin").style.display = "none";
                     document.querySelector(".slide-menu-user").style.display = "block";
                 }
+                const user = localStorage.getItem("user");
+                const $proUserName = document.querySelector(".pro-username");
+                $proUserName.textContent = user;
 
                 // variables
                 const btnModalPacking = document.querySelector('.btn-modal-packing')

@@ -63,8 +63,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       $progresBar.classList.add("bg-warning");
     }
 
-    console.log($progresBar.dataset);
-
     if ($progresBar.dataset.ingredientid == 9) {
       $progresBar.setAttribute("data-currentValue", valueMax);
       $btnConfirmIngredient.removeAttribute("disabled");

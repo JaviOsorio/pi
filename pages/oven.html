@@ -258,7 +258,7 @@
                                             </div>
                                         </div>
                                         <div class="row table-responsive">
-                                            <table class="table table-hover table-striped table-production" style="font-size: 12px;">
+                                            <table class="table table-hover table-striped table-production" style="font-size: 10px;">
                                                 <thead class="bg-black text-white">
                                                     <tr class="border border-white">
                                                         <th class="p-0 px-1 m-0 border border-white align-middle" rowspan="2">Producto</th>
@@ -271,6 +271,7 @@
                                                         <th class="p-0 px-1 m-0 border border-white align-middle" rowspan="2">Responsable Ejecución</th>
                                                         <th class="p-0 px-1 m-0 border border-white align-middle" rowspan="2">Responsable Verificación</th>
                                                         <th class="p-0 px-1 m-0 border border-white align-middle" rowspan="2">Observación</th>
+                                                        <th class="p-0 px-1 m-0 border border-white align-middle" rowspan="2">Opciones</th>
                                                     </tr>
                                                     <tr>
                                                         <th class="border border-white">inicio</th>
@@ -482,9 +483,6 @@
             function logout(){
                 localStorage.removeItem('token');
             }
-            // document.addEventListener("DOMContentLoaded", async () => {
-
-            // });
             
             document.addEventListener("DOMContentLoaded", async () => {
                 const { decodeToken, logout } = await import("./../assets/custom/js/auth/auth.js");
@@ -499,7 +497,30 @@
                     document.querySelector(".slide-menu-user").style.display = "block";
                 }
                 
-                (() => {
+                const user = localStorage.getItem("user");
+                const $proUserName = document.querySelector(".pro-username");
+                $proUserName.textContent = user;
+
+                let employeeList = []; 
+                const startDate = document.querySelector(".start-date");
+                const endDate = document.querySelector(".end-date");
+                const today = new Date();
+                const year = today.getFullYear();
+                const month = String(today.getMonth() + 1).padStart(2, "0");
+                const day = String(today.getDate()).padStart(2, "0");
+                const formattedDate = `${year}-${month}-${day}`;
+                startDate.value = formattedDate;
+                endDate.value = formattedDate;
+
+                document.addEventListener("change", async (event) => {
+                    if (event.target == startDate || event.target == endDate) {
+                        if (startDate.value != "" && endDate.value != "") {
+                            await loadProduction(startDate.value, endDate.value);
+                        }
+                    }
+                });
+                
+                async function  loadProduction(startDate, endDate) {
                     // Check if the table has already been initialized
                     if ($.fn.dataTable.isDataTable(".table-production")) {
                         // If it has been initialized, destroy the previous instance
@@ -508,7 +529,7 @@
                     }
                     $(".table-production").DataTable({
                     ajax: {
-                        url: `http://localhost:3003/production`,
+                        url: `http://localhost:3003/production/${startDate}/${endDate}`,
                         type: "GET",
                         headers: {
                         Authorization: `Bearer ${dataToken.token}`, // Enviar el token en el encabezado de autorización
@@ -522,53 +543,98 @@
                         },
                     },
                     columns: [
-                        // { data: 'id' },
-                        { data: "product.name" },
                         {
-                            data: null, // Columna para botones de acción
-                            className: "text-left",
+                            data: "product.name",
+                            className: "text-left p-1"
+                        },
+                        {
+                            data: null,
+                            className: "text-left p-1",
                             render: function (data, type, row) {
-                                // Crear botones Eliminar y Editar
-                                return `<input type="time" class="form-control" />`;
+                                return `<input type="time" class="form-control form-control-sm p-0" />`;
                             },
                         },
                         {
-                            data: null, // Columna para botones de acción
-                            className: "text-left",
+                            data: null,
+                            className: "text-left p-1",
                             render: function (data, type, row) {
-                                // Crear botones Eliminar y Editar
-                                return `<input type="time" class="form-control" />`;
+                                return `<input type="time" class="form-control form-control-sm p-0" />`;
                             },
                         },
-                        { data: "numberPeoples" },
-                        { data: "damagedProducts" },
+                        { data: "numberCars" },
+                        { data: "numberCans" },
                         {
-                            data: null, // Columna para botones de acción
-                            className: "text-left",
-                            style: "width: 80px;",
+                            data: null,
+                            className: "text-left p-1",
                             render: function (data, type, row) {
-                                // Crear botones Eliminar y Editar
-                                return `<input type="number" class="form-control" style="width: 80px;"  />`;
+                                return `<input type="number" class="form-control form-control-sm p-0" style="width: 60px;" />`;
+                            },
+                        },
+                        {
+                            data: null,
+                            className: "text-left p-1",
+                            render: function (data, type, row) {
+                                return `<input type="text" class="form-control form-control-sm p-0" style="width: 100px;" />`;
+                            },
+                        },
+                        {
+                            data: null,
+                            className: "text-left p-1",
+                            render: function (data, type, row) {
+                                return `<input type="number" class="form-control form-control-sm p-0" style="width: 100px;" />`;
+                            },
+                        },
+                        {
+                            data: null,
+                            className: "text-left p-1",
+                            render: function (data, type, row) {
+                                return `<input type="number" class="form-control form-control-sm p-0" style="width: 100px;" />`;
+                            },
+                        },
+                        {
+                            data: null,
+                            className: "text-left p-1",
+                            render: function (data, type, row) {
+                                return `<input type="number" class="form-control form-control-sm p-0" style="width: 100px;" />`;
+                            },
+                        },
+                        {
+                            data: null,
+                            className: "text-left p-1",
+                            render: function (data, type, row) {
+                                let options = `<option value="">Seleccionar</option>`; // Opción vacía
+                                options += employeeList.map(emp => 
+                                    `<option value="${emp.id}">${emp.name}</option>`
+                                ).join("");
+
+                                return `<select class="form-select form-select-sm" style="width: 150px;">${options}</select>`;
+                            },
+                        },
+                        {
+                            data: null,
+                            className: "text-left p-1",
+                            render: function (data, type, row) {
+                                let options = `<option value="">Seleccionar</option>`; // Opción vacía
+                                options += employeeList.map(emp => 
+                                    `<option value="${emp.id}">${emp.name}</option>`
+                                ).join("");
+
+                                return `<select class="form-select form-select-sm" style="width: 150px;">${options}</select>`;
                             },
                         },
                         { data: "observation" },
                         {
-                            data: null, // Columna para botones de acción
+                            data: null,
                             className: "text-center",
                             render: function (data, type, row) {
-                                // Crear botones Eliminar y Editar
+                                // Crear boton Editar
                                 return `<i
-                                            class="fas fa-edit bg-warning text-white btn-xs btn-detail"
+                                            class="fas fa-save btn btn-primary text-white btn-xs btn-detail"
                                             data-id="${row.id}"
                                             data-name="${row.product?.name}">
                                         </i>`;
                             },
                         },
-                        { data: "observation" },
-                        { data: "observation" },
-                        { data: "observation" },
-                        { data: "observation" },
-                        { data: "observation" },
                     ],
                     language: {
                         decimal: "",
@@ -597,6 +663,17 @@
                         },
                     },
                     });
+                };
+
+                (async () => {
+                    let response = await fetch(`http://localhost:3003/users`);
+
+                    if (!response.ok) return;
+
+                    let users = await response.json();
+                    employeeList = users;
+                    // Load datatable
+                    await loadProduction(formattedDate, `${year}-${month}-${today.getDate() + 1}`);
                 })();
             });
         </script>

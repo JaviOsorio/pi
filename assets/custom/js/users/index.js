@@ -134,19 +134,29 @@ document.addEventListener("DOMContentLoaded", async () => {
         },
       },
       columns: [
-        { data: "document" },
-        { data: "name" },
-        { data: "email" },
-        { data: "role" },
         {
-          data: "created_at", // Columna para fecha de creación
+          data: "document",
+          className: "text-center p-1",
+        },
+        { 
+          data: "name",
+          className: "text-center p-1", },
+        { 
+          data: "email",
+          className: "text-center p-1", },
+        { 
+          data: "role",
+          className: "text-center p-1", },
+        {
+          data: "created_at",
+          className: "text-center p-1",
           render: function (data) {
             return data.substr(0, 10); // Mostrar solo la fecha en formato 'YYYY-MM-DD'
           },
         },
         {
-          data: null, // Columna para botones de acción
-          className: "text-center",
+          data: null,
+          className: "text-center p-1",
           render: function (data, type, row) {
             // Crear botones Eliminar y Editar
             return `

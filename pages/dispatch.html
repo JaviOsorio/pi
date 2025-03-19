@@ -453,6 +453,9 @@
                     document.querySelector(".slide-menu-admin").style.display = "none";
                     document.querySelector(".slide-menu-user").style.display = "block";
                 }
+                const user = localStorage.getItem("user");
+                const $proUserName = document.querySelector(".pro-username");
+                $proUserName.textContent = user;
 
                 // variables
                 const tableHistoryMovementInput = document.querySelector('.table-history-movement-input')
@@ -650,11 +653,17 @@
                         },
                     },
                     columns: [
-                        { data: "name" },
-                        { data: "stocks[0].numberPackages" },
+                        {
+                            data: "name",
+                            className: "text-left p-1",
+                        },
+                        {
+                            data: "stocks[0].numberPackages",
+                            className: "text-center p-1",
+                        },
                         {
                             data: null,
-                            className: "text-center",
+                            className: "text-center p-1",
                             render: function (data, type, row) {
                                 return (row?.stocks[0]?.numberPackages > 0)
                                     ? row.stocks[0].numberPackages / row.packagesByBasket
@@ -663,21 +672,21 @@
                         },
                         {
                             data: "stocks[0].updatedAt",
-                            className: "text-center",
+                            className: "text-center p-1",
                             render: function (data) {
                                 return data.substr(0, 10);
                             },
                         },
                         {
                             data: null,
-                            className: "text-center",
+                            className: "text-center p-1",
                             render: function (data, type, row) {
                                 return `<button class="btn btn-primary btn-xs btn-input" data-productId="${row.id}">Recibir</button>`;
                             },
                         },
                         {
                             data: null,
-                            className: "text-center",
+                            className: "text-center p-1",
                             render: function (data, type, row) {
                                 return (row.stocks[0]?.numberPackages > 0)
                                     ? `<button

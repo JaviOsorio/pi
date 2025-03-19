@@ -227,26 +227,42 @@ document.addEventListener("DOMContentLoaded", async () => {
         },
       },
       columns: [
-        { data: "id" }, // Columna para ID
-        { data: "name" }, // Columna para nombre
-        { data: "type" }, // Columna para tipo
-        { data: "packagesByBasket" },
-        { data: "status" }, // Columna para estado
+        { 
+          data: "id",
+          className: "text-center p-1",
+        },
+        { 
+          data: "name",
+          className: "text-left p-1",
+        },
+        { 
+          data: "type",
+          className: "text-center p-1",
+        },
+        { 
+          data: "packagesByBasket",
+          className: "text-center p-1",
+        },
+        { 
+          data: "status",
+          className: "text-center p-1",
+        },
         {
-          data: "createAt", // Columna para fecha de creación
+          data: "createAt",
+          className: "text-center p-1",
           render: function (data) {
             return data.substr(0, 10); // Mostrar solo la fecha en formato 'YYYY-MM-DD'
           },
         },
         {
           data: null, // Columna para botones de acción
-          className: "text-center",
+          className: "text-center p-1",
           render: function (data, type, row) {
             // Crear botones Eliminar y Editar
             return `
-                          <button class="btn btn-danger text-white btn-xs me-2 btn-delete" data-id="${row.id}" data-name="${row.name}">Eliminar</button>
-                          <button class="btn btn-warning text-white btn-xs btn-edit" data-id="${row.id}" data-name="${row.name}" data-type="${row.type}" data-packagesByBasket="${row.packagesByBasket}">Editar</button>
-                      `;
+                    <button class="btn btn-danger text-white btn-xs me-2 btn-delete" data-id="${row.id}" data-name="${row.name}">Eliminar</button>
+                    <button class="btn btn-warning text-white btn-xs btn-edit" data-id="${row.id}" data-name="${row.name}" data-type="${row.type}" data-packagesByBasket="${row.packagesByBasket}">Editar</button>
+                  `;
           },
         },
       ],

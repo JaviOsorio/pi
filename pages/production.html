@@ -250,7 +250,7 @@
                                         <div class="row">
                                             <div class="col-sm-6"></div>
                                             <div class="col-sm-6">
-                                                <button class="btn btn-primary btn-sm float-end btn-modal-production"><i class="fas fa-plus pe-2 btn-modal-recipe"></i>Nuevo</button>
+                                                <button class="btn btn-primary btn-xs float-end btn-modal-production"><i class="fas fa-plus pe-2 btn-modal-recipe"></i>Nuevo</button>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -530,6 +530,9 @@
                     document.querySelector(".slide-menu-admin").style.display = "none";
                     document.querySelector(".slide-menu-user").style.display = "block";
                 }
+                const user = localStorage.getItem("user");
+                const $proUserName = document.querySelector(".pro-username");
+                $proUserName.textContent = user;
 
                 // variables
                 const btnModalProduction = document.querySelector('.btn-modal-production')
@@ -671,41 +674,49 @@
                         type: "GET",
                         headers: {
                         Authorization: `Bearer ${dataToken.token}`, // Enviar el token en el encabezado de autorización
-                        "Content-Type": "application/json",
+                            "Content-Type": "application/json",
                         },
                         dataSrc: function (json) {
-                        return json; // En caso de que el JSON devuelto sea un array de objetos
+                            return json; // En caso de que el JSON devuelto sea un array de objetos
                         },
                         error: function (xhr, error, thrown) {
-                        console.error("Error al obtener datos protegidos:", error);
+                            console.error("Error al obtener datos protegidos:", error);
                         },
                     },
                     columns: [
-                        // { data: 'id' },
-                        { data: "product.name" },
                         {
-                            data: "productionDate", // Columna para botones de acción
-                            className: "text-center",
+                            data: "product.name",
+                            className: "text-center p-1",
+                        },
+                        {
+                            data: "productionDate",
+                            className: "text-center p-1",
                             render: function (data) {
                                 return data.substr(0, 10);
                             },
                         },
                         {
-                        data: null, // Columna para botones de acción
-                        className: "text-left",
-                        render: function (data, type, row) {
-                            // Crear botones Eliminar y Editar
-                            return `
+                            data: null,
+                            className: "text-left p-1",
+                            render: function (data, type, row) {
+                                // Crear botones Eliminar y Editar
+                                return `
                                     <p class="p-0 m-0"><b>Programados:</b>${row.recipsScheduled}</p>
                                     <p class="p-0 m-0"><b>Producidos:</b>${row.recipesProduced}</p>
                                     `;
                             },
                         },
-                        { data: "numberPeoples" },
-                        { data: "damagedProducts" },
+                        { 
+                            data: "numberPeoples",
+                            className: "text-center p-1",
+                        },
+                        { 
+                            data: "damagedProducts",
+                            className: "text-center p-1",
+                        },
                         {
-                        data: null, // Columna para botones de acción
-                        className: "text-left",
+                        data: null,
+                        className: "text-left p-1",
                         render: function (data, type, row) {
                             // Crear botones Eliminar y Editar
                             return `
@@ -714,10 +725,13 @@
                                     `;
                             },
                         },
-                        { data: "observation" },
                         {
-                            data: null, // Columna para botones de acción
-                            className: "text-center",
+                            data: "observation",
+                            className: "text-center p-1",
+                        },
+                        {
+                            data: null,
+                            className: "text-center p-1",
                             render: function (data, type, row) {
                                 // Crear botones Eliminar y Editar
                                 return `<i

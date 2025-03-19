@@ -446,10 +446,10 @@
                   },
                 },
                 columns: [
-                  { data: "ingredient.name" },
+                  { data: "ingredient.name", className: "p-1" },
                   {
                     data: null, // Columna para botones de acción
-                    className: "text-left",
+                    className: "text-left p-1",
                     render: function (data, type, row) {
                       // Crear botones Eliminar y Editar
                       return (row.type == 'IN') 
@@ -459,18 +459,18 @@
                                 : (row.type == 'DEV') ? '<p class="bg-info text-white text-center p-0 rounded">Devolución</p>': '';
                     },
                   },
-                  { data: "quantity", className: "text-center", },
+                  { data: "quantity", className: "text-center p-1", },
                   {
                     data: null,
-                    className: "text-center",
+                    className: "text-center p-1",
                     render: function (data, type, row) {
                       return row.createdAt.substr(0, 10);
                     }
                   },
-                  { data: "user.name" },
+                  { data: "user.name", className: "p-1" },
                   {
                     data: null, // Columna para botones de acción
-                    className: "text-center",
+                    className: "text-center p-1",
                     render: function (data, type, row) {
                       // Crear botones Eliminar y Editar
                       return `

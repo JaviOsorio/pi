@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             text: "Exportar a Excel",
             sheetName: "Materia Prima",
             title: "Materia prima",
-            className: "btn btn-outline-success",
+            className: "btn btn-outline-success btn-sm",
             exportOptions: {
               columns: ":visible", // Exportar solo columnas visibles
               format: {
@@ -196,26 +196,28 @@ document.addEventListener("DOMContentLoaded", async () => {
         ],
       },
       columns: [
-        { data: "id" }, // Columna para ID
-        { data: "name" }, // Columna para nombre
-        { data: "marginTolerance" }, // Columna para nombre
-        { data: "minimumCuantity" }, // Columna para nombre
-        { data: "status" }, // Columna para estado
+        { data: "id", className: "p-1" }, // Columna para ID
+        { data: "name", className: "p-1" }, // Columna para nombre
+        { data: "marginTolerance", className: "p-1" }, // Columna para nombre
+        { data: "minimumCuantity", className: "p-1" }, // Columna para nombre
+        { data: "status", className: "p-1" }, // Columna para estado
         {
-          data: "createAt", // Columna para fecha de creación
+          data: "createAt",
+          className: "p-1",
           render: function (data) {
             return data.substr(0, 10); // Mostrar solo la fecha en formato 'YYYY-MM-DD'
           },
         },
         {
           data: "totalStock",
+          className: "p-1",
           render: function (data, type, row) {
             return (Number(data) < Number(row.minimumCuantity)) ? `<i class="fas fa-exclamation-triangle text-danger"></i> ${Number(data).toLocaleString()}` : Number(data).toLocaleString();
           },
         },
         {
           data: null, // Columna para botones de acción
-          className: "text-center",
+          className: "text-center p-1",
           render: function (data, type, row) {
             // Crear botones Eliminar y Editar
             return `
