@@ -45,9 +45,32 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else if (event.target.matches(".btn-edit")) {
       $recipeForm.id.value = data?.id;
       $recipeForm.name.value = data?.name;
+      $recipeForm.type.value = data?.type;
+      $recipeForm.unitMeasure.value = data?.unitmeasure;
       $recipeForm.marginTolerance.value = data?.margintolerance;
       $recipeForm.minimumCuantity.value = data?.minimumcuantity;
       $("#recipeModal").modal("show");
+    } else if (event.target.matches(".btn-discount-stock")) {
+      Swal.fire({
+        html: `
+          <h3>${data?.name}</h3>
+          <p>Digíte la cantidad a descontar.</p>
+        `,
+        input: "number",
+        inputAttributes: {
+          autocapitalize: "off",
+          placeholder: "Cantidad",
+          min: 1,
+        },
+        showCancelButton: true,
+        confirmButtonText: "Confirmar",
+        cancelButtonText: "Cancelar",
+        showLoaderOnConfirm: true,
+        preConfirm: async (quantity) => {
+          await discountStock(data?.id, quantity);
+          $(".table-products").DataTable().ajax.reload();
+        },
+      });
     }
   });
 
@@ -91,7 +114,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             event.target.id.value = "";
             Swal.fire({
               title: "Proceso exitoso",
-              // text: "Receta creada",
               icon: "success",
             });
             return;
@@ -149,13 +171,17 @@ document.addEventListener("DOMContentLoaded", async () => {
               columns: ":visible", // Exportar solo columnas visibles
               format: {
                 body: function (data, row, column, node) {
-                  if (column === 5) { // Cambia el índice según la posición de 'totalStock'
-                      let numberValue = $("<div>").html(data).text().replace(/[^0-9]/g, ""); 
-                      return Number(numberValue); // Se exporta como número
+                  if (column === 5) {
+                    // Cambia el índice según la posición de 'totalStock'
+                    let numberValue = $("<div>")
+                      .html(data)
+                      .text()
+                      .replace(/[^0-9]/g, "");
+                    return Number(numberValue); // Se exporta como número
                   }
                   return $("<div>").html(data).text(); // Elimina HTML en otras columnas
-                }
-              }
+                },
+              },
             },
             excelStyles: [
               {
@@ -198,6 +224,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       columns: [
         { data: "id", className: "p-1" }, // Columna para ID
         { data: "name", className: "p-1" }, // Columna para nombre
+        { data: "type", className: "p-1" }, // Columna para type
+        { data: "unitMeasure", className: "p-1" }, // Columna para unitMeasure
         { data: "marginTolerance", className: "p-1" }, // Columna para nombre
         { data: "minimumCuantity", className: "p-1" }, // Columna para nombre
         { data: "status", className: "p-1" }, // Columna para estado
@@ -212,18 +240,30 @@ document.addEventListener("DOMContentLoaded", async () => {
           data: "totalStock",
           className: "p-1",
           render: function (data, type, row) {
-            return (Number(data) < Number(row.minimumCuantity)) ? `<i class="fas fa-exclamation-triangle text-danger"></i> ${Number(data).toLocaleString()}` : Number(data).toLocaleString();
+            return Number(data) < Number(row.minimumCuantity)
+              ? `<i class="fas fa-exclamation-triangle text-danger"></i> ${Number(
+                  data
+                ).toLocaleString()}`
+              : Number(data).toLocaleString();
           },
         },
         {
-          data: null, // Columna para botones de acción
+          data: null,
           className: "text-center p-1",
           render: function (data, type, row) {
             // Crear botones Eliminar y Editar
             return `
-                          <i class="fas fa-trash bg-danger text-white btn-xs me-2 btn-delete" data-id="${row.id}" data-name="${row.name}"></i>
-                          <i class="fas fa-edit bg-warning text-white btn-xs btn-edit" data-id="${row.id}" data-name="${row.name}" data-marginTolerance="${row.marginTolerance}" data-minimumCuantity="${row.minimumCuantity}"></i>
+                          <!--<i class="fas fa-trash text-danger btn-delete" data-id="${row.id}" data-name="${row.name}"></i>-->
+                          <i class="fas fa-edit text-warning btn-edit" data-id="${row.id}" data-name="${row.name}" data-type="${row.type}" data-unitMeasure="${row.unitMeasure}" data-marginTolerance="${row.marginTolerance}" data-minimumCuantity="${row.minimumCuantity}"></i>
                       `;
+          },
+        },
+        {
+          data: null,
+          className: "text-center p-1",
+          render: function (data, type, row) {
+            // Crear botones Eliminar y Editar
+            return `<i class="fas fa-box-open text-danger btn-discount-stock" data-id="${row.id}" data-name="${row.name}"></i>`;
           },
         },
       ],
@@ -277,7 +317,45 @@ document.addEventListener("DOMContentLoaded", async () => {
           event.target.reset();
           Swal.fire({
             title: "Proceso exitoso",
-            text: "Eliminada creada",
+            icon: "success",
+          });
+          return;
+        } else {
+          Swal.fire({
+            title: "Ops...",
+            text: "Ocurrió un error, intente nuevamente",
+            icon: "warning",
+          });
+        }
+      });
+  }
+
+  async function discountStock(id, quantity) {
+    await fetch(`http://localhost:3003/stock-movement`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${dataToken.token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        batchNumber: "",
+        type: "OUT",
+        quantity: Number(quantity),
+        ingredientId: Number(id),
+        userId: Number(dataToken.sub),
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("No autorizado");
+      })
+      .then((data) => {
+        if (data) {
+          $(".table-products").DataTable().ajax.reload();
+          Swal.fire({
+            title: "Proceso exitoso",
             icon: "success",
           });
           return;

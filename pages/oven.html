@@ -80,7 +80,7 @@
                 
                     <!-- LOGO -->
                     <div class="logo-box text-center">
-                        <h2>PESAJE</h2>
+                        <!-- <h2>PESAJE</h2> -->
                     </div>
                 
                     <ul class="list-unstyled topnav-menu topnav-menu-left m-0 text-dark">
@@ -132,13 +132,13 @@
                                     <i class="fas fa-boxes"></i>
                                     <span>Inventario <span class="menu-arrow"></span></span>
                                 </a>
-                                <div class="collapse" id="sidebarMultilevel2" style="">
+                                <div class="collapse" id="sidebarMultilevel2">
                                     <ul class="nav-second-level">
                                       <li>
-                                        <a href="./inventory/ingredients.html">Materia prima</a>
+                                        <a href="./inventory/inputs.html">Insumos</a>
                                       </li>
                                         <li>
-                                            <a href="./inventory/stock.html">Gestión de Stock</a>
+                                            <a href="./inventory/stock.html">Recepción de insumos</a>
                                         </li>
                                         <li>
                                             <a href="./inventory/movements.html">Movimientos de Stock</a>
@@ -165,6 +165,12 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="./oven.html">
+                                    <i class="fas fa-warehouse"></i>
+                                    <span>Hornos</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="./packing.html">
                                     <i class="fas fa-boxes"></i>
                                     <span>Empaque</span>
@@ -174,12 +180,6 @@
                                 <a href="./dispatch.html">
                                     <i class="fas fa-truck"></i>
                                     <span>Despacho</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="./oven.html">
-                                    <i class="fas fa-warehouse"></i>
-                                    <span>Hornos</span>
                                 </a>
                             </li>
                             <li>
@@ -320,128 +320,6 @@
             <!-- ============================================================== -->
             <!-- End Page content -->
             <!-- ============================================================== -->
-
-            <!-- ============================================================== -->
-            <!-- Start modal task -->
-            <!-- ============================================================== -->
-                <!-- Modal task -->
-                <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Tarea</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <form class="needs-validation was-validated recipe-form" novalidate="" autocomplete="off">
-                                                <input type="hidden" name="id" class="form-control">
-                                                <input type="hidden" name="unit" value="Moje" class="form-control">
-                                                <div class="row">
-                                                    <div class="mb-1 col-sm-6">
-                                                        <label for="validationCustom01" class="form-label">Lote de producción</label>
-                                                        <input type="text" class="form-control" id="validationCustom01" name="productionBatch" placeholder="" required="">
-                                                        <div class="valid-feedback">
-                                                            Ok
-                                                        </div>
-                                                    </div>
-                                                    <div class="mb-1 col-sm-6">
-                                                        <label for="status" class="form-label">Estado</label>
-                                                        <select class="form-control mb-2 status-select" name="status" required="">
-                                                            <option value="Pendiente">Pendiente</option>
-                                                            <option value="En curso">En curso</option>
-                                                            <option value="Finalizada">Finalizada</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-1">
-                                                    <label for="validationCustom02" class="form-label">Receta</label>
-                                                    <select class="form-control mb-2 recipe-select" name="productId" required="">
-                                                        <!-- Aquí se cargarán las recetas -->
-                                                    </select>
-                                                    <div class="valid-feedback">
-                                                        Ok
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="mb-1 col-sm-6">
-                                                        <label for="validationCustom03" class="form-label">Fecha inicio</label>
-                                                        <input type="date" class="form-control" id="validationCustom03" name="startDate" placeholder="" required="">
-                                                        <div class="valid-feedback">
-                                                            Ok
-                                                        </div>
-                                                    </div>
-                                                    <div class="mb-1 col-sm-6">
-                                                        <label for="validationCustom04" class="form-label">Fecha Finalización</label>
-                                                        <input type="date" class="form-control" id="validationCustom04" name="endDate" placeholder="" required="">
-                                                        <div class="valid-feedback">
-                                                            Ok
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="mb-1 col-sm-12">
-                                                        <label for="validationCustom05" class="form-label">Repetición</label>
-                                                        <input type="number" class="form-control" id="validationCustom05" name="repetition" placeholder="" required="">
-                                                        <div class="valid-feedback">
-                                                            Ok
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="d-grid gap-2">
-                                                    <button class="btn btn-primary" type="submit">Guardar</button>
-                                                </div>
-                                            </form>
-                                        </div> <!-- end card-body-->
-                                    </div> <!-- end card-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <!-- ============================================================== -->
-            <!-- Start modal task -->
-            <!-- ============================================================== -->
-
-            <!-- ============================================================== -->
-            <!-- Start modal detailtask -->
-            <!-- ============================================================== -->
-                <!-- Modal detailtask -->
-                <div class="modal fade" id="detailTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Detalle de tarea</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h3 class="text-center title-recipe"></h3>                                         
-                                            <table class="table-items-task table table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Ingrediente</th>
-                                                        <th>Cantidad</th>
-                                                        <th class="text-center">Unidad de control</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                </tbody>
-                                            </table>
-                                        </div> <!-- end card-body-->
-                                    </div> <!-- end card-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <!-- ============================================================== -->
-            <!-- Start modal detailtask -->
-            <!-- ============================================================== -->
         </div>
         <!-- END wrapper -->
 
@@ -519,27 +397,30 @@
                         }
                     }
                 });
+
+                document.addEventListener("click", async (event) => {
+                    
+                });
                 
                 async function  loadProduction(startDate, endDate) {
                     // Check if the table has already been initialized
                     if ($.fn.dataTable.isDataTable(".table-production")) {
                         // If it has been initialized, destroy the previous instance
                         $(".table-production").DataTable().destroy();
-                        $(".table-production").empty(); // Optional: Clear the table body
                     }
                     $(".table-production").DataTable({
                     ajax: {
-                        url: `http://localhost:3003/production/${startDate}/${endDate}`,
+                        url: `http://localhost:3003/ovens/${startDate}/${endDate}`,
                         type: "GET",
                         headers: {
-                        Authorization: `Bearer ${dataToken.token}`, // Enviar el token en el encabezado de autorización
-                        "Content-Type": "application/json",
+                            Authorization: `Bearer ${dataToken.token}`, // Enviar el token en el encabezado de autorización
+                            "Content-Type": "application/json",
                         },
                         dataSrc: function (json) {
-                        return json; // En caso de que el JSON devuelto sea un array de objetos
+                            return json; // En caso de que el JSON devuelto sea un array de objetos
                         },
                         error: function (xhr, error, thrown) {
-                        console.error("Error al obtener datos protegidos:", error);
+                            console.error("Error al obtener datos protegidos:", error);
                         },
                     },
                     columns: [
@@ -551,14 +432,14 @@
                             data: null,
                             className: "text-left p-1",
                             render: function (data, type, row) {
-                                return `<input type="time" class="form-control form-control-sm p-0" />`;
+                                return `<input type="time" class="form-control form-control-sm p-0" value="${row.oven?.initHour}" />`;
                             },
                         },
                         {
                             data: null,
                             className: "text-left p-1",
                             render: function (data, type, row) {
-                                return `<input type="time" class="form-control form-control-sm p-0" />`;
+                                return `<input type="time" class="form-control form-control-sm p-0" value="${row.oven?.endHour}" />`;
                             },
                         },
                         { data: "numberCars" },
@@ -567,44 +448,48 @@
                             data: null,
                             className: "text-left p-1",
                             render: function (data, type, row) {
-                                return `<input type="number" class="form-control form-control-sm p-0" style="width: 60px;" />`;
+                                return `<input type="number" class="form-control form-control-sm p-0" style="width: 60px;" value="${row.oven?.internalTemperature}" />`;
                             },
                         },
                         {
                             data: null,
                             className: "text-left p-1",
                             render: function (data, type, row) {
-                                return `<input type="text" class="form-control form-control-sm p-0" style="width: 100px;" />`;
+                                return `<input type="text" class="form-control form-control-sm p-0" style="width: 100px;" value="${row.oven?.oven || ''}" />`;
                             },
                         },
                         {
                             data: null,
                             className: "text-left p-1",
                             render: function (data, type, row) {
-                                return `<input type="number" class="form-control form-control-sm p-0" style="width: 100px;" />`;
+                                return `<input type="number" class="form-control form-control-sm p-0" style="width: 100px;" value="${row.oven?.temperature}" />`;
                             },
                         },
                         {
                             data: null,
                             className: "text-left p-1",
                             render: function (data, type, row) {
-                                return `<input type="number" class="form-control form-control-sm p-0" style="width: 100px;" />`;
+                                return `<input type="number" class="form-control form-control-sm p-0" style="width: 100px;" value="${row.oven?.minimumTime}"/>`;
                             },
                         },
                         {
                             data: null,
                             className: "text-left p-1",
                             render: function (data, type, row) {
-                                return `<input type="number" class="form-control form-control-sm p-0" style="width: 100px;" />`;
+                                return `<select class="form-control form-control-sm p-0" style="width: 100px;">
+                                            <option value="Cumple" ${row.oven?.qualification === 'Cumple' ? 'selected': ''}>Cumple</option>
+                                            <option value="No cumple" ${row.oven?.qualification === 'No cumple' ? 'selected': ''}>No cumple</option>
+                                        </select>`;
                             },
                         },
                         {
                             data: null,
                             className: "text-left p-1",
                             render: function (data, type, row) {
+                                let selectedEmployee = row.oven?.responsibleExecution?.id || "";
                                 let options = `<option value="">Seleccionar</option>`; // Opción vacía
                                 options += employeeList.map(emp => 
-                                    `<option value="${emp.id}">${emp.name}</option>`
+                                    `<option value="${emp.id}" ${emp.id === selectedEmployee ? 'selected' : ''}>${emp.name}</option>`
                                 ).join("");
 
                                 return `<select class="form-select form-select-sm" style="width: 150px;">${options}</select>`;
@@ -614,23 +499,32 @@
                             data: null,
                             className: "text-left p-1",
                             render: function (data, type, row) {
+                                let selectedEmployee = row.oven?.verificationManager?.id || "";
                                 let options = `<option value="">Seleccionar</option>`; // Opción vacía
                                 options += employeeList.map(emp => 
-                                    `<option value="${emp.id}">${emp.name}</option>`
+                                    `<option value="${emp.id}" ${emp.id === selectedEmployee ? 'selected': ''}>${emp.name}</option>`
                                 ).join("");
 
                                 return `<select class="form-select form-select-sm" style="width: 150px;">${options}</select>`;
                             },
                         },
-                        { data: "observation" },
+                        {
+                            data: null,
+                            className: "text-left p-1",
+                            render: function (data, type, row) {
+                                return `<textarea class="form-control form-control-sm p-0" style="width: 100px;">${row.oven?.observation || ''}</textarea>`;
+                            },
+                        },
                         {
                             data: null,
                             className: "text-center",
                             render: function (data, type, row) {
                                 // Crear boton Editar
                                 return `<i
-                                            class="fas fa-save btn btn-primary text-white btn-xs btn-detail"
-                                            data-id="${row.id}"
+                                            class="fas fa-save btn btn-primary text-white btn-xs btn-oven-save"
+                                            data-productionId="${row.id}"
+                                            data-productId="${row.product?.id}"
+                                            data-ovenId="${row.oven?.id || 0}"
                                             data-name="${row.product?.name}">
                                         </i>`;
                             },
@@ -667,7 +561,6 @@
 
                 (async () => {
                     let response = await fetch(`http://localhost:3003/users`);
-
                     if (!response.ok) return;
 
                     let users = await response.json();
@@ -675,6 +568,61 @@
                     // Load datatable
                     await loadProduction(formattedDate, `${year}-${month}-${today.getDate() + 1}`);
                 })();
+
+                // Guardar información de los hornos
+                document.addEventListener("click", async (event) => {
+                    const data = event.target.dataset
+                    if (event.target.classList.contains("btn-oven-save")) {
+                        const row = event.target.closest("tr"); // Obtener la fila actual
+
+                        const rowData = {
+                            initHour: row.querySelector("td:nth-child(2) input")?.value || "",
+                            endHour: row.querySelector("td:nth-child(3) input")?.value || "",
+                            numberCars: Number(row.querySelector("td:nth-child(4)")?.textContent.trim() || 0),
+                            numberCans: Number(row.querySelector("td:nth-child(5)")?.textContent.trim() || 0),
+                            internalTemperature: Number(row.querySelector("td:nth-child(6) input")?.value || 0),
+                            oven: row.querySelector("td:nth-child(7) input")?.value || "",
+                            temperature:  Number(row.querySelector("td:nth-child(8) input")?.value || 0),
+                            minimumTime: row.querySelector("td:nth-child(9) input")?.value || "",
+                            qualification: row.querySelector("td:nth-child(10) select")?.value || "",
+                            responsibleExecution:  Number(row.querySelector("td:nth-child(11) select")?.value || 0),
+                            verificationManager:  Number(row.querySelector("td:nth-child(12) select")?.value || 0),
+                            observation: row.querySelector("td:nth-child(13) textarea")?.value.trim() || "",
+                            productId:  Number(event.target.dataset.productid), // ID del producto
+                            productionId: Number(event.target.dataset.productionid), // ID de la producción
+                        };
+
+                        try {
+                            const response = await fetch(`http://localhost:3003/ovens${data.ovenid > 0 ? `/${data.ovenid}`: ''}`, {
+                                method: data.ovenid == 0 ? "POST" : "PUT",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    Authorization: `Bearer ${dataToken.token}`
+                                },
+                                body: JSON.stringify(rowData)
+                            });
+
+                            if (!response.ok) throw new Error("Error al guardar los datos");
+
+                            const result = await response.json();
+                            console.log("Guardado exitoso:", result);
+                            Swal.fire({
+                                title: "Guardado exitoso",
+                                text: "Los datos se guardaron correctamente.",
+                                icon: "success",
+                            });
+                            await loadProduction(startDate.value, endDate.value);
+                        } catch (error) {
+                            console.error("Error al guardar:", error);
+                            Swal.fire({
+                                title: "Ops...",
+                                text: "Ocurrió un al guardar los datos. Por favor, intente nuevamente.",
+                                icon: "warning",
+                            });
+                            return;
+                        }
+                    }
+                });
             });
         </script>
     </body>

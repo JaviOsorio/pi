@@ -131,13 +131,13 @@
                                     <i class="fas fa-boxes"></i>
                                     <span>Inventario <span class="menu-arrow"></span></span>
                                 </a>
-                                <div class="collapse" id="sidebarMultilevel2" style="">
+                                <div class="collapse" id="sidebarMultilevel2">
                                     <ul class="nav-second-level">
                                       <li>
-                                        <a href="./ingredients.html">Materia prima</a>
+                                        <a href="./inputs.html">Insumos</a>
                                       </li>
                                         <li>
-                                            <a href="./stock.html">Gestión de Stock</a>
+                                            <a href="./stock.html">Recepción de insumos</a>
                                         </li>
                                         <li>
                                             <a href="./movements.html">Movimientos de Stock</a>
@@ -167,6 +167,12 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="./../oven.html">
+                                    <i class="fas fa-warehouse"></i>
+                                    <span>Hornos</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="./../packing.html">
                                     <i class="fas fa-boxes"></i>
                                     <span>Empaque</span>
@@ -176,12 +182,6 @@
                                 <a href="./../dispatch.html">
                                     <i class="fas fa-truck"></i>
                                     <span>Despacho</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="./../oven.html">
-                                    <i class="fas fa-warehouse"></i>
-                                    <span>Horno</span>
                                 </a>
                             </li>
                             <li>
@@ -240,7 +240,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Materia prima</h4>
+                                    <h4 class="page-title">Insumos</h4>
                                 </div>
                             </div>
                         </div>
@@ -256,17 +256,20 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <table class="table table-hover table-striped table-products">
+                                            <table class="table table-hover table-striped table-products" style="font-size: 12px;">
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Nombre</th>
+                                                        <th>Tipo</th>
+                                                        <th>Unidad de medida</th>
                                                         <th>M Tolerancia</th>
                                                         <th>Cantida mínima</th>
                                                         <th>Estado</th>
                                                         <th>Fecha creación</th>
                                                         <th>Stock</th>
-                                                        <th class="text-center">Opciones</th>
+                                                        <th class="text-center">Editar</th>
+                                                        <th class="text-center">Consumir</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -318,7 +321,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Ingrediente</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Insumos</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -326,24 +329,49 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <form class="needs-validation was-validated recipe-form" novalidate="" autocomplete="off">
-                                                <input type="hidden" name="id" class="form-control">
-                                                <div class="mb-3">
+                                                <input type="hidden" name="id" class="form-control form-control-sm">
+                                                <div class="mb-1">
                                                     <label for="validationCustom01" class="form-label">Nombre</label>
-                                                    <input type="text" class="form-control" id="validationCustom01" name="name" placeholder="Nombre de la receta" required="">
+                                                    <input type="text" class="form-control form-control-sm" id="validationCustom01" name="name" placeholder="Nombre de la receta" required="">
                                                     <div class="valid-feedback">
                                                         Ok
                                                     </div>
                                                 </div>
-                                                <div class="mb-3">
-                                                    <label for="validationCustom02" class="form-label">Margen de Tolerancia (en gramos)</label>
-                                                    <input type="number" class="form-control" id="validationCustom02" name="marginTolerance" placeholder="Margen de toleracia" value="0" required="">
+                                                <div class="mb-1">
+                                                    <label for="validationCustom02" class="form-label">Tipo de insumo</label>
+                                                    <select class="form-select form-select-sm" name="type" id="validationCustom02" required="">
+                                                        <option value="">Seleccione</option>
+                                                        <option value="Materia prima">Materia prima</option>
+                                                        <option value="Material de empaque">Material de empaque</option>
+                                                    </select>
                                                     <div class="valid-feedback">
                                                         Ok
                                                     </div>
                                                 </div>
-                                                <div class="mb-3">
-                                                    <label for="validationCustom03" class="form-label">Cantida Mínima (en gramos)</label>
-                                                    <input type="number" class="form-control" id="validationCustom03" name="minimumCuantity" placeholder="Cantida mínima" value="0" required="">
+                                                <div class="mb-1">
+                                                    <label for="validationCustom03" class="form-label">Unidad de medida</label>
+                                                    <select class="form-select form-select-sm" name="unitMeasure" id="validationCustom03" required="">
+                                                        <option value="">Seleccione</option>
+                                                        <option value="Kg">Kg</option>
+                                                        <option value="Gr">Gr</option>
+                                                        <option value="Lt">Lt</option>
+                                                        <option value="Ml">Ml</option>
+                                                        <option value="Unidad">Unidad</option>
+                                                    </select>
+                                                    <div class="valid-feedback">
+                                                        Ok
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1">
+                                                    <label for="validationCustom04" class="form-label">Margen de Tolerancia</label>
+                                                    <input type="number" class="form-control form-control-sm" id="validationCustom04" name="marginTolerance" placeholder="Margen de toleracia" value="0" required="">
+                                                    <div class="valid-feedback">
+                                                        Ok
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1">
+                                                    <label for="validationCustom05" class="form-label">Cantidad Mínima</label>
+                                                    <input type="number" class="form-control form-control-sm" id="validationCustom05" name="minimumCuantity" placeholder="Cantidad mínima" value="0" required="">
                                                     <div class="valid-feedback">
                                                         Ok
                                                     </div>
@@ -396,7 +424,7 @@
         
         <!-- App js -->
         <script src="./../../assets/js/app.min.js"></script>
-        <script src="./../../assets/custom/js/ingredients/index.js?19"></script>
+        <script src="./../../assets/custom/js/ingredients/index.js?24"></script>
         <script>
             function logout(){
                 localStorage.removeItem('token');
